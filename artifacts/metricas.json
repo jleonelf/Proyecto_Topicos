@@ -1,0 +1,1012 @@
+{
+  "fecha_entrenamiento": "2026-10-29T21:40:05.915430",
+  "configuracion": {
+    "project": {
+      "name": "asistente-tienda-ropa",
+      "version": "1.0.0",
+      "seed": 42
+    },
+    "data": {
+      "raw_path": "data/raw/intenciones.csv",
+      "test_size": 0.2,
+      "seed": 42
+    },
+    "nlp": {
+      "modo": "lema",
+      "stopwords_extra": [
+        "porfa",
+        "oye",
+        "disculpa",
+        "buenas",
+        "hola",
+        "favor"
+      ],
+      "stopwords_exclude": [
+        "no",
+        "sin",
+        "mas",
+        "más"
+      ]
+    },
+    "vectorizer": {
+      "ngram_range": [
+        1,
+        2
+      ],
+      "min_df": 1,
+      "max_df": 0.95,
+      "max_features": 2000,
+      "sublinear_tf": true
+    },
+    "models": {
+      "scoring": "f1_macro",
+      "cv_folds": 5,
+      "logistic_regression": {
+        "param_grid": {
+          "modelo__C": [
+            0.1,
+            1.0,
+            5.0,
+            10.0
+          ],
+          "modelo__class_weight": [
+            null,
+            "balanced"
+          ]
+        },
+        "fixed_params": {
+          "max_iter": 1000,
+          "solver": "lbfgs",
+          "random_state": 42
+        }
+      },
+      "naive_bayes": {
+        "param_grid": {
+          "modelo__alpha": [
+            0.1,
+            0.5,
+            1.0,
+            2.0
+          ]
+        },
+        "fixed_params": {}
+      }
+    },
+    "inference": {
+      "umbral": 0.55,
+      "top_k": 3
+    },
+    "artifacts": {
+      "model_path": "artifacts/modelo.joblib",
+      "metrics_path": "artifacts/metricas.json"
+    }
+  },
+  "total_muestras": 138,
+  "muestras_train": 110,
+  "muestras_test": 28,
+  "clases": [
+    "consultar_precio",
+    "consultar_stock",
+    "consultar_tallas",
+    "despedida",
+    "devoluciones",
+    "envios",
+    "horarios_ubicacion",
+    "metodos_pago",
+    "productos_mas_vendidos",
+    "reporte_ventas",
+    "saludo",
+    "stock_bajo",
+    "ventas_por_categoria"
+  ],
+  "modelos": {
+    "dummy_baseline": {
+      "descripcion": "Línea base que predice siempre la clase mayoritaria",
+      "metricas": {
+        "accuracy": 0.0714,
+        "f1_macro": 0.0103,
+        "f1_weighted": 0.0095,
+        "classification_report": {
+          "consultar_precio": {
+            "precision": 0.07142857142857142,
+            "recall": 1.0,
+            "f1-score": 0.13333333333333333,
+            "support": 2.0
+          },
+          "consultar_stock": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "consultar_tallas": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "despedida": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "devoluciones": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "envios": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "horarios_ubicacion": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "metodos_pago": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "productos_mas_vendidos": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "reporte_ventas": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "saludo": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 3.0
+          },
+          "stock_bajo": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "ventas_por_categoria": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "accuracy": 0.07142857142857142,
+          "macro avg": {
+            "precision": 0.005494505494505494,
+            "recall": 0.07692307692307693,
+            "f1-score": 0.010256410256410256,
+            "support": 28.0
+          },
+          "weighted avg": {
+            "precision": 0.00510204081632653,
+            "recall": 0.07142857142857142,
+            "f1-score": 0.009523809523809523,
+            "support": 28.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      }
+    },
+    "naive_bayes": {
+      "descripcion": "Naive Bayes (ComplementNB) optimizado con GridSearchCV",
+      "mejores_parametros": {
+        "modelo__alpha": 1.0
+      },
+      "mejor_cv_score": 0.3837,
+      "metricas": {
+        "accuracy": 0.6071,
+        "f1_macro": 0.5286,
+        "f1_weighted": 0.523,
+        "classification_report": {
+          "consultar_precio": {
+            "precision": 0.4,
+            "recall": 1.0,
+            "f1-score": 0.5714285714285714,
+            "support": 2.0
+          },
+          "consultar_stock": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.5,
+            "support": 3.0
+          },
+          "consultar_tallas": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1-score": 0.6666666666666666,
+            "support": 2.0
+          },
+          "despedida": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1-score": 0.8,
+            "support": 2.0
+          },
+          "devoluciones": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 2.0
+          },
+          "envios": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "horarios_ubicacion": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "metodos_pago": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1-score": 0.8,
+            "support": 2.0
+          },
+          "productos_mas_vendidos": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "reporte_ventas": {
+            "precision": 0.5,
+            "recall": 1.0,
+            "f1-score": 0.6666666666666666,
+            "support": 2.0
+          },
+          "saludo": {
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.4,
+            "support": 3.0
+          },
+          "stock_bajo": {
+            "precision": 1.0,
+            "recall": 0.5,
+            "f1-score": 0.6666666666666666,
+            "support": 2.0
+          },
+          "ventas_por_categoria": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1-score": 0.8,
+            "support": 2.0
+          },
+          "accuracy": 0.6071428571428571,
+          "macro avg": {
+            "precision": 0.5307692307692308,
+            "recall": 0.6282051282051282,
+            "f1-score": 0.5285714285714286,
+            "support": 28.0
+          },
+          "weighted avg": {
+            "precision": 0.5464285714285714,
+            "recall": 0.6071428571428571,
+            "f1-score": 0.5229591836734694,
+            "support": 28.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+          ]
+        ]
+      }
+    },
+    "regresion_logistica": {
+      "descripcion": "Regresión Logística multinomial optimizada con GridSearchCV",
+      "mejores_parametros": {
+        "modelo__C": 10.0,
+        "modelo__class_weight": "balanced"
+      },
+      "mejor_cv_score": 0.4201,
+      "metricas": {
+        "accuracy": 0.5714,
+        "f1_macro": 0.5044,
+        "f1_weighted": 0.4964,
+        "classification_report": {
+          "consultar_precio": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1-score": 0.8,
+            "support": 2.0
+          },
+          "consultar_stock": {
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.5,
+            "support": 3.0
+          },
+          "consultar_tallas": {
+            "precision": 0.4,
+            "recall": 1.0,
+            "f1-score": 0.5714285714285714,
+            "support": 2.0
+          },
+          "despedida": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1-score": 0.8,
+            "support": 2.0
+          },
+          "devoluciones": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1-score": 0.5,
+            "support": 2.0
+          },
+          "envios": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "horarios_ubicacion": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "metodos_pago": {
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1-score": 1.0,
+            "support": 2.0
+          },
+          "productos_mas_vendidos": {
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1-score": 0.0,
+            "support": 2.0
+          },
+          "reporte_ventas": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1-score": 0.8,
+            "support": 2.0
+          },
+          "saludo": {
+            "precision": 0.25,
+            "recall": 0.3333333333333333,
+            "f1-score": 0.2857142857142857,
+            "support": 3.0
+          },
+          "stock_bajo": {
+            "precision": 0.5,
+            "recall": 0.5,
+            "f1-score": 0.5,
+            "support": 2.0
+          },
+          "ventas_por_categoria": {
+            "precision": 0.6666666666666666,
+            "recall": 1.0,
+            "f1-score": 0.8,
+            "support": 2.0
+          },
+          "accuracy": 0.5714285714285714,
+          "macro avg": {
+            "precision": 0.48589743589743595,
+            "recall": 0.5897435897435896,
+            "f1-score": 0.5043956043956044,
+            "support": 28.0
+          },
+          "weighted avg": {
+            "precision": 0.4958333333333334,
+            "recall": 0.5714285714285714,
+            "f1-score": 0.49642857142857144,
+            "support": 28.0
+          }
+        },
+        "confusion_matrix": [
+          [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+          ]
+        ]
+      }
+    }
+  },
+  "modelo_produccion": {
+    "nombre": "naive_bayes",
+    "criterio": "Mayor F1 Macro en conjunto de prueba",
+    "f1_macro": 0.5286
+  }
+}
