@@ -1,0 +1,139 @@
+texto,intencion,rol,fuente
+"hola buenas tardes",saludo,cliente,manual
+"hola como estan",saludo,cliente,manual
+"buenos dias",saludo,cliente,manual
+"buenas noches quisiera hacer una consulta",saludo,cliente,manual
+"hola que tal",saludo,cliente,manual
+"hey buenas",saludo,cliente,manual
+"hola asistente",saludo,cliente,manual
+"buen dia necesito ayuda",saludo,cliente,manual
+"hola hay alguien ahi",saludo,cliente,manual
+"buenas tardes me podrian atender",saludo,cliente,manual
+"hola queria consultar algo",saludo,cliente,manual
+"hola amigos",saludo,cliente,manual
+"gracias por la atencion",despedida,cliente,manual
+"muchas gracias hasta luego",despedida,cliente,manual
+"chao gracias por todo",despedida,cliente,manual
+"hasta luego que tengan buen dia",despedida,cliente,manual
+"eso seria todo muchas gracias",despedida,cliente,manual
+"adios nos vemos",despedida,cliente,manual
+"listo gracias por la informacion",despedida,cliente,manual
+"muchas gracias que tengan buena tarde",despedida,cliente,manual
+"perfecto gracias hasta pronto",despedida,cliente,manual
+"chau hasta la proxima",despedida,cliente,manual
+"gracias ya no necesito nada mas",despedida,cliente,manual
+"tienen jeans negros en talla 32?",consultar_stock,cliente,manual
+"hay poleras blancas disponibles?",consultar_stock,cliente,manual
+"les queda stock de la chaqueta de mezclilla?",consultar_stock,cliente,manual
+"tienen disponible este vestido rojo?",consultar_stock,cliente,manual
+"queda pantalon beige en talla s?",consultar_stock,cliente,manual
+"hay en existencia chamarra de cuero?",consultar_stock,cliente,manual
+"tienen sudaderas con capucha?",consultar_stock,cliente,manual
+"disculpe tienen camisas manga corta?",consultar_stock,cliente,manual
+"tienen en almacen botas negras?",consultar_stock,cliente,manual
+"aun tienen la falda tableada azul?",consultar_stock,cliente,manual
+"tienen disponible abrigo de lana?",consultar_stock,cliente,manual
+"hay polerones disponibles?",consultar_stock,cliente,manual
+"cuanto cuesta la chaqueta de cuero?",consultar_precio,cliente,manual
+"cual es el precio del jean negro?",consultar_precio,cliente,manual
+"que precio tiene esta polera de algodon?",consultar_precio,cliente,manual
+"a cuanto estan los vestidos de noche?",consultar_precio,cliente,manual
+"me podria decir el valor de la sudadera?",consultar_precio,cliente,manual
+"cuanto sale el pantalon deportivo?",consultar_precio,cliente,manual
+"precio de las camisas formales por favor",consultar_precio,cliente,manual
+"cuanto cuesta el saco beige?",consultar_precio,cliente,manual
+"cual es el costo de los buzos?",consultar_precio,cliente,manual
+"costo de la blusa blanca?",consultar_precio,cliente,manual
+"a como esta la campera?",consultar_precio,cliente,manual
+"que tallas hay de esta polera?",consultar_tallas,cliente,manual
+"tienen en talla xl?",consultar_tallas,cliente,manual
+"que medidas tienen para los jeans?",consultar_tallas,cliente,manual
+"hay talla 34 en este pantalon?",consultar_tallas,cliente,manual
+"vienen en talla s y m?",consultar_tallas,cliente,manual
+"que tamaños tienen disponibles?",consultar_tallas,cliente,manual
+"tienen tallas grandes xxl?",consultar_tallas,cliente,manual
+"hasta que talla manejan en camisas?",consultar_tallas,cliente,manual
+"esta chaqueta viene en talla l?",consultar_tallas,cliente,manual
+"tienen guia de tallas para mujeres?",consultar_tallas,cliente,manual
+"que tallaje tienen estos zapatos?",consultar_tallas,cliente,manual
+"hacen envios a provincia?",envios,cliente,manual
+"cuanto tarda en llegar mi pedido?",envios,cliente,manual
+"cual es el costo de envio a domicilio?",envios,cliente,manual
+"realizan entregas a nivel nacional?",envios,cliente,manual
+"como funciona el delivery?",envios,cliente,manual
+"envian pedidos a otras ciudades?",envios,cliente,manual
+"por que empresa de encomienda despachan?",envios,cliente,manual
+"llega a santa cruz o cochabamba?",envios,cliente,manual
+"pueden enviar a mi casa?",envios,cliente,manual
+"cuanto tiempo demora el envio express?",envios,cliente,manual
+"hacen envios gratis por compras mayores?",envios,cliente,manual
+"quiero cambiar una prenda",devoluciones,cliente,manual
+"como puedo hacer una devolucion?",devoluciones,cliente,manual
+"si la talla no me queda puedo cambiarla?",devoluciones,cliente,manual
+"cual es la politica de cambios y devoluciones?",devoluciones,cliente,manual
+"cuantos dias tengo para pedir reembolso?",devoluciones,cliente,manual
+"me llego la prenda equivocada quiero cambio",devoluciones,cliente,manual
+"se puede cambiar por otro modelo?",devoluciones,cliente,manual
+"aceptan devolucion si no me gusta como me queda?",devoluciones,cliente,manual
+"donde voy para hacer un cambio de prenda?",devoluciones,cliente,manual
+"tienen garantia para cambio por falla?",devoluciones,cliente,manual
+"a que hora abren la tienda?",horarios_ubicacion,cliente,manual
+"donde queda su sucursal?",horarios_ubicacion,cliente,manual
+"cual es su horario de atencion los domingos?",horarios_ubicacion,cliente,manual
+"cual es la direccion de la tienda fisica?",horarios_ubicacion,cliente,manual
+"atienden feriados?",horarios_ubicacion,cliente,manual
+"en que calle estan ubicados?",horarios_ubicacion,cliente,manual
+"a que hora cierran los sabados?",horarios_ubicacion,cliente,manual
+"tienen tiendas en el centro comercial?",horarios_ubicacion,cliente,manual
+"donde puedo visitarlos en persona?",horarios_ubicacion,cliente,manual
+"cual es la ubicacion exacta?",horarios_ubicacion,cliente,manual
+"aceptan pagos con tarjeta de credito?",metodos_pago,cliente,manual
+"se puede pagar por transferencia qr?",metodos_pago,cliente,manual
+"cuales son sus formas de pago?",metodos_pago,cliente,manual
+"aceptan efectivo al momento de la entrega?",metodos_pago,cliente,manual
+"puedo pagar con debito?",metodos_pago,cliente,manual
+"tienen pago contra entrega?",metodos_pago,cliente,manual
+"se puede transferir mediante bnb o fassil?",metodos_pago,cliente,manual
+"aceptan tigo money?",metodos_pago,cliente,manual
+"puedo abonar con tarjeta?",metodos_pago,cliente,manual
+"que medios de pago tienen habilitados?",metodos_pago,cliente,manual
+"dame las ventas de esta semana",reporte_ventas,admin,manual
+"cuanto se vendio hoy?",reporte_ventas,admin,manual
+"generame un reporte de ventas del mes de octubre",reporte_ventas,admin,manual
+"cual fue el total vendido en estos ultimos 7 dias?",reporte_ventas,admin,manual
+"muestra los ingresos totales por ventas",reporte_ventas,admin,manual
+"balance de ventas del ultimo fin de semana",reporte_ventas,admin,manual
+"reporte general de ventas de la semana pasada",reporte_ventas,admin,manual
+"resumen financiero de ventas del trimestre",reporte_ventas,admin,manual
+"cuanto fue la facturacion de hoy?",reporte_ventas,admin,manual
+"dame el reporte de ingresos por ventas diarias",reporte_ventas,admin,manual
+"que fue lo mas vendido en octubre?",productos_mas_vendidos,admin,manual
+"cuales son los articulos mas vendidos de este mes?",productos_mas_vendidos,admin,manual
+"muestrame el top 5 de prendas mas vendidas",productos_mas_vendidos,admin,manual
+"que producto tuvo mayor cantidad de pedidos?",productos_mas_vendidos,admin,manual
+"cuales son los productos estrella de la tienda?",productos_mas_vendidos,admin,manual
+"dame la lista de prendas con mayores ventas",productos_mas_vendidos,admin,manual
+"que ropa se vendio mas esta semana?",productos_mas_vendidos,admin,manual
+"ranking de productos mas populares",productos_mas_vendidos,admin,manual
+"cuales articulos tuvieron mayor demanda recientemente?",productos_mas_vendidos,admin,manual
+"que prendas lideran las ventas?",productos_mas_vendidos,admin,manual
+"que productos se estan acabando?",stock_bajo,admin,manual
+"alerta de stock critico por favor",stock_bajo,admin,manual
+"cuales articulos tienen menos de cinco unidades en inventario?",stock_bajo,admin,manual
+"muestrame el inventario bajo para reponer",stock_bajo,admin,manual
+"que prendas necesitan reposicion urgente?",stock_bajo,admin,manual
+"cuales sku estan con stock bajo?",stock_bajo,admin,manual
+"que productos estan a punto de agotarse?",stock_bajo,admin,manual
+"dame la lista de productos con inventario minimo",stock_bajo,admin,manual
+"reporte de quiebre de stock",stock_bajo,admin,manual
+"que ropa tiene pocas unidades disponibles?",stock_bajo,admin,manual
+"ventas por categoria del mes",ventas_por_categoria,admin,manual
+"cuanto se vendio en pantalones vs camisas?",ventas_por_categoria,admin,manual
+"desglose de ventas por linea de producto",ventas_por_categoria,admin,manual
+"distribucion de ingresos segun la categoria de ropa",ventas_por_categoria,admin,manual
+"que categoria genero mas ingresos en septiembre?",ventas_por_categoria,admin,manual
+"reporte de ventas dividido por accesorios calzado y ropa",ventas_por_categoria,admin,manual
+"cuales son las categorias mas rentables?",ventas_por_categoria,admin,manual
+"muestrame el porcentaje de ventas por categoria",ventas_por_categoria,admin,manual
+"ventas del sector femenino vs masculino",ventas_por_categoria,admin,manual
+"balance de ingresos por tipo de producto",ventas_por_categoria,admin,manual
