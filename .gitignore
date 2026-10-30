@@ -218,3 +218,9 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Project artifacts
+artifacts/*.joblib
+artifacts/*.db
+!artifacts/.gitkeep

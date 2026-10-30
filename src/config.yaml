@@ -1,0 +1,57 @@
+# Configuración central del Pipeline de NLP y Modelos ML
+
+project:
+  name: "asistente-tienda-ropa"
+  version: "1.0.0"
+  seed: 42
+
+data:
+  raw_path: "data/raw/intenciones.csv"
+  test_size: 0.2
+  seed: 42
+
+nlp:
+  modo: "lema" # 'lema' (spaCy) o 'stem' (Snowball NLTK)
+  stopwords_extra:
+    - "porfa"
+    - "oye"
+    - "disculpa"
+    - "buenas"
+    - "hola"
+    - "favor"
+  stopwords_exclude:
+    - "no"
+    - "sin"
+    - "mas"
+    - "más"
+
+vectorizer:
+  ngram_range: [1, 2] # unigramas y bigramas
+  min_df: 1
+  max_df: 0.95
+  max_features: 2000
+  sublinear_tf: true
+
+models:
+  scoring: "f1_macro"
+  cv_folds: 5
+  logistic_regression:
+    param_grid:
+      modelo__C: [0.1, 1.0, 5.0, 10.0]
+      modelo__class_weight: [null, "balanced"]
+    fixed_params:
+      max_iter: 1000
+      solver: "lbfgs"
+      random_state: 42
+  naive_bayes:
+    param_grid:
+      modelo__alpha: [0.1, 0.5, 1.0, 2.0]
+    fixed_params: {}
+
+inference:
+  umbral: 0.55 # Si la probabilidad < umbral, el chatbot responde "no entendí"
+  top_k: 3
+
+artifacts:
+  model_path: "artifacts/modelo.joblib"
+  metrics_path: "artifacts/metricas.json"
