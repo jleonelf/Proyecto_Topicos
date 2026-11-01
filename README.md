@@ -104,7 +104,7 @@ El sistema implementa una arquitectura desacoplada de dos etapas para la toma de
 │  Fase 6A: Clasificador   │    │  Fase 6B: Detector OOD           │
 │  Regresión Logística     │    │  Hybrid Dual-Gate                │
 │  Multinomial             │    │  - Softmax MSP >= 0.35           │
-│  (Probabilidades softmax)│    │  - Cobertura Vocabulario >= 0.35 │
+│  (Probabilidades softmax)│    │  - Cobertura Vocabulario >= 0.40 │
 └──────────────────────────┘    └──────────────────────────────────┘
           │                               │
           ▼                               ▼
@@ -130,7 +130,7 @@ El sistema implementa una arquitectura desacoplada de dos etapas para la toma de
 4. **Calibración OOD en validación abierta (Open-Set):**
    - El umbral de rechazo OOD **no se asume arbitrariamente ni se calibra sobre datos cerrados en dominio**.
    - Se evalúa cuantitativamente contra `data/ood_val.csv` (40 consultas de 10 dominios externos).
-   - Se selecciona la estrategia **Hybrid Dual-Gate** que exige simultáneamente confianza probabilística y una proporción mínima de tokens lematizados dentro del vocabulario de la tienda, eliminando falsos positivos provocados por palabras aisladas.
+   - Se selecciona la estrategia con mayor F1 macro con rechazo entre las que aceptan como máximo el 20% de consultas OOD de validación. El conjunto OOD de prueba se evalúa solo después de esta selección.
 
 ---
 
@@ -159,7 +159,13 @@ Evaluación en conjunto de validación abierta (`data/ood_val.csv`, 40 consultas
 | **Margen entre Clases** | `umbral=0.60` | 46.1% | 96.1% | 15.0% | 0.5702 | 0.7379 |
 | **Similitud Coseno Centroides** | `umbral=0.25` | 38.3% | 90.6% | 12.5% | 0.4540 | 0.6723 |
 | **Cobertura de Vocabulario** | `umbral=0.60` | 91.6% | 84.3% | 10.0% | 0.8048 | 0.8382 |
-| **Hybrid Dual-Gate (Ganador)** | `prob>=0.35, cov>=0.35` | **83.2%** | **90.7%** | **20.0%** | **0.8151** | **0.8342** |
+| **Hybrid Dual-Gate (Ganador)** | `prob>=0.35, cov>=0.40` | **83.2%** | **90.7%** | **20.0%** | **0.8151** | **0.8342** |
+
+La selección usa **F1 macro con rechazo**, sujeto a una tasa de aceptación OOD de validación de hasta 20%. `Score Balance` se informa como dato adicional; por ese indicador aislado gana cobertura de vocabulario.
+
+### Evaluación final independiente del detector seleccionado
+
+Tras fijar la estrategia y sus umbrales se midieron 208 consultas ID y 50 OOD de prueba, sin usarlas para seleccionar el detector. El híbrido aceptó el **87,5%** de las ID; su exactitud entre las aceptadas fue **90,11%** y su F1 macro con rechazo **0,8402**. Aceptó por error **8/50 OOD (16%)**: **0/25 fáciles** y **8/25 difíciles (32%)**. Estos resultados describen el alcance de los dos conjuntos de prueba; el detector no garantiza rechazo de toda consulta ajena a la tienda.
 
 ---
 
@@ -172,45 +178,49 @@ Bajo un clasificador tradicional que solo usa umbral de probabilidad (MSP):
 3. *"¿cuánto cuesta un pasaje de avión?"* $\rightarrow$ Activa la fórmula *"cuánto cuesta"* y predice `consultar_precio` con confianza **0.6825** (Falso Positivo).
 
 ### Solución implementada (Dual-Gate):
-El detector `HybridOODDetector` analiza la **cobertura léxica lematizada** de la frase contra el vocabulario específico de la tienda de ropa. Dado que los términos *contraseña, wifi, fiebre, dolor, cabeza, pasaje, avión* no pertenecen al dominio, la cobertura de estas tres frases es de solo **0.25 (25%)**, quedando por debajo del umbral de cobertura exigido (**0.35**).
+El detector `HybridOODDetector` analiza la **cobertura léxica lematizada** de la frase contra el vocabulario específico de la tienda de ropa. Dado que los términos *contraseña, wifi, fiebre, dolor, cabeza, pasaje, avión* no pertenecen al dominio, la cobertura de estas tres frases es de solo **0.25 (25%)**, quedando por debajo del umbral de cobertura calibrado (**0.40**).
 
 Resultado:
-- **Las 3 consultas son rechazadas sistemáticamente** devolviendo `intencion: "no_entendido"` con `confianza_suficiente: false` y motivo `cobertura_baja`.
+- **Las 3 consultas son rechazadas** devolviendo `intencion: "no_entendido"` con `confianza_suficiente: false`. El método `diagnosticar` del detector informa `cobertura_baja` como motivo.
 - **Sin listas negras ad-hoc:** No se añadieron palabras prohibidas ni reglas *if-else* rígidas; el detector opera con base en propiedades estadísticas del vocabulario del dominio.
 
 ---
 
 ## 6. Pruebas Automatizadas
 
-La suite de pruebas contiene **15 pruebas unitarias y de integración** que validan la totalidad del pipeline:
+La suite de pruebas cubre entrenamiento, inferencia y rechazo OOD:
 
 ```bash
 # Ejecutar toda la suite con reporte detallado
 python -m pytest -v
 ```
 
-### Pruebas en `tests/test_models.py` (10 pruebas):
+### Pruebas en `tests/test_models.py`:
 - `test_cargar_configuracion`: Valida existencia y claves obligatorias de `src/config.yaml`.
 - `test_entrenar_y_generar_artefactos`: Valida la ejecución reproducible de entrenamiento, persistencia de `modelo.joblib`, `metricas.json` y criterio de selección por CV.
 - `test_predecir_contrato_estricto`: Valida el contrato estricto de retorno (`texto`, `intencion`, `intencion_detectada`, `probabilidad`, `top3`, `umbral`, `confianza_suficiente`).
 - `test_predecir_consultas_en_dominio_validas`: Comprueba que consultas legítimas de clientes y administradores superen el filtro y no devuelvan `no_entendido`.
-- `test_predecir_consultas_ood_no_vistas_rechazadas`: Verifica que consultas OOD del conjunto de prueba independiente (`data/ood_test.csv`) sean rechazadas.
+- `test_predecir_consultas_ood_no_vistas_rechazadas`: Verifica el rechazo de ejemplos concretos del conjunto OOD de prueba; las métricas finales informan también los casos aceptados por error.
 - `test_predecir_texto_vacio_y_espacios`: Manejo seguro de cadenas vacías o espacios en blanco sin excepciones.
 - `test_predecir_top3_ordenado`: Garantiza que el Top 3 esté ordenado descendentemente por probabilidad.
 - `test_rutas_relativas_y_absolutas`: Valida que `cargar_modelo()` y `predecir()` resuelvan rutas relativas, absolutas o cuando se ejecutan desde cualquier directorio de trabajo (`cwd`).
 - `test_regeneracion_desde_cero`: Valida que `invalidar_cache()` limpie la memoria y permita recargar o reentrenar modelos sin depender de artefactos antiguos en caché.
 - `test_lematizacion_error_si_falta_spacy`: Confirma que la ausencia de `es_core_news_sm` genera un error explícito `RuntimeError`.
+- `test_detector_faltante_o_roto_no_acepta_consultas`: Verifica que inferencia genere un error claro si falta el detector o falla su ejecución.
 
-### Pruebas en `tests/test_ood.py` (5 pruebas):
+### Pruebas en `tests/test_ood.py`:
 - `test_instanciacion_y_score_detectores`: Valida ajuste y cálculo de scores continuos en los detectores MSP, Margen, Cobertura e Híbrido.
 - `test_estrategia_hibrida_rechaza_bugs_reportados`: Comprueba explícitamente el rechazo de las 3 consultas del bug report (*wifi*, *fiebre*, *pasaje de avión*).
 - `test_estrategia_hibrida_acepta_consultas_en_dominio`: Verifica que consultas legítimas en dominio mantengan una alta cobertura y sean aceptadas.
 - `test_evaluacion_y_comparacion_estrategias`: Valida la ejecución de la grilla comparativa `comparar_estrategias()`.
+- La misma prueba verifica que la estrategia seleccionada siga el criterio cuantitativo declarado.
 - `test_sin_listas_negras_ni_reglas_ad_hoc`: Inspecciona el código de `src/models/ood.py` para garantizar la ausencia de listas negras o palabras clave codificadas a mano.
 
 ---
 
 ## 7. Inferencia y Uso del Sistema
+
+El comando de entrenamiento genera `modelo.joblib` y `ood_detector.joblib`. Si falta el detector o falla su evaluación, inferencia genera un error explícito; no vuelve al umbral MSP que aceptaba las consultas del bug report.
 
 ### Ejecución por terminal
 
@@ -278,7 +288,7 @@ De acuerdo con las buenas prácticas de ingeniería de Machine Learning, documen
 1. **Ambigüedad de Rol (Cliente vs Administrador):**
    Consultas como *"¿qué ropa tiene pocas unidades disponibles?"* comparten vocabulario idéntico con consultas de stock de clientes (*"¿tienen unidades disponibles?"*). Al tratarse de un modelo de procesamiento lingüístico puro sin información de sesión o autenticación, el clasificador puede inclinarse hacia `consultar_stock` en lugar de `stock_bajo`. Se recomienda que la capa de API verifique el rol del usuario (JWT / token) antes de enrutar la intención.
 2. **Consultas OOD con Alto Solapamiento Textil:**
-   Si una consulta ajena al negocio incluye múltiples palabras del dominio de ropa (por ejemplo: *"¿dónde puedo aprender a coser un vestido de novia?"* o *"quiero confeccionar camisas de seda"*), la cobertura de vocabulario en TF-IDF puede superar el 0.35 y ser aceptada erróneamente. La mitigación futura para este escenario involucra modelos neuronales densos (embeddings con bi-encoders y Sentence Transformers).
+   Si una consulta ajena al negocio incluye múltiples palabras del dominio de ropa (por ejemplo: *"¿dónde puedo aprender a coser un vestido de novia?"* o *"quiero confeccionar camisas de seda"*), la cobertura de vocabulario en TF-IDF puede superar el umbral calibrado y ser aceptada erróneamente. La mitigación futura para este escenario involucra modelos neuronales densos (embeddings con bi-encoders y Sentence Transformers).
 3. **Fórmulas de Cortesía Combinadas:**
    Frases cordiales que combinan fórmulas de saludo y despedida (*"buenas noches y muchas gracias hasta luego"*) activan n-gramas de ambas clases, generando competencia entre `saludo` y `despedida`.
 4. **Dependencia del Preprocesador Morfológico:**

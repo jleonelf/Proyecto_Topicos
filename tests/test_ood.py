@@ -153,6 +153,7 @@ def test_evaluacion_y_comparacion_estrategias(pipeline_entrenado):
     assert "tabla_comparativa" in res
     assert "estrategia_seleccionada" in res
     assert "resumen_ganador" in res
+    assert "criterio_seleccion" in res
 
     tabla = res["tabla_comparativa"]
     assert "msp_baseline_035" in tabla
@@ -163,6 +164,17 @@ def test_evaluacion_y_comparacion_estrategias(pipeline_entrenado):
         assert "tasa_error_ood" in metricas
         assert "f1_macro" in metricas
         assert 0.0 <= metricas["tasa_error_ood"] <= 1.0
+
+    elegibles = {
+        nombre: metricas for nombre, metricas in tabla.items()
+        if metricas["tasa_error_ood"] <= 0.20
+    }
+    candidatos = elegibles if elegibles else tabla
+    esperado = max(
+        candidatos,
+        key=lambda nombre: (tabla[nombre]["f1_macro"], -tabla[nombre]["tasa_error_ood"]),
+    )
+    assert res["estrategia_seleccionada"] == esperado
 
 
 def test_sin_listas_negras_ni_reglas_ad_hoc():

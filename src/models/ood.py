@@ -468,8 +468,9 @@ def comparar_estrategias(
 ) -> Dict[str, Any]:
     """Evalúa cuantitativamente y compara todas las estrategias de rechazo OOD sobre datos de validación.
 
-    Retorna un diccionario estructurado con las métricas de cada estrategia y la selección
-    del detector ganador (HybridOODDetector como estrategia integral recomendada).
+    Selecciona el mayor F1 macro con rechazo entre estrategias cuya tasa de
+    aceptación OOD en validación no supera el 20 %. En caso de empate, prefiere
+    la menor tasa de aceptación OOD.
     """
     detectores: Dict[str, BaseOODDetector] = {
         "msp_baseline_035": MSPDetector(umbral=0.35),
@@ -513,24 +514,35 @@ def comparar_estrategias(
         }
         resultados[nombre] = res
 
-    # 4. Seleccionar estrategia ganadora: HybridOODDetector
-    # Justificación: Pure coverage con umbral alto rechaza consultas legítimas cortas o de vocabulario variado.
-    # MSP por sí solo asigna alta probabilidad a frases con 1 sola palabra en vocabulario.
-    # HybridOODDetector (Dual-Gate) resuelve ambas vulnerabilidades simultáneamente.
-    ganador = "hybrid_dual_gate"
-
+    max_error_ood = 0.20
+    elegibles = {
+        nombre: metricas for nombre, metricas in resultados.items()
+        if metricas["tasa_error_ood"] <= max_error_ood
+    }
+    candidatos = elegibles if elegibles else resultados
+    ganador = max(
+        candidatos,
+        key=lambda nombre: (
+            resultados[nombre]["f1_macro"],
+            -resultados[nombre]["tasa_error_ood"],
+        ),
+    )
+    criterio = (
+        "Mayor F1 macro con rechazo en validación, sujeto a tasa de aceptación "
+        "OOD <= 0.20; desempate por menor tasa OOD. Si ninguna estrategia cumple "
+        "el límite, se elige el mayor F1 macro y se informa el incumplimiento."
+    )
     justificacion = (
-        "La estrategia Híbrida Compuesta (Dual-Gate) combina la probabilidad de softmax (umbral=0.35) "
-        "con la cobertura de vocabulario en TF-IDF (umbral=0.35). Logra rechazar sistemáticamente consultas "
-        "adversarias fuera de dominio que contienen solo una palabra coincidente (como 'cambiar', 'costar', 'tener' "
-        "cuya cobertura es solo 0.25 < 0.35) sin rechazar consultas legítimas de la tienda (como "
-        "'¿en qué dirección se encuentra la tienda física?' con cobertura 0.50 y probabilidad 0.61), "
-        "ofreciendo el mejor equilibrio de cobertura válida, alta exactitud y robustez OOD."
+        f"{ganador} obtuvo F1 macro con rechazo "
+        f"{resultados[ganador]['f1_macro']:.4f} y tasa de aceptación OOD "
+        f"{resultados[ganador]['tasa_error_ood']:.4f} en validación. "
+        "El score_balance se reporta como indicador adicional, pero no define la selección."
     )
 
     return {
         "tabla_comparativa": resultados,
         "estrategia_seleccionada": ganador,
+        "criterio_seleccion": criterio,
         "detector_seleccionado": detectores[ganador],
         "resumen_ganador": resultados[ganador],
         "justificacion": justificacion

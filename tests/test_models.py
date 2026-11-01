@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 import pytest
 from src.models.train import entrenar, cargar_configuracion
-from src.models.predict import predecir, cargar_modelo, invalidar_cache, resolver_ruta
+from src.models.predict import predecir, cargar_modelo, cargar_detector, invalidar_cache, resolver_ruta
 
 
 def test_cargar_configuracion():
@@ -39,6 +39,9 @@ def test_entrenar_y_generar_artefactos(tmp_path):
 
     assert os.path.exists("artifacts/modelo.joblib")
     assert os.path.exists("artifacts/metricas.json")
+    ood = resultados["estrategias_rechazo_ood"]
+    assert ood["evaluacion_final_test"]["n_ood_test"] == 50
+    assert 0 <= ood["evaluacion_final_test"]["tasa_error_ood"] <= 1
 
 
 def test_predecir_contrato_estricto():
@@ -215,3 +218,21 @@ def test_lematizacion_error_si_falta_spacy(monkeypatch):
 
     with pytest.raises(RuntimeError, match="es_core_news_sm"):
         lematizacion.lematizar(["probando", "tokens"])
+
+
+def test_detector_faltante_o_roto_no_acepta_consultas(monkeypatch, tmp_path):
+    """Un fallo del detector no puede reactivar el umbral MSP inseguro."""
+    import src.models.predict as modulo_predict
+
+    invalidar_cache()
+    with pytest.raises(FileNotFoundError, match="python -m src.models.train"):
+        cargar_detector(str(tmp_path / "detector_inexistente.joblib"))
+
+    class DetectorRoto:
+        def predict_accept(self, textos):
+            raise RuntimeError("fallo simulado")
+
+    monkeypatch.setattr(modulo_predict, "cargar_detector", lambda: DetectorRoto())
+    with pytest.raises(RuntimeError, match="Falló la evaluación del detector OOD"):
+        predecir("cómo cambiar la contraseña del wifi")
+    invalidar_cache()

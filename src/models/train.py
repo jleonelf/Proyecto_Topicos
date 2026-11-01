@@ -304,9 +304,23 @@ def entrenar(config_path: str = "src/config.yaml") -> Tuple[Pipeline, Dict[str, 
     resultados["estrategias_rechazo_ood"] = {
         "tabla_comparativa": resultados_ood["tabla_comparativa"],
         "estrategia_seleccionada": resultados_ood["estrategia_seleccionada"],
+        "criterio_seleccion": resultados_ood["criterio_seleccion"],
         "resumen_ganador": resultados_ood["resumen_ganador"],
         "justificacion": resultados_ood.get("justificacion", "")
     }
+
+    # Medición final, posterior a la selección: estos datos no ajustan parámetros.
+    ood_test_path = resolver_ruta(config.get("data", {}).get("ood_test_path", "data/ood_test.csv"))
+    df_ood_test = pd.read_csv(ood_test_path)
+    evaluacion_final = detector_ganador.evaluar(X_test, y_test, df_ood_test["texto"])
+    evaluacion_final["n_id_test"] = len(X_test)
+    evaluacion_final["n_ood_test"] = len(df_ood_test)
+    if "dificultad" in df_ood_test:
+        evaluacion_final["tasa_error_ood_por_dificultad"] = {
+            dificultad: round(float(np.mean(detector_ganador.predict_accept(filas["texto"]))), 4)
+            for dificultad, filas in df_ood_test.groupby("dificultad")
+        }
+    resultados["estrategias_rechazo_ood"]["evaluacion_final_test"] = evaluacion_final
 
     # ==========================================================
     # Persistencia de Artefactos

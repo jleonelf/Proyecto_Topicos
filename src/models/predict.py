@@ -89,28 +89,12 @@ def cargar_detector(detector_path: Optional[str] = None):
         else:
             detector_path = resolver_ruta(detector_path)
 
-        if os.path.exists(detector_path):
-            _DETECTOR_CACHE = joblib.load(detector_path)
-        else:
-            # Fallback seguro: inicializar detector híbrido con configuración actual
-            try:
-                from src.models.ood import HybridOODDetector
-                cfg = obtener_config()
-                pipeline = cargar_modelo()
-                ood_cfg = cfg.get("ood", {})
-                u_prob = float(ood_cfg.get("umbral_prob", cfg.get("inference", {}).get("umbral", 0.35)))
-                u_cov = float(ood_cfg.get("umbral_cobertura", 0.35))
-                u_sim = float(ood_cfg.get("umbral_similitud", 0.0))
-                det = HybridOODDetector(
-                    umbral_prob=u_prob,
-                    umbral_cobertura=u_cov,
-                    umbral_similitud=u_sim,
-                    modo="conjuncion"
-                )
-                det.fit(pipeline)
-                _DETECTOR_CACHE = det
-            except Exception:
-                _DETECTOR_CACHE = None
+        if not os.path.exists(detector_path):
+            raise FileNotFoundError(
+                f"No se encontró el detector OOD en '{detector_path}'. "
+                "Ejecute primero: python -m src.models.train"
+            )
+        _DETECTOR_CACHE = joblib.load(detector_path)
 
     return _DETECTOR_CACHE
 
@@ -172,16 +156,11 @@ def predecir(texto: str, config_path: str = "src/config.yaml") -> Dict[str, Any]
 
     if usar_detector:
         detector = cargar_detector()
-        if detector is not None:
-            try:
-                confianza_suficiente = bool(detector.predict_accept([texto])[0])
-                umbral_aplicado = float(getattr(detector, "umbral_prob", getattr(detector, "umbral", umbral_default)))
-            except Exception:
-                confianza_suficiente = mejor_prob >= umbral_default
-                umbral_aplicado = umbral_default
-        else:
-            confianza_suficiente = mejor_prob >= umbral_default
-            umbral_aplicado = umbral_default
+        try:
+            confianza_suficiente = bool(detector.predict_accept([texto])[0])
+        except Exception as exc:
+            raise RuntimeError("Falló la evaluación del detector OOD; no se emitió una intención.") from exc
+        umbral_aplicado = float(getattr(detector, "umbral_prob", getattr(detector, "umbral", umbral_default)))
     else:
         confianza_suficiente = mejor_prob >= umbral_default
         umbral_aplicado = umbral_default

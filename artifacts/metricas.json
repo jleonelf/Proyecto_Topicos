@@ -1,5 +1,5 @@
 {
-  "fecha_entrenamiento": "2026-10-31T22:36:16.341341",
+  "fecha_entrenamiento": "2026-11-01T10:39:23.486445",
   "configuracion": {
     "project": {
       "name": "asistente-tienda-ropa",
@@ -1101,6 +1101,7 @@
       }
     },
     "estrategia_seleccionada": "hybrid_dual_gate",
+    "criterio_seleccion": "Mayor F1 macro con rechazo en validación, sujeto a tasa de aceptación OOD <= 0.20; desempate por menor tasa OOD. Si ninguna estrategia cumple el límite, se elige el mayor F1 macro y se informa el incumplimiento.",
     "resumen_ganador": {
       "estrategia": "HybridOODDetector",
       "umbral": 0.35,
@@ -1115,6 +1116,21 @@
         "umbral_similitud": 0.0
       }
     },
-    "justificacion": "La estrategia Híbrida Compuesta (Dual-Gate) combina la probabilidad de softmax (umbral=0.35) con la cobertura de vocabulario en TF-IDF (umbral=0.35). Logra rechazar sistemáticamente consultas adversarias fuera de dominio que contienen solo una palabra coincidente (como 'cambiar', 'costar', 'tener' cuya cobertura es solo 0.25 < 0.35) sin rechazar consultas legítimas de la tienda (como '¿en qué dirección se encuentra la tienda física?' con cobertura 0.50 y probabilidad 0.61), ofreciendo el mejor equilibrio de cobertura válida, alta exactitud y robustez OOD."
+    "justificacion": "hybrid_dual_gate obtuvo F1 macro con rechazo 0.8151 y tasa de aceptación OOD 0.2000 en validación. El score_balance se reporta como indicador adicional, pero no define la selección.",
+    "evaluacion_final_test": {
+      "estrategia": "HybridOODDetector",
+      "umbral": 0.35,
+      "cobertura_id": 0.875,
+      "exactitud_aceptadas": 0.9011,
+      "tasa_error_ood": 0.16,
+      "f1_macro": 0.8402,
+      "score_balance": 0.8554,
+      "n_id_test": 208,
+      "n_ood_test": 50,
+      "tasa_error_ood_por_dificultad": {
+        "dificil": 0.32,
+        "facil": 0.0
+      }
+    }
   }
 }
