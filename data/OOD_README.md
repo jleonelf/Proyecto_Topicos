@@ -68,7 +68,7 @@ Para permitir el diseño, la calibración rigurosa de umbrales y la posterior ev
 Ambos archivos siguen el formato estándar CSV (codificación UTF-8 sin BOM):
 - `texto`: La consulta o frase en lenguaje natural (español).
 - `categoria`: El ámbito semántico real no relacionado con la tienda (e.g., `salud`, `tecnologia`, `finanzas`, `ciencia`, `vehiculos`, `gastronomia`, `deportes`, `tramites`).
-- `dificultad`: 
+- `dificultad`:
   - `facil`: Casos sin palabras clave o lemas dominantes del catálogo de la tienda (su vector TF-IDF tiende a cero o contiene únicamente términos no polarizados).
   - `dificil`: Casos adversarios con solapamiento léxico de verbos o sustantivos de tienda aplicados a contextos no textiles (*"cambiar"*, *"precio"*, *"costar"*, *"envíos"*, *"devolución"*, *"talla"*, *"stock"*, *"venden"*, *"horario"*, *"pago"*).
 - `fuente`:
