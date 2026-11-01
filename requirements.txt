@@ -1,0 +1,22 @@
+# Dependencias del proyecto integrador (NLP + ML + API) - Versiones fijadas para reproducibilidad
+scikit-learn==1.9.1
+pandas==3.1.0
+numpy==2.4.6
+joblib==1.6.0
+PyYAML==6.0.3
+fastapi==0.162.0
+uvicorn==0.54.0
+pydantic==2.14.2
+pytest==9.2.0
+spacy==3.8.18
+nltk==3.10.4
+matplotlib==3.11.2
+seaborn==0.13.2
+ipykernel==7.4.0
+nbconvert==7.17.2
+nbformat==5.11.1
+
+# Modelo de lenguaje en español para spaCy (requerido cuando nlp.modo es 'lema')
+# Instalación recomendada: python -m spacy download es_core_news_sm
+# Instalación directa por pip:
+https://github.com/explosion/spacy-models/releases/download/es_core_news_sm-3.8.0/es_core_news_sm-3.8.0-py3-none-any.whl
