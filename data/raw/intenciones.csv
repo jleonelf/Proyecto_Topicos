@@ -1,139 +1,1041 @@
 texto,intencion,rol,fuente
-"hola buenas tardes",saludo,cliente,manual
-"hola como estan",saludo,cliente,manual
-"buenos dias",saludo,cliente,manual
-"buenas noches quisiera hacer una consulta",saludo,cliente,manual
-"hola que tal",saludo,cliente,manual
-"hey buenas",saludo,cliente,manual
-"hola asistente",saludo,cliente,manual
-"buen dia necesito ayuda",saludo,cliente,manual
-"hola hay alguien ahi",saludo,cliente,manual
-"buenas tardes me podrian atender",saludo,cliente,manual
-"hola queria consultar algo",saludo,cliente,manual
-"hola amigos",saludo,cliente,manual
-"gracias por la atencion",despedida,cliente,manual
-"muchas gracias hasta luego",despedida,cliente,manual
-"chao gracias por todo",despedida,cliente,manual
-"hasta luego que tengan buen dia",despedida,cliente,manual
-"eso seria todo muchas gracias",despedida,cliente,manual
-"adios nos vemos",despedida,cliente,manual
-"listo gracias por la informacion",despedida,cliente,manual
-"muchas gracias que tengan buena tarde",despedida,cliente,manual
-"perfecto gracias hasta pronto",despedida,cliente,manual
-"chau hasta la proxima",despedida,cliente,manual
-"gracias ya no necesito nada mas",despedida,cliente,manual
-"tienen jeans negros en talla 32?",consultar_stock,cliente,manual
-"hay poleras blancas disponibles?",consultar_stock,cliente,manual
-"les queda stock de la chaqueta de mezclilla?",consultar_stock,cliente,manual
-"tienen disponible este vestido rojo?",consultar_stock,cliente,manual
-"queda pantalon beige en talla s?",consultar_stock,cliente,manual
-"hay en existencia chamarra de cuero?",consultar_stock,cliente,manual
-"tienen sudaderas con capucha?",consultar_stock,cliente,manual
-"disculpe tienen camisas manga corta?",consultar_stock,cliente,manual
-"tienen en almacen botas negras?",consultar_stock,cliente,manual
-"aun tienen la falda tableada azul?",consultar_stock,cliente,manual
-"tienen disponible abrigo de lana?",consultar_stock,cliente,manual
-"hay polerones disponibles?",consultar_stock,cliente,manual
-"cuanto cuesta la chaqueta de cuero?",consultar_precio,cliente,manual
-"cual es el precio del jean negro?",consultar_precio,cliente,manual
-"que precio tiene esta polera de algodon?",consultar_precio,cliente,manual
-"a cuanto estan los vestidos de noche?",consultar_precio,cliente,manual
-"me podria decir el valor de la sudadera?",consultar_precio,cliente,manual
-"cuanto sale el pantalon deportivo?",consultar_precio,cliente,manual
-"precio de las camisas formales por favor",consultar_precio,cliente,manual
-"cuanto cuesta el saco beige?",consultar_precio,cliente,manual
-"cual es el costo de los buzos?",consultar_precio,cliente,manual
-"costo de la blusa blanca?",consultar_precio,cliente,manual
-"a como esta la campera?",consultar_precio,cliente,manual
-"que tallas hay de esta polera?",consultar_tallas,cliente,manual
-"tienen en talla xl?",consultar_tallas,cliente,manual
-"que medidas tienen para los jeans?",consultar_tallas,cliente,manual
-"hay talla 34 en este pantalon?",consultar_tallas,cliente,manual
-"vienen en talla s y m?",consultar_tallas,cliente,manual
-"que tamaños tienen disponibles?",consultar_tallas,cliente,manual
-"tienen tallas grandes xxl?",consultar_tallas,cliente,manual
-"hasta que talla manejan en camisas?",consultar_tallas,cliente,manual
-"esta chaqueta viene en talla l?",consultar_tallas,cliente,manual
-"tienen guia de tallas para mujeres?",consultar_tallas,cliente,manual
-"que tallaje tienen estos zapatos?",consultar_tallas,cliente,manual
-"hacen envios a provincia?",envios,cliente,manual
-"cuanto tarda en llegar mi pedido?",envios,cliente,manual
-"cual es el costo de envio a domicilio?",envios,cliente,manual
-"realizan entregas a nivel nacional?",envios,cliente,manual
-"como funciona el delivery?",envios,cliente,manual
-"envian pedidos a otras ciudades?",envios,cliente,manual
-"por que empresa de encomienda despachan?",envios,cliente,manual
-"llega a santa cruz o cochabamba?",envios,cliente,manual
-"pueden enviar a mi casa?",envios,cliente,manual
-"cuanto tiempo demora el envio express?",envios,cliente,manual
-"hacen envios gratis por compras mayores?",envios,cliente,manual
-"quiero cambiar una prenda",devoluciones,cliente,manual
-"como puedo hacer una devolucion?",devoluciones,cliente,manual
-"si la talla no me queda puedo cambiarla?",devoluciones,cliente,manual
-"cual es la politica de cambios y devoluciones?",devoluciones,cliente,manual
-"cuantos dias tengo para pedir reembolso?",devoluciones,cliente,manual
-"me llego la prenda equivocada quiero cambio",devoluciones,cliente,manual
-"se puede cambiar por otro modelo?",devoluciones,cliente,manual
-"aceptan devolucion si no me gusta como me queda?",devoluciones,cliente,manual
-"donde voy para hacer un cambio de prenda?",devoluciones,cliente,manual
-"tienen garantia para cambio por falla?",devoluciones,cliente,manual
-"a que hora abren la tienda?",horarios_ubicacion,cliente,manual
-"donde queda su sucursal?",horarios_ubicacion,cliente,manual
-"cual es su horario de atencion los domingos?",horarios_ubicacion,cliente,manual
-"cual es la direccion de la tienda fisica?",horarios_ubicacion,cliente,manual
-"atienden feriados?",horarios_ubicacion,cliente,manual
-"en que calle estan ubicados?",horarios_ubicacion,cliente,manual
-"a que hora cierran los sabados?",horarios_ubicacion,cliente,manual
-"tienen tiendas en el centro comercial?",horarios_ubicacion,cliente,manual
-"donde puedo visitarlos en persona?",horarios_ubicacion,cliente,manual
-"cual es la ubicacion exacta?",horarios_ubicacion,cliente,manual
-"aceptan pagos con tarjeta de credito?",metodos_pago,cliente,manual
-"se puede pagar por transferencia qr?",metodos_pago,cliente,manual
-"cuales son sus formas de pago?",metodos_pago,cliente,manual
-"aceptan efectivo al momento de la entrega?",metodos_pago,cliente,manual
-"puedo pagar con debito?",metodos_pago,cliente,manual
-"tienen pago contra entrega?",metodos_pago,cliente,manual
-"se puede transferir mediante bnb o fassil?",metodos_pago,cliente,manual
-"aceptan tigo money?",metodos_pago,cliente,manual
-"puedo abonar con tarjeta?",metodos_pago,cliente,manual
-"que medios de pago tienen habilitados?",metodos_pago,cliente,manual
-"dame las ventas de esta semana",reporte_ventas,admin,manual
-"cuanto se vendio hoy?",reporte_ventas,admin,manual
-"generame un reporte de ventas del mes de octubre",reporte_ventas,admin,manual
-"cual fue el total vendido en estos ultimos 7 dias?",reporte_ventas,admin,manual
-"muestra los ingresos totales por ventas",reporte_ventas,admin,manual
-"balance de ventas del ultimo fin de semana",reporte_ventas,admin,manual
-"reporte general de ventas de la semana pasada",reporte_ventas,admin,manual
-"resumen financiero de ventas del trimestre",reporte_ventas,admin,manual
-"cuanto fue la facturacion de hoy?",reporte_ventas,admin,manual
-"dame el reporte de ingresos por ventas diarias",reporte_ventas,admin,manual
-"que fue lo mas vendido en octubre?",productos_mas_vendidos,admin,manual
-"cuales son los articulos mas vendidos de este mes?",productos_mas_vendidos,admin,manual
-"muestrame el top 5 de prendas mas vendidas",productos_mas_vendidos,admin,manual
-"que producto tuvo mayor cantidad de pedidos?",productos_mas_vendidos,admin,manual
-"cuales son los productos estrella de la tienda?",productos_mas_vendidos,admin,manual
-"dame la lista de prendas con mayores ventas",productos_mas_vendidos,admin,manual
-"que ropa se vendio mas esta semana?",productos_mas_vendidos,admin,manual
-"ranking de productos mas populares",productos_mas_vendidos,admin,manual
-"cuales articulos tuvieron mayor demanda recientemente?",productos_mas_vendidos,admin,manual
-"que prendas lideran las ventas?",productos_mas_vendidos,admin,manual
-"que productos se estan acabando?",stock_bajo,admin,manual
-"alerta de stock critico por favor",stock_bajo,admin,manual
-"cuales articulos tienen menos de cinco unidades en inventario?",stock_bajo,admin,manual
-"muestrame el inventario bajo para reponer",stock_bajo,admin,manual
-"que prendas necesitan reposicion urgente?",stock_bajo,admin,manual
-"cuales sku estan con stock bajo?",stock_bajo,admin,manual
-"que productos estan a punto de agotarse?",stock_bajo,admin,manual
-"dame la lista de productos con inventario minimo",stock_bajo,admin,manual
-"reporte de quiebre de stock",stock_bajo,admin,manual
-"que ropa tiene pocas unidades disponibles?",stock_bajo,admin,manual
-"ventas por categoria del mes",ventas_por_categoria,admin,manual
-"cuanto se vendio en pantalones vs camisas?",ventas_por_categoria,admin,manual
-"desglose de ventas por linea de producto",ventas_por_categoria,admin,manual
-"distribucion de ingresos segun la categoria de ropa",ventas_por_categoria,admin,manual
-"que categoria genero mas ingresos en septiembre?",ventas_por_categoria,admin,manual
-"reporte de ventas dividido por accesorios calzado y ropa",ventas_por_categoria,admin,manual
-"cuales son las categorias mas rentables?",ventas_por_categoria,admin,manual
-"muestrame el porcentaje de ventas por categoria",ventas_por_categoria,admin,manual
-"ventas del sector femenino vs masculino",ventas_por_categoria,admin,manual
-"balance de ingresos por tipo de producto",ventas_por_categoria,admin,manual
+hola buenas tardes,saludo,cliente,manual
+hola como estan,saludo,cliente,manual
+buenos dias,saludo,cliente,manual
+buenas noches quisiera hacer una consulta,saludo,cliente,manual
+hola que tal,saludo,cliente,manual
+hey buenas,saludo,cliente,manual
+hola asistente,saludo,cliente,manual
+buen dia necesito ayuda,saludo,cliente,manual
+hola hay alguien ahi,saludo,cliente,manual
+buenas tardes me podrian atender,saludo,cliente,manual
+hola queria consultar algo,saludo,cliente,manual
+hola amigos,saludo,cliente,manual
+gracias por la atencion,despedida,cliente,manual
+muchas gracias hasta luego,despedida,cliente,manual
+chao gracias por todo,despedida,cliente,manual
+hasta luego que tengan buen dia,despedida,cliente,manual
+eso seria todo muchas gracias,despedida,cliente,manual
+adios nos vemos,despedida,cliente,manual
+listo gracias por la informacion,despedida,cliente,manual
+muchas gracias que tengan buena tarde,despedida,cliente,manual
+perfecto gracias hasta pronto,despedida,cliente,manual
+chau hasta la proxima,despedida,cliente,manual
+gracias ya no necesito nada mas,despedida,cliente,manual
+tienen jeans negros en talla 32?,consultar_stock,cliente,manual
+hay poleras blancas disponibles?,consultar_stock,cliente,manual
+les queda stock de la chaqueta de mezclilla?,consultar_stock,cliente,manual
+tienen disponible este vestido rojo?,consultar_stock,cliente,manual
+queda pantalon beige en talla s?,consultar_stock,cliente,manual
+hay en existencia chamarra de cuero?,consultar_stock,cliente,manual
+tienen sudaderas con capucha?,consultar_stock,cliente,manual
+disculpe tienen camisas manga corta?,consultar_stock,cliente,manual
+tienen en almacen botas negras?,consultar_stock,cliente,manual
+aun tienen la falda tableada azul?,consultar_stock,cliente,manual
+tienen disponible abrigo de lana?,consultar_stock,cliente,manual
+hay polerones disponibles?,consultar_stock,cliente,manual
+cuanto cuesta la chaqueta de cuero?,consultar_precio,cliente,manual
+cual es el precio del jean negro?,consultar_precio,cliente,manual
+que precio tiene esta polera de algodon?,consultar_precio,cliente,manual
+a cuanto estan los vestidos de noche?,consultar_precio,cliente,manual
+me podria decir el valor de la sudadera?,consultar_precio,cliente,manual
+cuanto sale el pantalon deportivo?,consultar_precio,cliente,manual
+precio de las camisas formales por favor,consultar_precio,cliente,manual
+cuanto cuesta el saco beige?,consultar_precio,cliente,manual
+cual es el costo de los buzos?,consultar_precio,cliente,manual
+costo de la blusa blanca?,consultar_precio,cliente,manual
+a como esta la campera?,consultar_precio,cliente,manual
+que tallas hay de esta polera?,consultar_tallas,cliente,manual
+tienen en talla xl?,consultar_tallas,cliente,manual
+que medidas tienen para los jeans?,consultar_tallas,cliente,manual
+hay talla 34 en este pantalon?,consultar_tallas,cliente,manual
+vienen en talla s y m?,consultar_tallas,cliente,manual
+que tamaños tienen disponibles?,consultar_tallas,cliente,manual
+tienen tallas grandes xxl?,consultar_tallas,cliente,manual
+hasta que talla manejan en camisas?,consultar_tallas,cliente,manual
+esta chaqueta viene en talla l?,consultar_tallas,cliente,manual
+tienen guia de tallas para mujeres?,consultar_tallas,cliente,manual
+que tallaje tienen estos zapatos?,consultar_tallas,cliente,manual
+hacen envios a provincia?,envios,cliente,manual
+cuanto tarda en llegar mi pedido?,envios,cliente,manual
+cual es el costo de envio a domicilio?,envios,cliente,manual
+realizan entregas a nivel nacional?,envios,cliente,manual
+como funciona el delivery?,envios,cliente,manual
+envian pedidos a otras ciudades?,envios,cliente,manual
+por que empresa de encomienda despachan?,envios,cliente,manual
+llega a santa cruz o cochabamba?,envios,cliente,manual
+pueden enviar a mi casa?,envios,cliente,manual
+cuanto tiempo demora el envio express?,envios,cliente,manual
+hacen envios gratis por compras mayores?,envios,cliente,manual
+quiero cambiar una prenda,devoluciones,cliente,manual
+como puedo hacer una devolucion?,devoluciones,cliente,manual
+si la talla no me queda puedo cambiarla?,devoluciones,cliente,manual
+cual es la politica de cambios y devoluciones?,devoluciones,cliente,manual
+cuantos dias tengo para pedir reembolso?,devoluciones,cliente,manual
+me llego la prenda equivocada quiero cambio,devoluciones,cliente,manual
+se puede cambiar por otro modelo?,devoluciones,cliente,manual
+aceptan devolucion si no me gusta como me queda?,devoluciones,cliente,manual
+donde voy para hacer un cambio de prenda?,devoluciones,cliente,manual
+tienen garantia para cambio por falla?,devoluciones,cliente,manual
+a que hora abren la tienda?,horarios_ubicacion,cliente,manual
+donde queda su sucursal?,horarios_ubicacion,cliente,manual
+cual es su horario de atencion los domingos?,horarios_ubicacion,cliente,manual
+cual es la direccion de la tienda fisica?,horarios_ubicacion,cliente,manual
+atienden feriados?,horarios_ubicacion,cliente,manual
+en que calle estan ubicados?,horarios_ubicacion,cliente,manual
+a que hora cierran los sabados?,horarios_ubicacion,cliente,manual
+tienen tiendas en el centro comercial?,horarios_ubicacion,cliente,manual
+donde puedo visitarlos en persona?,horarios_ubicacion,cliente,manual
+cual es la ubicacion exacta?,horarios_ubicacion,cliente,manual
+aceptan pagos con tarjeta de credito?,metodos_pago,cliente,manual
+se puede pagar por transferencia qr?,metodos_pago,cliente,manual
+cuales son sus formas de pago?,metodos_pago,cliente,manual
+aceptan efectivo al momento de la entrega?,metodos_pago,cliente,manual
+puedo pagar con debito?,metodos_pago,cliente,manual
+tienen pago contra entrega?,metodos_pago,cliente,manual
+se puede transferir mediante bnb o fassil?,metodos_pago,cliente,manual
+aceptan tigo money?,metodos_pago,cliente,manual
+puedo abonar con tarjeta?,metodos_pago,cliente,manual
+que medios de pago tienen habilitados?,metodos_pago,cliente,manual
+dame las ventas de esta semana,reporte_ventas,admin,manual
+cuanto se vendio hoy?,reporte_ventas,admin,manual
+generame un reporte de ventas del mes de octubre,reporte_ventas,admin,manual
+cual fue el total vendido en estos ultimos 7 dias?,reporte_ventas,admin,manual
+muestra los ingresos totales por ventas,reporte_ventas,admin,manual
+balance de ventas del ultimo fin de semana,reporte_ventas,admin,manual
+reporte general de ventas de la semana pasada,reporte_ventas,admin,manual
+resumen financiero de ventas del trimestre,reporte_ventas,admin,manual
+cuanto fue la facturacion de hoy?,reporte_ventas,admin,manual
+dame el reporte de ingresos por ventas diarias,reporte_ventas,admin,manual
+que fue lo mas vendido en octubre?,productos_mas_vendidos,admin,manual
+cuales son los articulos mas vendidos de este mes?,productos_mas_vendidos,admin,manual
+muestrame el top 5 de prendas mas vendidas,productos_mas_vendidos,admin,manual
+que producto tuvo mayor cantidad de pedidos?,productos_mas_vendidos,admin,manual
+cuales son los productos estrella de la tienda?,productos_mas_vendidos,admin,manual
+dame la lista de prendas con mayores ventas,productos_mas_vendidos,admin,manual
+que ropa se vendio mas esta semana?,productos_mas_vendidos,admin,manual
+ranking de productos mas populares,productos_mas_vendidos,admin,manual
+cuales articulos tuvieron mayor demanda recientemente?,productos_mas_vendidos,admin,manual
+que prendas lideran las ventas?,productos_mas_vendidos,admin,manual
+que productos se estan acabando?,stock_bajo,admin,manual
+alerta de stock critico por favor,stock_bajo,admin,manual
+cuales articulos tienen menos de cinco unidades en inventario?,stock_bajo,admin,manual
+muestrame el inventario bajo para reponer,stock_bajo,admin,manual
+que prendas necesitan reposicion urgente?,stock_bajo,admin,manual
+cuales sku estan con stock bajo?,stock_bajo,admin,manual
+que productos estan a punto de agotarse?,stock_bajo,admin,manual
+dame la lista de productos con inventario minimo,stock_bajo,admin,manual
+reporte de quiebre de stock,stock_bajo,admin,manual
+que ropa tiene pocas unidades disponibles?,stock_bajo,admin,manual
+ventas por categoria del mes,ventas_por_categoria,admin,manual
+cuanto se vendio en pantalones vs camisas?,ventas_por_categoria,admin,manual
+desglose de ventas por linea de producto,ventas_por_categoria,admin,manual
+distribucion de ingresos segun la categoria de ropa,ventas_por_categoria,admin,manual
+que categoria genero mas ingresos en septiembre?,ventas_por_categoria,admin,manual
+reporte de ventas dividido por accesorios calzado y ropa,ventas_por_categoria,admin,manual
+cuales son las categorias mas rentables?,ventas_por_categoria,admin,manual
+muestrame el porcentaje de ventas por categoria,ventas_por_categoria,admin,manual
+ventas del sector femenino vs masculino,ventas_por_categoria,admin,manual
+balance de ingresos por tipo de producto,ventas_por_categoria,admin,manual
+hola muy buenos dias,saludo,cliente,ia
+buenas que tal como te va,saludo,cliente,ia
+hola buenas queria hacerles una consulta,saludo,cliente,ia
+buen dia tienda necesito informacion,saludo,cliente,ia
+hola hay alguna persona que me pueda atender,saludo,cliente,ia
+buenas tardes disculpen la molestia,saludo,cliente,ia
+hola buenas noches queria saber sobre sus productos,saludo,cliente,ia
+hola hola como estan hoy,saludo,cliente,ia
+buenos dias amigos que tal,saludo,cliente,ia
+hola estimado asistente virtual,saludo,cliente,ia
+buenas me gustaria comunicarme con atencion al cliente,saludo,cliente,ia
+hola queria preguntar algo sobre la tienda,saludo,cliente,ia
+hola como te va buen dia,saludo,cliente,ia
+buenas tardes a todo el equipo,saludo,cliente,ia
+hola disculpa estan disponibles para una consulta,saludo,cliente,ia
+hola un saludo cordial,saludo,cliente,ia
+buenos dias disculpe me puede brindar ayuda,saludo,cliente,ia
+hola que tal como estan,saludo,cliente,ia
+buenas queria consultar unas dudas que tengo,saludo,cliente,ia
+hola muy buenas tardes tengan ustedes,saludo,cliente,ia
+buen dia queria comunicarme con ventas,saludo,cliente,ia
+hola buenas estoy interesado en ver ropa,saludo,cliente,ia
+hola que tal buen dia,saludo,cliente,ia
+buenas noches queria consultar sobre ropa,saludo,cliente,ia
+hola como andan todos,saludo,cliente,ia
+hola inicio consulta,saludo,cliente,ia
+buenos dias estimados,saludo,cliente,ia
+buenas tardes un gusto saludarles,saludo,cliente,ia
+hola que tal como va,saludo,cliente,ia
+buen dia a todos en la tienda,saludo,cliente,ia
+hola necesito orientacion sobre unas compras,saludo,cliente,ia
+hola buenas tardes tienen atencion disponible,saludo,cliente,ia
+buenas noches disculpe la hora,saludo,cliente,ia
+hola hola que tal,saludo,cliente,ia
+buenos dias me gustaria hacer un pedido,saludo,cliente,ia
+hola queria hacer una pregunta rapida,saludo,cliente,ia
+buenas tardes disculpe queria informarme,saludo,cliente,ia
+hola amigos como estan hoy,saludo,cliente,ia
+buen dia quisiera comunicarme con un asesor,saludo,cliente,ia
+hola buenas vengo a consultar el catalogo,saludo,cliente,ia
+hola que tal amigos,saludo,cliente,ia
+buenas tardes necesito que me asesoren con una prenda,saludo,cliente,ia
+hola buenas noches como estan,saludo,cliente,ia
+buen dia me podrian ayudar por favor,saludo,cliente,ia
+hola que gusto saludarles,saludo,cliente,ia
+buenas tardes queria saber si estan atendiendo,saludo,cliente,ia
+hola un saludo desde cochabamba,saludo,cliente,ia
+buenos dias un saludo cordial desde la paz,saludo,cliente,ia
+hola me gustaria consultar sobre prendas de vestir,saludo,cliente,ia
+buenas queria hacer una consulta sobre la coleccion nueva,saludo,cliente,ia
+hola muy buen dia tengan todos,saludo,cliente,ia
+buenas tardes estoy buscando ropa y necesito asesoria,saludo,cliente,ia
+hola como estan espero que todo bien,saludo,cliente,ia
+buen dia estimados vendedores,saludo,cliente,ia
+hola queria saludarlos y preguntarles algo,saludo,cliente,ia
+buenas tardes disculpen tienen soporte activo,saludo,cliente,ia
+hola me gustaria hablar con la tienda,saludo,cliente,ia
+buenos dias queria saber si me pueden orientar,saludo,cliente,ia
+hola buenas tardes como va todo,saludo,cliente,ia
+buenas queria hacerles una pregunta sencilla,saludo,cliente,ia
+hola vengo a consultar opciones de ropa,saludo,cliente,ia
+buen dia tienen atencion al cliente en linea,saludo,cliente,ia
+hola buenas que gusto contactarme con ustedes,saludo,cliente,ia
+buenas tardes un saludo cordial a la tienda,saludo,cliente,ia
+hola que tal buen inicio de semana,saludo,cliente,ia
+buenos dias quisiera pedir informes sobre su mercaderia,saludo,cliente,ia
+hola buen dia queria hacer una consulta general,saludo,cliente,ia
+buenas noches queria revisar productos de su tienda,saludo,cliente,ia
+muchas gracias por la atencion hasta luego,despedida,cliente,ia
+eso seria todo de mi parte que tenga buen dia,despedida,cliente,ia
+perfecto me quedo muy claro adios,despedida,cliente,ia
+chau gracias por la informacion,despedida,cliente,ia
+excelente gracias hasta luego,despedida,cliente,ia
+nos vemos que tengan buena tarde,despedida,cliente,ia
+muchisimas gracias por la ayuda prestada,despedida,cliente,ia
+listo amigo nos vemos pronto,despedida,cliente,ia
+gracias por todo que les vaya muy bien,despedida,cliente,ia
+hasta luego muy amables por la respuesta,despedida,cliente,ia
+adiós que tenga excelente jornada,despedida,cliente,ia
+gracias ya tengo toda la informacion que necesitaba,despedida,cliente,ia
+chau hasta la proxima compra,despedida,cliente,ia
+eso era todo lo que queria consultar gracias,despedida,cliente,ia
+mil gracias por su pronta respuesta adios,despedida,cliente,ia
+que tenga buen dia hasta pronto,despedida,cliente,ia
+hasta luego amigos muy buen servicio,despedida,cliente,ia
+gracias por su tiempo nos vemos luego,despedida,cliente,ia
+listo muchas gracias por resolver mis dudas,despedida,cliente,ia
+adiós que sigan teniendo buen dia,despedida,cliente,ia
+chau chau buenas tardes,despedida,cliente,ia
+perfecto ya anote los datos muchisimas gracias,despedida,cliente,ia
+gracias hasta una proxima oportunidad,despedida,cliente,ia
+que tengan feliz fin de semana hasta luego,despedida,cliente,ia
+con eso concluyo mi consulta muchas gracias,despedida,cliente,ia
+agradezco su amable atencion hasta luego,despedida,cliente,ia
+muchas gracias que tengan buena noche,despedida,cliente,ia
+listo ya me decidi gracias nos vemos,despedida,cliente,ia
+chau amigos que sigan teniendo buenas ventas,despedida,cliente,ia
+muy agradecido por la paciencia hasta luego,despedida,cliente,ia
+hasta luego gracias por aclarar mis dudas,despedida,cliente,ia
+perfecto quedamos asi muchas gracias,despedida,cliente,ia
+adios nos estamos comunicando,despedida,cliente,ia
+gracias por la orientacion hasta pronto,despedida,cliente,ia
+chau que tengan un lindo dia,despedida,cliente,ia
+excelente atencion gracias por todo adios,despedida,cliente,ia
+ya no tengo mas preguntas muchas gracias,despedida,cliente,ia
+hasta luego y gracias de nuevo,despedida,cliente,ia
+eso era todo que pasen buen dia,despedida,cliente,ia
+mil gracias que dios los bendiga adios,despedida,cliente,ia
+listo gracias me pongo en contacto luego,despedida,cliente,ia
+chau nos vemos mas adelante,despedida,cliente,ia
+gracias por la rapidez en contestar hasta luego,despedida,cliente,ia
+conforme con la explicacion muchas gracias,despedida,cliente,ia
+hasta la proxima gracias por la amabilidad,despedida,cliente,ia
+buenas noches y gracias por todo,despedida,cliente,ia
+adios que tengan una excelente semana,despedida,cliente,ia
+muy clara la respuesta nos vemos gracias,despedida,cliente,ia
+gracias por despejar todas mis dudas chau,despedida,cliente,ia
+hasta luego estare visitando la tienda,despedida,cliente,ia
+muchas gracias ya guarde su contacto adios,despedida,cliente,ia
+listo era solo eso que les vaya bien,despedida,cliente,ia
+chau gracias que tengan excelente tarde,despedida,cliente,ia
+adios gracias por todo el soporte,despedida,cliente,ia
+me despido cordialmente muchas gracias,despedida,cliente,ia
+gracias un abrazo hasta luego,despedida,cliente,ia
+perfecto gracias por la recomendacion nos vemos,despedida,cliente,ia
+hasta pronto muchas gracias por el catalogo,despedida,cliente,ia
+gracias ya finalice mi compra chau,despedida,cliente,ia
+muy bien gracias hasta la proxima,despedida,cliente,ia
+agradecida por la respuesta hasta luego,despedida,cliente,ia
+hasta luego que sigan los exitos,despedida,cliente,ia
+chau amigo gracias por todo,despedida,cliente,ia
+concluyo la conversacion muchas gracias a todos,despedida,cliente,ia
+muchas gracias buenas noches hasta luego,despedida,cliente,ia
+adios gracias por su colaboracion,despedida,cliente,ia
+listo muchas gracias buenas vibras,despedida,cliente,ia
+gracias por la cordialidad chau nos vemos,despedida,cliente,ia
+hasta luego estare atento a las novedades,despedida,cliente,ia
+tienen vestidos largos en color rojo,consultar_stock,cliente,ia
+hay disponibilidad de chamarras de mezclilla para hombre,consultar_stock,cliente,ia
+les queda en stock poleras manga larga cuello redondo,consultar_stock,cliente,ia
+cuentan con pantalones cargo color verde militar,consultar_stock,cliente,ia
+tienen buzos deportivos de algodon para mujer,consultar_stock,cliente,ia
+hay stock de faldas plisadas en negro,consultar_stock,cliente,ia
+tienen existencia de blusas formales para oficina,consultar_stock,cliente,ia
+les llegaron camisas de lino para caballero,consultar_stock,cliente,ia
+tienen shorts de jean para dama disponibles,consultar_stock,cliente,ia
+tienen abrigos de lana en color beige,consultar_stock,cliente,ia
+hay poleras basicas blancas en la tienda,consultar_stock,cliente,ia
+tienen chalecos acolchados para invierno,consultar_stock,cliente,ia
+tienen trajes formales de dos piezas en stock,consultar_stock,cliente,ia
+les queda stock del conjunto deportivo negro,consultar_stock,cliente,ia
+tienen polerones con capucha disponibles,consultar_stock,cliente,ia
+hay existencia de medias termicas y bufandas,consultar_stock,cliente,ia
+tienen pantalones jeans rotos para varon,consultar_stock,cliente,ia
+cuentan con sueteres de cuello alto en color crema,consultar_stock,cliente,ia
+tienen tops deportivos para dama en stock,consultar_stock,cliente,ia
+hay blazers ejecutivos para mujer disponibles,consultar_stock,cliente,ia
+tienen casacas impermeables en existencia,consultar_stock,cliente,ia
+les quedan jeans corte mom fit,consultar_stock,cliente,ia
+hay stock de vestidos cortos floreados,consultar_stock,cliente,ia
+tienen poleras con estampados graficos,consultar_stock,cliente,ia
+cuentan con cardigans largos de algodon,consultar_stock,cliente,ia
+tienen pijamas termicas para adultos en tienda,consultar_stock,cliente,ia
+hay disponibilidad de sacos sport para hombre,consultar_stock,cliente,ia
+tienen pantalones de buzo color plomo,consultar_stock,cliente,ia
+les queda alguna unidad de la chaqueta de cuero,consultar_stock,cliente,ia
+tienen camisas manga corta floreadas para playa,consultar_stock,cliente,ia
+hay faldas de mezclilla en existencia,consultar_stock,cliente,ia
+tienen overoles de jean para dama,consultar_stock,cliente,ia
+cuentan con ropa interior y bodys en stock,consultar_stock,cliente,ia
+tienen pantalones palazzo disponibles,consultar_stock,cliente,ia
+hay existencias de chamarras bomber,consultar_stock,cliente,ia
+tienen vestidos de noche en color azul marino,consultar_stock,cliente,ia
+les queda polera sin mangas en color negro,consultar_stock,cliente,ia
+tienen ropa deportiva para invierno disponible,consultar_stock,cliente,ia
+hay stock de pantalones jogger para hombre,consultar_stock,cliente,ia
+tienen chalecos de vestir para caballero,consultar_stock,cliente,ia
+cuentan con buzos oversize en stock,consultar_stock,cliente,ia
+tienen poleras polo para hombre en varios colores,consultar_stock,cliente,ia
+hay disponibilidad de faldas tubo formales,consultar_stock,cliente,ia
+tienen abrigos largos con botones para mujer,consultar_stock,cliente,ia
+les queda ropa casual para jovenes,consultar_stock,cliente,ia
+tienen camperas termicas disponibles,consultar_stock,cliente,ia
+hay stock de sueteres navideños o tejidos,consultar_stock,cliente,ia
+tienen blusas de seda o saten en tienda,consultar_stock,cliente,ia
+cuentan con pantalones chupines en color oscuro,consultar_stock,cliente,ia
+tienen enterizos de vestir para mujer,consultar_stock,cliente,ia
+hay existencia de conjuntos de falda y top,consultar_stock,cliente,ia
+tienen stock de ropa termica para el frio,consultar_stock,cliente,ia
+les queda la chamarra reflectiva de la coleccion nueva,consultar_stock,cliente,ia
+tienen camisas blancas de vestir para graduacion,consultar_stock,cliente,ia
+hay vestidos tipo coctel disponibles,consultar_stock,cliente,ia
+tienen pantalones de tela drill para varon,consultar_stock,cliente,ia
+cuentan con poleras lisas de cuello v,consultar_stock,cliente,ia
+tienen casacas cortaviento en existencia,consultar_stock,cliente,ia
+hay disponibilidad de buzos algodon perchado,consultar_stock,cliente,ia
+tienen faldas cortas acampanadas,consultar_stock,cliente,ia
+les queda la falda de cuero sintetico,consultar_stock,cliente,ia
+tienen trajes de baño o bikinis en stock,consultar_stock,cliente,ia
+hay prendas de hilo disponibles para media estacion,consultar_stock,cliente,ia
+tienen jeans rectos clasicos para caballero,consultar_stock,cliente,ia
+cuentan con batas o ropa de descanso en tienda,consultar_stock,cliente,ia
+tienen parkas para lluvia en stock,consultar_stock,cliente,ia
+hay disponibilidad de ropa para adolescentes,consultar_stock,cliente,ia
+tienen blusas campesinas en existencia,consultar_stock,cliente,ia
+cuanto cuesta el vestido largo de fiesta,consultar_precio,cliente,ia
+que precio tiene la chamarra impermeable,consultar_precio,cliente,ia
+a como estan vendiendo las poleras basicas de algodon,consultar_precio,cliente,ia
+cual es el valor del pantalon jean azul clasico,consultar_precio,cliente,ia
+cuanto sale el abrigo de lana para invierno,consultar_precio,cliente,ia
+me puedes dar el precio del conjunto deportivo,consultar_precio,cliente,ia
+cuanto cuesta la blusa de seda manga larga,consultar_precio,cliente,ia
+a cuanto esta la camisa de lino para caballero,consultar_precio,cliente,ia
+cual es el precio de la falda plisada,consultar_precio,cliente,ia
+tienen alguna rebaja o descuento en pantalones cargo,consultar_precio,cliente,ia
+cuanto vale el sueter tejido cuello tortuga,consultar_precio,cliente,ia
+a cuanto salen las chaquetas de mezclilla,consultar_precio,cliente,ia
+que costo tiene el blazer formal de dama,consultar_precio,cliente,ia
+cuanto cuestan las poleras polo por unidad,consultar_precio,cliente,ia
+me indicas el valor del buzo oversize,consultar_precio,cliente,ia
+a que precio estan los trajes formales de hombre,consultar_precio,cliente,ia
+cuanto vale el short de jean,consultar_precio,cliente,ia
+cuanto cuesta llevarse dos poleras basicas,consultar_precio,cliente,ia
+que precio tienen los polerones con capucha,consultar_precio,cliente,ia
+a cuanto estan dando las camisas manga corta,consultar_precio,cliente,ia
+cual es el costo de los jeans mom fit,consultar_precio,cliente,ia
+cuanto sale la campera termica,consultar_precio,cliente,ia
+precio por favor del chaleco acolchado,consultar_precio,cliente,ia
+a cuanto estan las faldas de cuero sintetico,consultar_precio,cliente,ia
+cuanto cuesta el enterizo formal negro,consultar_precio,cliente,ia
+cual es el valor de las pijamas de algodon,consultar_precio,cliente,ia
+cuanto sale comprar la chaqueta de cuero,consultar_precio,cliente,ia
+que precio tiene la ropa de invierno en liquidacion,consultar_precio,cliente,ia
+me dices cuanto cuesta el pantalon jogger,consultar_precio,cliente,ia
+a como estan las blusas casuales de oficina,consultar_precio,cliente,ia
+cuanto vale el vestido floreado de verano,consultar_precio,cliente,ia
+que costo tiene la parka para lluvia,consultar_precio,cliente,ia
+a cuanto estan los pantalones de vestir en tela,consultar_precio,cliente,ia
+cual es el precio del saco sport para varon,consultar_precio,cliente,ia
+cuanto salen los buzos de algodon para mujer,consultar_precio,cliente,ia
+precio de la polera blanca lisa por mayor y menor,consultar_precio,cliente,ia
+a cuanto venden el conjunto de invierno,consultar_precio,cliente,ia
+cuanto cobran por el abrigo largo con capucha,consultar_precio,cliente,ia
+que precio tiene el body de algodon,consultar_precio,cliente,ia
+cuanto vale el pantalon palazzo,consultar_precio,cliente,ia
+a como sale la falda tubo ejecutiva,consultar_precio,cliente,ia
+cuanto cuesta el sueter de lana de alpaca,consultar_precio,cliente,ia
+cual es el valor de las medias termicas y accesorios,consultar_precio,cliente,ia
+a cuanto estan los overoles de jean,consultar_precio,cliente,ia
+cuanto cuesta la polera deportiva dry fit,consultar_precio,cliente,ia
+me gustaria saber el costo de la chaqueta reflectiva,consultar_precio,cliente,ia
+que precio tiene el conjunto de falda y top,consultar_precio,cliente,ia
+cuanto sale la blusa con encaje,consultar_precio,cliente,ia
+a como tienen la liquidacion de verano,consultar_precio,cliente,ia
+precio de las prendas en promocion 2x1,consultar_precio,cliente,ia
+cuanto vale la camisa de cuadros formal,consultar_precio,cliente,ia
+cual es el valor del pantalon de lino,consultar_precio,cliente,ia
+a cuanto esta el poleron basico sin estampa,consultar_precio,cliente,ia
+cuanto cuesta el vestido corto de noche,consultar_precio,cliente,ia
+que precio tienen los abrigos sinteticos,consultar_precio,cliente,ia
+a como estan las poleras cuello v,consultar_precio,cliente,ia
+cuanto sale el short deportivo transpirable,consultar_precio,cliente,ia
+precio de la casaca cortaviento impermeable,consultar_precio,cliente,ia
+cuanto cobran por las prendas de nueva temporada,consultar_precio,cliente,ia
+a cuanto venden el traje completo con pantalon y saco,consultar_precio,cliente,ia
+cual es el precio unitario de las camisas,consultar_precio,cliente,ia
+cuanto vale el jean roto moderno,consultar_precio,cliente,ia
+que costo tiene la falda vaquera,consultar_precio,cliente,ia
+a como sale el sueter cerrado de punto,consultar_precio,cliente,ia
+cuanto cuesta la blusa tipo camisera,consultar_precio,cliente,ia
+precio estimado del conjunto para gimnasio,consultar_precio,cliente,ia
+a cuanto estan dejando las chamarras por fin de temporada,consultar_precio,cliente,ia
+cuanto vale el buzo plomo con cremallera,consultar_precio,cliente,ia
+cual es el precio de la ropa formal,consultar_precio,cliente,ia
+que tallas tienen disponibles de este vestido,consultar_tallas,cliente,ia
+tienen el pantalon jean en talla 32 o 34,consultar_tallas,cliente,ia
+vienen en talla s m y l las poleras de algodon,consultar_tallas,cliente,ia
+esta chamarra viene en corte oversize o entallado,consultar_tallas,cliente,ia
+tienen ropa en tallas grandes o plus size,consultar_tallas,cliente,ia
+hasta que talla llega esta blusa floreada,consultar_tallas,cliente,ia
+tienen la camisa blanca en talla small para caballero,consultar_tallas,cliente,ia
+que medidas de pecho y cintura tiene la talla mediana,consultar_tallas,cliente,ia
+tienen pantalones de vestir en talla 38,consultar_tallas,cliente,ia
+manejan tallas especiales o solo estandar,consultar_tallas,cliente,ia
+tienen disponibilidad de poleras en talla xl o xxl,consultar_tallas,cliente,ia
+la talla chica de esta falda viene reducida o amplia,consultar_tallas,cliente,ia
+tienen guia o tabla de medidas para saber mi talla,consultar_tallas,cliente,ia
+esta chaqueta de cuero viene en corte ajustado,consultar_tallas,cliente,ia
+tienen buzos en talla xs para mujer,consultar_tallas,cliente,ia
+que tallas les quedan del blazer negro,consultar_tallas,cliente,ia
+el pantalon jogger tiene elastico en la cintura para varias tallas,consultar_tallas,cliente,ia
+tienen enterizo en talla medium disponible,consultar_tallas,cliente,ia
+las tallas de sus prendas son nacionales o importadas,consultar_tallas,cliente,ia
+vienen en talla 28 los jeans para dama,consultar_tallas,cliente,ia
+tienen la falda de mezclilla en talla 30,consultar_tallas,cliente,ia
+me gustaria saber si la polera oversize es talla unica,consultar_tallas,cliente,ia
+hay disponibilidad de abrigo largo en talla grande,consultar_tallas,cliente,ia
+tienen camisas manga larga en talla 40 de cuello,consultar_tallas,cliente,ia
+como calzan las tallas de los trajes formales,consultar_tallas,cliente,ia
+tienen polerones en talla doble equis ele,consultar_tallas,cliente,ia
+la talla m me quedara si mido 170 y peso 65 kilos,consultar_tallas,cliente,ia
+tienen pantalones cargo en talla 36 para varon,consultar_tallas,cliente,ia
+vienen en corte slim fit las camisas de vestir,consultar_tallas,cliente,ia
+hay talla s de este conjunto deportivo en tienda,consultar_tallas,cliente,ia
+tienen vestidos de fiesta en talla xl,consultar_tallas,cliente,ia
+que talla me recomiendan si uso generalmente l,consultar_tallas,cliente,ia
+esta prenda es stretch o no estira nada,consultar_tallas,cliente,ia
+tienen poleras basicas en talla para niños y jovenes,consultar_tallas,cliente,ia
+las poleras de algodon se encogen al lavar o mantienen su talla,consultar_tallas,cliente,ia
+tienen tallas intermedias como 31 o 33 en jeans,consultar_tallas,cliente,ia
+hasta que numero de talla fabrican los pantalones,consultar_tallas,cliente,ia
+tienen la casaca impermeable en talla extra grande,consultar_tallas,cliente,ia
+la falda tubo viene por tallas numericas o letras,consultar_tallas,cliente,ia
+tienen tops deportivos en talla mediana con buen soporte,consultar_tallas,cliente,ia
+vienen amplias o chicas las sudaderas con capucha,consultar_tallas,cliente,ia
+tienen chaquetas en talla 42 para hombre,consultar_tallas,cliente,ia
+la talla l de caballero corresponde a que medida,consultar_tallas,cliente,ia
+tienen bermudas de jean en talla 34,consultar_tallas,cliente,ia
+venden ropa en talla unica para mujer,consultar_tallas,cliente,ia
+que tallas quedan de la promocion de sueteres,consultar_tallas,cliente,ia
+tienen vestidos en tallas cumplidas para gorditas,consultar_tallas,cliente,ia
+la blusa campesina estira en los hombros,consultar_tallas,cliente,ia
+tienen pantalones palazzo en talla chica,consultar_tallas,cliente,ia
+cuales son las medidas exactas de hombro a hombro en talla m,consultar_tallas,cliente,ia
+tienen la talla 14 o 16 para adolescentes,consultar_tallas,cliente,ia
+hay vestidos de novia o gala en talla a medida,consultar_tallas,cliente,ia
+tienen poleras polo en talla xxxl para hombre,consultar_tallas,cliente,ia
+la chaqueta militar viene en talla regular,consultar_tallas,cliente,ia
+tienen sacos sport en talle 48 o 50,consultar_tallas,cliente,ia
+me pueden facilitar la tabla de equivalencias de tallas,consultar_tallas,cliente,ia
+tienen overol de jean en talle s para mujer,consultar_tallas,cliente,ia
+el pantalon drill viene en corte recto o skinny,consultar_tallas,cliente,ia
+tienen buzos de algodon en talla l color plomo,consultar_tallas,cliente,ia
+las faldas cortas vienen con short debajo segun la talla,consultar_tallas,cliente,ia
+tienen pijamas termicas en tallas familiares,consultar_tallas,cliente,ia
+la talla xs sirve para contextura delgada,consultar_tallas,cliente,ia
+tienen ropa premama o maternidad en varias tallas,consultar_tallas,cliente,ia
+vienen holgados los vestidos de verano,consultar_tallas,cliente,ia
+tienen shorts en talla 26 de dama,consultar_tallas,cliente,ia
+puedo consultar las dimensiones en centimetros de la talla s,consultar_tallas,cliente,ia
+tienen camisas en tallas especiales de manga,consultar_tallas,cliente,ia
+el modelo de este jean es de tiro alto o medio,consultar_tallas,cliente,ia
+tienen la chamarra bomber en talla medium,consultar_tallas,cliente,ia
+hacen envios a domicilio en la ciudad de la paz,envios,cliente,ia
+cuanto demora en llegar una encomienda a santa cruz,envios,cliente,ia
+llegan a toda bolivia con sus pedidos,envios,cliente,ia
+cual es el costo del flete para envios interdepartamentales,envios,cliente,ia
+hacen entregas express el mismo dia en cochabamba,envios,cliente,ia
+con que empresa de mensajeria o courier trabajan,envios,cliente,ia
+pueden enviar mi paquete por flota o terminal de buses,envios,cliente,ia
+el costo de envio es gratuito por compras mayores a 300 bolivianos,envios,cliente,ia
+cuanto tardaria en llegar un envio a oruro o potosi,envios,cliente,ia
+hacen entregas a sucursales o puntos de retiro,envios,cliente,ia
+me pueden mandar el numero de guia para rastrear mi paquete,envios,cliente,ia
+cuanto cobran por delivery dentro del centro o zona sur,envios,cliente,ia
+hacen despachos a beni y pando,envios,cliente,ia
+puedo programar la hora de entrega de mi paquete,envios,cliente,ia
+el envio lo pago al recibir o por adelantado,envios,cliente,ia
+tienen envios a sucre y tarija garantizados,envios,cliente,ia
+si compro hoy cuando me estaria llegando el pedido,envios,cliente,ia
+trabajan con pedidos ya o delivery propio para envios locales,envios,cliente,ia
+hacen envios internacionales fuera del pais,envios,cliente,ia
+que dias realizan despachos a provincias,envios,cliente,ia
+pueden coordinar la entrega en mi oficina de trabajo,envios,cliente,ia
+cual es la empresa de transporte que utilizan para el interior,envios,cliente,ia
+cobran adicional si vivo en una zona alejada,envios,cliente,ia
+que pasa si no estoy en casa al momento de la entrega,envios,cliente,ia
+puedo hacer seguimiento en tiempo real del repartidor,envios,cliente,ia
+el paquete viene discretamente embalado y protegido,envios,cliente,ia
+hacen envios los fines de semana o feriados,envios,cliente,ia
+cuanto tiempo tarda el despacho desde que realizo el pago,envios,cliente,ia
+tienen cobertura de delivery en el alto,envios,cliente,ia
+puedo recoger mi compra en tienda fisica para no pagar envio,envios,cliente,ia
+hacen envios aereos por boa o transporte terrestre,envios,cliente,ia
+cual es el monto minimo de compra para envio gratis,envios,cliente,ia
+cuanto cuesta mandar dos pantalones a quillacollo,envios,cliente,ia
+el mensajero llama antes de llegar al domicilio,envios,cliente,ia
+puedo enviar el paquete a nombre de otra persona para regalo,envios,cliente,ia
+tienen servicio contra reembolso para pagar el envio al chofer,envios,cliente,ia
+cuanto es la tarifa fija de flete a montero y warnes,envios,cliente,ia
+hacen entregas en casilleros postales o terminal,envios,cliente,ia
+que garantia tengo de que el paquete llegue en buen estado,envios,cliente,ia
+a partir de que hora empiezan las entregas a domicilio,envios,cliente,ia
+me pueden enviar el producto hasta tupiza o villazon,envios,cliente,ia
+cuanto tiempo permanece el paquete en la agencia antes de retornar,envios,cliente,ia
+tienen convenio con trans copacabana o bolivar,envios,cliente,ia
+el costo del envio incluye seguro de mercaderia,envios,cliente,ia
+puedo cambiar la direccion de entrega si aun no fue despachado,envios,cliente,ia
+hacen repartos en el horario de la tarde,envios,cliente,ia
+cuantos dias habiles tarda un paquete hacia el chaco,envios,cliente,ia
+pueden envolver la prenda como paquete de regalo para envio,envios,cliente,ia
+si hago el pedido por la mañana me llega por la tarde,envios,cliente,ia
+cual es el plazo maximo de entrega para compras online,envios,cliente,ia
+hacen envios consolidados si compro varias prendas,envios,cliente,ia
+tienen tarifa promocional de envio los dias viernes,envios,cliente,ia
+como me entero cuando mi encomienda este en la terminal,envios,cliente,ia
+el delivery llega hasta la puerta de mi condominio,envios,cliente,ia
+puedo solicitar envio prioritario de emergencia,envios,cliente,ia
+hacen entregas en zonas rurales o solo ciudades capitales,envios,cliente,ia
+cuanto me sale el envio de tres chaquetas pesadas,envios,cliente,ia
+el costo de envio varia segun el peso o el volumen,envios,cliente,ia
+tienen servicio de mototaxi para entregas inmediatas,envios,cliente,ia
+como coordino la entrega con el transportista,envios,cliente,ia
+hacen despachos todos los dias habiles,envios,cliente,ia
+cuanto tarda en llegar una encomienda a yacuiba,envios,cliente,ia
+el costo de envio se cancela junto con la prenda o aparte,envios,cliente,ia
+pueden dejar mi paquete en recepcion del edificio,envios,cliente,ia
+me confirman si tienen cobertura de entrega en mi zona,envios,cliente,ia
+tienen envio puerta a puerta en toda la ciudad,envios,cliente,ia
+como rastreo mi envio con el codigo que me dieron,envios,cliente,ia
+cuanto demora el envio al norte integrado,envios,cliente,ia
+hacen envios terrestres a cobija,envios,cliente,ia
+puedo cambiar una prenda si no me quedo la talla,devoluciones,cliente,ia
+cuantos dias tengo para solicitar una devolucion o cambio,devoluciones,cliente,ia
+cual es su politica de cambios y devoluciones de mercaderia,devoluciones,cliente,ia
+me pueden devolver el dinero si el producto no es lo que esperaba,devoluciones,cliente,ia
+que requisitos piden para aceptar el cambio de una polera,devoluciones,cliente,ia
+si la ropa vino con falla o defecto de costura que hago,devoluciones,cliente,ia
+puedo cambiar un producto comprado por internet en su tienda fisica,devoluciones,cliente,ia
+aceptan devolucion si la prenda aun conserva sus etiquetas originales,devoluciones,cliente,ia
+hacen devoluciones de dinero a cuenta bancaria,devoluciones,cliente,ia
+tienen garantia las prendas que venden en promocion,devoluciones,cliente,ia
+tengo que presentar la factura o ticket de compra para el cambio,devoluciones,cliente,ia
+quien asume el costo de envio en caso de cambio por talla errada,devoluciones,cliente,ia
+puedo cambiar un pantalon por otra prenda de distinto modelo,devoluciones,cliente,ia
+hacen cambios si la prenda ya fue lavada o usada una vez,devoluciones,cliente,ia
+cuanto tiempo demora el proceso de reembolso de dinero,devoluciones,cliente,ia
+aceptan cambios de ropa interior o prendas intimas,devoluciones,cliente,ia
+si me regalaron una prenda y no tengo ticket puedo cambiarla,devoluciones,cliente,ia
+hasta cuantos dias despues de recibir la compra puedo reclamar,devoluciones,cliente,ia
+puedo devolver un producto si llego con el color equivocado,devoluciones,cliente,ia
+como inicio un reclamo por mercaderia dañada en el transporte,devoluciones,cliente,ia
+tienen credito en tienda o vale de compra si no quiero reembolso,devoluciones,cliente,ia
+es obligatorio que la prenda este en su empaque original,devoluciones,cliente,ia
+puedo pedir el cambio si la tela se destiño en la primera postura,devoluciones,cliente,ia
+cuantas veces se puede realizar el cambio de una misma prenda,devoluciones,cliente,ia
+hacen devolucion de compras realizadas con descuento o liquidacion,devoluciones,cliente,ia
+puedo enviar la prenda por encomienda para gestionar el cambio,devoluciones,cliente,ia
+que pasa si no hay stock del producto que quiero cambiar,devoluciones,cliente,ia
+me pueden cambiar una chamarra por dos poleras del mismo valor,devoluciones,cliente,ia
+tienen un formulario en linea para solicitar la devolucion,devoluciones,cliente,ia
+a donde debo llevar el paquete para que revisen el estado del producto,devoluciones,cliente,ia
+el reembolso lo hacen en efectivo o transferencia electronica,devoluciones,cliente,ia
+puedo cancelar mi pedido antes de que salga a despacho,devoluciones,cliente,ia
+cual es el plazo legal para hacer valer la garantia de fabrica,devoluciones,cliente,ia
+aceptan devolucion de accesorios como cinturones o gorras,devoluciones,cliente,ia
+si la talla que pedi no me convence me devuelven mi dinero,devoluciones,cliente,ia
+puedo cambiar un regalo que me hicieron de su tienda,devoluciones,cliente,ia
+hacen inspeccion fisica de la prenda antes de aprobar el cambio,devoluciones,cliente,ia
+cuanto tardan en responder a una solicitud de cambio,devoluciones,cliente,ia
+el cambio de talla tiene algun costo administrativo adicional,devoluciones,cliente,ia
+puedo rechazar el paquete en el momento si llega la caja abierta,devoluciones,cliente,ia
+que comprobante me entregan cuando dejo una prenda para cambio,devoluciones,cliente,ia
+se puede solicitar anulacion de compra realizada con tarjeta,devoluciones,cliente,ia
+si la prenda venia sin un boton me la cambian inmediatamente,devoluciones,cliente,ia
+puedo cambiar un producto en cualquier sucursal de la marca,devoluciones,cliente,ia
+hacen excepciones en el plazo de devolucion si estaba de viaje,devoluciones,cliente,ia
+como demuestro que la prenda llego rota de origen,devoluciones,cliente,ia
+puedo exigir el cambio si el color no es identico a la foto web,devoluciones,cliente,ia
+aceptan devolucion de compras por mayor si sobro mercaderia,devoluciones,cliente,ia
+me hacen nota de credito si no encuentro otra prenda que me guste,devoluciones,cliente,ia
+donde puedo consultar los terminos y condiciones de devolucion,devoluciones,cliente,ia
+si el repartidor me entrego una talla distinta quien paga el reenvio,devoluciones,cliente,ia
+puedo devolver solo una prenda de un paquete de tres,devoluciones,cliente,ia
+cual es el horario para atender cambios en su tienda fisica,devoluciones,cliente,ia
+hacen reposicion inmediata de articulos con falla evidente,devoluciones,cliente,ia
+puedo pedir cambio de talle sin costo adicional en el local,devoluciones,cliente,ia
+que prendas estan excluidas de la politica de cambios,devoluciones,cliente,ia
+se puede revertir el pago si hubo un cobro duplicado,devoluciones,cliente,ia
+cuanto tiempo dura el saldo a favor por una devolucion,devoluciones,cliente,ia
+puedo cambiar una polera de hombre por una de mujer,devoluciones,cliente,ia
+me devuelven el costo del envio si devuelvo todo el pedido,devoluciones,cliente,ia
+que debo hacer si me mandaron un producto equivocado,devoluciones,cliente,ia
+tienen libro de reclamaciones para quejas sobre cambios,devoluciones,cliente,ia
+puedo gestionar la devolucion por whatsapp con fotos del articulo,devoluciones,cliente,ia
+cuanto demora en reflejarse la devolucion en mi tarjeta de credito,devoluciones,cliente,ia
+aceptan cambio de prendas compradas en preventa,devoluciones,cliente,ia
+si la costura vino abierta me dan una prenda nueva al instante,devoluciones,cliente,ia
+puedo pedir devolucion en efectivo si pague con qr,devoluciones,cliente,ia
+es necesario presentar mi cedula de identidad para el cambio,devoluciones,cliente,ia
+tienen politica flexible de devolucion en fechas navideñas,devoluciones,cliente,ia
+puedo cambiar una camisa si solo me la probe en casa,devoluciones,cliente,ia
+en que direccion exacta queda ubicada su tienda,horarios_ubicacion,cliente,ia
+cual es su horario de atencion durante los dias de semana,horarios_ubicacion,cliente,ia
+abren los sabados domingos y feriados,horarios_ubicacion,cliente,ia
+a que hora abren y a que hora cierran la sucursal del centro,horarios_ubicacion,cliente,ia
+tienen sucursales en la zona sur o en calacoto,horarios_ubicacion,cliente,ia
+donde puedo ir a ver las prendas personalmente,horarios_ubicacion,cliente,ia
+tienen atencion en horario continuo al mediodia,horarios_ubicacion,cliente,ia
+cual es la direccion de su tienda en santa cruz de la sierra,horarios_ubicacion,cliente,ia
+estan ubicados cerca de alguna plaza o parada de teleferico,horarios_ubicacion,cliente,ia
+cuentan con parqueo propio para clientes en su local,horarios_ubicacion,cliente,ia
+a que hora atienden por las mañanas los dias lunes,horarios_ubicacion,cliente,ia
+tienen sucursal activa en cochabamba en el prado,horarios_ubicacion,cliente,ia
+puedo visitarlos un domingo por la tarde,horarios_ubicacion,cliente,ia
+que dias de la semana permanece cerrada la tienda,horarios_ubicacion,cliente,ia
+me pueden mandar su ubicacion exacta por maps o gps,horarios_ubicacion,cliente,ia
+estan atendiendo normalmente hoy feriado nacional,horarios_ubicacion,cliente,ia
+cual es el punto de referencia para llegar a su tienda,horarios_ubicacion,cliente,ia
+atienden hasta tarde en la noche los fines de semana,horarios_ubicacion,cliente,ia
+en que centro comercial o shopping se encuentran ubicados,horarios_ubicacion,cliente,ia
+tienen tienda fisica abierta o solamente ventas por internet,horarios_ubicacion,cliente,ia
+hasta que hora puedo pasar a recoger una compra hoy,horarios_ubicacion,cliente,ia
+estan sobre alguna avenida principal o calle conocida,horarios_ubicacion,cliente,ia
+cual es el horario de caja y despacho en su almacen,horarios_ubicacion,cliente,ia
+tienen sucursales en la ciudad de el alto,horarios_ubicacion,cliente,ia
+abren las puertas los dias sabados por la mañana,horarios_ubicacion,cliente,ia
+puedo ir a mediodia o cierran para almorzar,horarios_ubicacion,cliente,ia
+cual es el telefono fijo y direccion de la sucursal central,horarios_ubicacion,cliente,ia
+tienen probadores disponibles en su tienda fisica,horarios_ubicacion,cliente,ia
+a que hora inicia la atencion al publico los dias martes,horarios_ubicacion,cliente,ia
+estan atendiendo en horario especial por fin de año,horarios_ubicacion,cliente,ia
+donde queda el showroom para ver la coleccion completa,horarios_ubicacion,cliente,ia
+tienen tienda en Tarija Sucre u Oruro,horarios_ubicacion,cliente,ia
+como llego en transporte publico hasta su direccion,horarios_ubicacion,cliente,ia
+tienen algun letrero visible afuera del edificio,horarios_ubicacion,cliente,ia
+cual es la puerta de ingreso a su galeria comercial,horarios_ubicacion,cliente,ia
+a que hora cierran la atencion presencial los viernes,horarios_ubicacion,cliente,ia
+tienen varias tiendas en la misma ciudad,horarios_ubicacion,cliente,ia
+puedo ir a comprar directamente sin cita previa,horarios_ubicacion,cliente,ia
+cual es la direccion para reclamos y devoluciones,horarios_ubicacion,cliente,ia
+atienden en horario nocturno para eventos o ventas especiales,horarios_ubicacion,cliente,ia
+estan ubicados frente al estadio o cerca del mall,horarios_ubicacion,cliente,ia
+abren los dias de elecciones o paro civico,horarios_ubicacion,cliente,ia
+a que hora empieza el turno de la tarde,horarios_ubicacion,cliente,ia
+tienen tienda habilitada en el ventura mall o las brisas,horarios_ubicacion,cliente,ia
+donde puedo consultar todas sus sucursales en el pais,horarios_ubicacion,cliente,ia
+cual es el horario de atencion de su canal de whatsapp,horarios_ubicacion,cliente,ia
+puedo pasar a comprar ropa un feriado por la mañana,horarios_ubicacion,cliente,ia
+en que piso del edificio se encuentra su oficina,horarios_ubicacion,cliente,ia
+tienen acceso para personas con movilidad reducida en la tienda,horarios_ubicacion,cliente,ia
+a que hora abren los domingos en centros comerciales,horarios_ubicacion,cliente,ia
+estan cerca de la estacion del tren metropolitano,horarios_ubicacion,cliente,ia
+hasta que hora reciben clientes antes de cerrar,horarios_ubicacion,cliente,ia
+cual es el horario de verano de su sucursal,horarios_ubicacion,cliente,ia
+puedo agendar una visita privada al taller de confeccion,horarios_ubicacion,cliente,ia
+donde estan ubicados sus depositos de mercaderia,horarios_ubicacion,cliente,ia
+atienden de 9 de la mañana a 8 de la noche de corrido,horarios_ubicacion,cliente,ia
+tienen tienda abierta en la ciudad de potosi,horarios_ubicacion,cliente,ia
+cual es la numeracion de la calle donde estan ubicados,horarios_ubicacion,cliente,ia
+tienen puntos de retiro habilitados en varias zonas,horarios_ubicacion,cliente,ia
+a que hora puedo ir a retirar un pedido confirmado,horarios_ubicacion,cliente,ia
+estan atendiendo con normalidad el dia de hoy,horarios_ubicacion,cliente,ia
+cual es la direccion de su sede principal,horarios_ubicacion,cliente,ia
+tienen atencion 24 horas por la pagina web,horarios_ubicacion,cliente,ia
+abren en horario extendido en epoca de liquidacion,horarios_ubicacion,cliente,ia
+donde queda la sucursal de san miguel en la paz,horarios_ubicacion,cliente,ia
+puedo encontrar estacionamiento seguro cerca de su local,horarios_ubicacion,cliente,ia
+a que hora cierran las puertas los sabados por la tarde,horarios_ubicacion,cliente,ia
+tienen tienda fisica en el centro historico,horarios_ubicacion,cliente,ia
+cual es la mejor ruta para llegar en auto a su tienda,horarios_ubicacion,cliente,ia
+atienden consultas de forma presencial por las tardes,horarios_ubicacion,cliente,ia
+que formas de pago aceptan en la tienda,metodos_pago,cliente,ia
+se puede pagar con transferencia bancaria directa o simple qr,metodos_pago,cliente,ia
+aceptan tarjeta de credito y debito visa o mastercard,metodos_pago,cliente,ia
+puedo pagar en efectivo al momento de recibir el pedido,metodos_pago,cliente,ia
+cobran algun recargo o comision por pagar con tarjeta,metodos_pago,cliente,ia
+aceptan pagos a traves de tigo money o billetera movil,metodos_pago,cliente,ia
+tienen opcion de pagar en cuotas sin interes,metodos_pago,cliente,ia
+puedo cancelar la mitad por qr y el saldo en efectivo,metodos_pago,cliente,ia
+aceptan dolares estadounidenses o solo moneda nacional en bolivianos,metodos_pago,cliente,ia
+emiten factura fiscal con nit para la compra,metodos_pago,cliente,ia
+se puede pagar mediante deposito en cuenta del bcp o banco union,metodos_pago,cliente,ia
+tienen pasarela de pago seguro en su sitio web,metodos_pago,cliente,ia
+aceptan pagos con paypal para envios dentro del pais,metodos_pago,cliente,ia
+puedo pagar con codigo qr generado al instante desde la app bancaria,metodos_pago,cliente,ia
+dan facilidad de pago al credito para compras grandes,metodos_pago,cliente,ia
+reciben cheques o solo transferencias verificadas,metodos_pago,cliente,ia
+como envio el comprobante de transferencia bancaria,metodos_pago,cliente,ia
+tienen datáfono o pos inalambrico para cobro a domicilio,metodos_pago,cliente,ia
+aceptan pagos en efectivo si voy directamente a su sucursal,metodos_pago,cliente,ia
+puedo pagar con tarjeta de debito del banco mercantil o bnb,metodos_pago,cliente,ia
+a nombre de quien esta la cuenta para hacer el deposito,metodos_pago,cliente,ia
+cobran el iva por separado o ya esta incluido en el precio,metodos_pago,cliente,ia
+puedo pedir factura comercial a nombre de mi empresa,metodos_pago,cliente,ia
+aceptan pagos con criptomonedas o usdt,metodos_pago,cliente,ia
+tienen link de pago para compras por internet,metodos_pago,cliente,ia
+se puede reservar una prenda con un adelanto del 20 por ciento,metodos_pago,cliente,ia
+que bancos tienen habilitados para recibir transferencias interbancarias,metodos_pago,cliente,ia
+aceptan tarjetas de bancos internacionales o extranjeros,metodos_pago,cliente,ia
+puedo pagar mediante un giro por western union o moneygram,metodos_pago,cliente,ia
+el repartidor lleva cambio si pago con billetes grandes de 100 o 200,metodos_pago,cliente,ia
+cuanto tiempo tengo para pagar antes de que se cancele la reserva,metodos_pago,cliente,ia
+aceptan vales de consumo o tarjetas de regalo,metodos_pago,cliente,ia
+se puede pagar con tarjeta de credito diners o american express,metodos_pago,cliente,ia
+el pago por qr se confirma de manera inmediata y automatica,metodos_pago,cliente,ia
+puedo pagar una parte con credito de la tienda y otra en efectivo,metodos_pago,cliente,ia
+hacen descuento si pago al contado en efectivo,metodos_pago,cliente,ia
+que datos necesito para solicitar mi factura electronica,metodos_pago,cliente,ia
+puedo hacer un traspaso de fondos entre cuentas del mismo banco,metodos_pago,cliente,ia
+aceptan pagos por mercado pago o servicios similares,metodos_pago,cliente,ia
+es seguro ingresar los datos de mi tarjeta en su plataforma,metodos_pago,cliente,ia
+tienen cuenta bancaria en moneda extranjera,metodos_pago,cliente,ia
+puedo pagar contra entrega en cualquier ciudad o solo en la capital,metodos_pago,cliente,ia
+que comprobante de pago me entregan al cancelar por qr,metodos_pago,cliente,ia
+aceptan pago diferido para clientes frecuentes,metodos_pago,cliente,ia
+se puede pagar a traves de la banca movil con numero de celular,metodos_pago,cliente,ia
+el precio de los productos incluye todos los impuestos de ley,metodos_pago,cliente,ia
+tienen promociones de meses sin intereses con tarjetas participantes,metodos_pago,cliente,ia
+puedo transferir desde banco fie o banco fassil si tuviera saldo,metodos_pago,cliente,ia
+aceptan depositos en cajeros automaticos inteligentes,metodos_pago,cliente,ia
+puedo pedir factura manual con sello de la empresa,metodos_pago,cliente,ia
+como valido que mi pago fue recibido correctamente,metodos_pago,cliente,ia
+tienen cobro con tecnologia contactless o sin contacto,metodos_pago,cliente,ia
+puedo pagar con dos tarjetas distintas la misma compra,metodos_pago,cliente,ia
+se puede liquidar la cuenta por cheque de gerencia,metodos_pago,cliente,ia
+cobran penalidad si cancelo el pago antes del envio,metodos_pago,cliente,ia
+aceptan pagos mediante codigo de barras para pagar en farmacias,metodos_pago,cliente,ia
+puedo pagar con tarjeta de debito sin tener cuenta corriente,metodos_pago,cliente,ia
+el pago contra entrega tiene algun costo adicional por manejo,metodos_pago,cliente,ia
+tienen cuenta corporativa o institucional registrada,metodos_pago,cliente,ia
+puedo pagar en euros si realizo una compra desde el exterior,metodos_pago,cliente,ia
+se puede pagar por anticipado y retirar en tienda,metodos_pago,cliente,ia
+que requisitos piden para extender credito a 30 dias,metodos_pago,cliente,ia
+aceptan pagos con billeteras digitales de bancos locales,metodos_pago,cliente,ia
+el datáfono acepta tarjetas con chip y banda magnetica,metodos_pago,cliente,ia
+puedo solicitar recibo de dinero provisional mientras sale la factura,metodos_pago,cliente,ia
+tienen convenio con alguna financiera para microcreditos,metodos_pago,cliente,ia
+como solicito el codigo qr para pagar desde mi celular,metodos_pago,cliente,ia
+puedo hacer la transferencia desde la cuenta de un familiar,metodos_pago,cliente,ia
+aceptan cheques personales con respaldo bancario,metodos_pago,cliente,ia
+se puede abonar el pago en cuotas semanales,metodos_pago,cliente,ia
+dame el reporte general de ventas del dia de hoy,reporte_ventas,admin,ia
+cual fue el monto total facturado durante esta semana,reporte_ventas,admin,ia
+necesito el resumen financiero de ingresos del mes de octubre,reporte_ventas,admin,ia
+muestrame el balance de ventas de ayer comparado con la semana pasada,reporte_ventas,admin,ia
+cual es el total de transacciones registradas en lo que va del dia,reporte_ventas,admin,ia
+dame el informe de ingresos brutos y netos del ultimo trimestre,reporte_ventas,admin,ia
+cuanto dinero ingresó por ventas en la sucursal central este mes,reporte_ventas,admin,ia
+quiero ver las estadisticas de ventas por canal online versus fisico,reporte_ventas,admin,ia
+muestrame el reporte de recaudacion diaria clasificado por turno,reporte_ventas,admin,ia
+cual es la comparativa de ventas entre este mes y el mes anterior,reporte_ventas,admin,ia
+genera el consolidado de ventas anuales de la tienda de ropa,reporte_ventas,admin,ia
+cuantas ventas totales se realizaron en el fin de semana pasado,reporte_ventas,admin,ia
+dame el informe de facturacion promedio por cliente,reporte_ventas,admin,ia
+muestrame los ingresos generados por promociones y descuentos,reporte_ventas,admin,ia
+cual fue el dia de mayores ventas en el transcurso del mes,reporte_ventas,admin,ia
+dame el reporte de ventas por vendedor o cajero del turno tarde,reporte_ventas,admin,ia
+cuanto se ha vendido en prendas de vestir durante las ultimas 24 horas,reporte_ventas,admin,ia
+necesito ver el flujo de caja diario por concepto de ventas,reporte_ventas,admin,ia
+resumen ejecutivo de rendimiento comercial de la semana corriente,reporte_ventas,admin,ia
+muestrame la curva de ventas por hora del dia de hoy,reporte_ventas,admin,ia
+cual fue el total recaudado por pagos con tarjeta de credito este mes,reporte_ventas,admin,ia
+dame el desglose de ingresos por ventas contado versus credito,reporte_ventas,admin,ia
+informe de cumplimiento de metas de ventas para este periodo,reporte_ventas,admin,ia
+cuantas transacciones de venta fueron anuladas o devueltas este mes,reporte_ventas,admin,ia
+dame el consolidado de ventas del black friday y cyber monday,reporte_ventas,admin,ia
+cual fue el ticket promedio de compra registrado el dia de ayer,reporte_ventas,admin,ia
+muestrame el reporte historico de ventas de los ultimos seis meses,reporte_ventas,admin,ia
+cuanto ascendieron las ventas totales en prendas de temporada alta,reporte_ventas,admin,ia
+necesito el balance de ingresos detallado por dia de la semana,reporte_ventas,admin,ia
+dame el porcentaje de crecimiento en ventas respecto al año anterior,reporte_ventas,admin,ia
+reporte de ventas discriminado por sucursales de la paz y santa cruz,reporte_ventas,admin,ia
+cual es el margen de ganancia obtenido sobre las ventas de la semana,reporte_ventas,admin,ia
+muestrame el total de unidades de ropa vendidas en lo que va del mes,reporte_ventas,admin,ia
+dame el informe de ventas por medio de pago qr efectivo y tarjetas,reporte_ventas,admin,ia
+cuanto facturamos hoy en la tienda virtual,reporte_ventas,admin,ia
+necesito el reporte de ventas para declarar impuestos mensuales,reporte_ventas,admin,ia
+cual fue la evolucion diaria de la facturacion en los ultimos 15 dias,reporte_ventas,admin,ia
+dame el resumen de ventas de ropa formal versus ropa casual del mes,reporte_ventas,admin,ia
+informe de ventas extraordinarias por liquidacion de temporada,reporte_ventas,admin,ia
+cuanto se vendio en el turno de la mañana en comparacion con la tarde,reporte_ventas,admin,ia
+muestrame las ventas brutas registradas antes de aplicar impuestos,reporte_ventas,admin,ia
+dame el reporte de ingresos por ventas en feriados y fines de semana,reporte_ventas,admin,ia
+cual es la proyeccion de ventas para el cierre de este mes,reporte_ventas,admin,ia
+necesito el listado completo de pedidos cobrados durante la jornada,reporte_ventas,admin,ia
+dame las metricas clave de rendimiento en ventas de esta quincena,reporte_ventas,admin,ia
+cuanto se ha facturado en la campaña de invierno hasta la fecha,reporte_ventas,admin,ia
+informe de ventas segmentado por clientes nuevos y recurrentes,reporte_ventas,admin,ia
+muestrame el balance contable de ingresos por indumentaria textil,reporte_ventas,admin,ia
+cual fue el total de ventas registrado en la jornada de ayer sabado,reporte_ventas,admin,ia
+dame el resumen de pedidos despachados y cobrados en la semana,reporte_ventas,admin,ia
+cuanto representan las devoluciones respecto al total vendido este mes,reporte_ventas,admin,ia
+necesito exportar el informe de ventas a formato excel o csv,reporte_ventas,admin,ia
+dame el total de ventas acumuladas en el presente año fiscal,reporte_ventas,admin,ia
+cual es el resumen de ventas de la coleccion de primavera,reporte_ventas,admin,ia
+muestrame el reporte de transacciones de venta exitosas versus fallidas,reporte_ventas,admin,ia
+dame el balance de facturacion de la tienda central,reporte_ventas,admin,ia
+cuanto ingreso por ventas en linea durante los ultimos siete dias,reporte_ventas,admin,ia
+necesito ver las ventas de la semana separadas por dia habil,reporte_ventas,admin,ia
+cual es el reporte de ingresos correspondiente a la liquidacion de verano,reporte_ventas,admin,ia
+dame el comparativo de ventas entre las distintas sucursales del pais,reporte_ventas,admin,ia
+cuanto se vendio en prendas femeninas y masculinas hoy,reporte_ventas,admin,ia
+muestrame el informe de productividad de ventas por cada asesor,reporte_ventas,admin,ia
+dame las cifras definitivas de facturacion del mes pasado,reporte_ventas,admin,ia
+cual fue el volumen de ventas en la fecha de descuento especial,reporte_ventas,admin,ia
+necesito el resumen financiero de ingresos del primer semestre,reporte_ventas,admin,ia
+dame el total de ventas por canal de comercio electronico,reporte_ventas,admin,ia
+cuanto dinero ingreso a caja hoy por concepto de mercaderia,reporte_ventas,admin,ia
+muestrame el informe diario de ventas para auditoria interna,reporte_ventas,admin,ia
+dame el acumulado de ingresos por ventas hasta las 6 de la tarde,reporte_ventas,admin,ia
+cual es el balance de ventas de la semana cerrada ayer,reporte_ventas,admin,ia
+cuales son los cinco productos mas vendidos de este mes,productos_mas_vendidos,admin,ia
+dame el ranking de las prendas con mayor volumen de salida,productos_mas_vendidos,admin,ia
+que modelos de pantalones jeans tuvieron mayor exito en ventas,productos_mas_vendidos,admin,ia
+muestrame el top 10 de articulos mas populares de la tienda,productos_mas_vendidos,admin,ia
+cuales fueron las chamarras mas vendidas durante el invierno,productos_mas_vendidos,admin,ia
+que polera basica es la preferida por los clientes actualmente,productos_mas_vendidos,admin,ia
+dame la lista de productos estrella que lideran la facturacion,productos_mas_vendidos,admin,ia
+que vestidos tuvieron la mayor cantidad de compras en las ultimas semanas,productos_mas_vendidos,admin,ia
+cual es el articulo de ropa femenina con mejor rotacion de inventario,productos_mas_vendidos,admin,ia
+cuales son las prendas masculinas mas demandadas por el publico,productos_mas_vendidos,admin,ia
+muestrame los buzos y sudaderas que mas se vendieron este trimestre,productos_mas_vendidos,admin,ia
+que accesorios y prendas secundarias tuvieron mayor venta,productos_mas_vendidos,admin,ia
+dame el informe de los tres productos mas vendidos de la semana,productos_mas_vendidos,admin,ia
+cuales son los blazers ejecutivos con mas pedidos registrados,productos_mas_vendidos,admin,ia
+que color de polera se vende mas entre los clientes,productos_mas_vendidos,admin,ia
+cuales fueron los productos lideres en ventas durante la campaña navideña,productos_mas_vendidos,admin,ia
+dame el top de faldas y shorts con mayor demanda en verano,productos_mas_vendidos,admin,ia
+que prenda de la coleccion de lino tiene el record de ventas,productos_mas_vendidos,admin,ia
+cuales son los conjuntos deportivos mas solicitados en la plataforma,productos_mas_vendidos,admin,ia
+muestrame que calzado o prenda complementaria se vende con mayor frecuencia,productos_mas_vendidos,admin,ia
+dame el ranking de ventas de chamarras de cuero sintetico,productos_mas_vendidos,admin,ia
+cuales son las referencias de inventario con mayor salida en tienda fisica,productos_mas_vendidos,admin,ia
+que articulos de moda joven estan encabezando las listas de compra,productos_mas_vendidos,admin,ia
+dame el podio de productos con mayor facturacion acumulada,productos_mas_vendidos,admin,ia
+cuales fueron los tres vestidos largos con mayores unidades vendidas,productos_mas_vendidos,admin,ia
+muestrame los abrigos de invierno mas exitosos comercialmente,productos_mas_vendidos,admin,ia
+que corte de pantalon jean prefieren comprar los clientes mom fit o skinny,productos_mas_vendidos,admin,ia
+dame la lista de las 10 prendas mas compradas en el portal web,productos_mas_vendidos,admin,ia
+cuales son las poleras polo mas vendidas para caballeros,productos_mas_vendidos,admin,ia
+que linea de ropa interior y pijamas registro mayores pedidos,productos_mas_vendidos,admin,ia
+dame los productos mas vendidos en la sucursal de santa cruz,productos_mas_vendidos,admin,ia
+cual es el producto insignia con mayor porcentaje de ventas,productos_mas_vendidos,admin,ia
+cuales son los articulos que mas rotaron en el inventario esta semana,productos_mas_vendidos,admin,ia
+muestrame las camisas manga corta mas compradas de la temporada,productos_mas_vendidos,admin,ia
+que prendas de algodon organico encabezan el ranking de ventas,productos_mas_vendidos,admin,ia
+dame el informe de productos mas populares entre el publico femenino,productos_mas_vendidos,admin,ia
+cuales son las chompas y sueteres tejidos con mas ventas en la paz,productos_mas_vendidos,admin,ia
+que modelos de faldas tubo tuvieron mayor preferencia de compra,productos_mas_vendidos,admin,ia
+muestrame los productos con mayor demanda en dias de promocion,productos_mas_vendidos,admin,ia
+dame los cinco articulos mas pedidos en la categoria deportiva,productos_mas_vendidos,admin,ia
+cuales fueron las camperas impermeables mas compradas por motociclistas,productos_mas_vendidos,admin,ia
+que tipo de blusa casual tuvo mayor salida durante el mes de octubre,productos_mas_vendidos,admin,ia
+dame el reporte de los articulos lideres en unidades despachadas,productos_mas_vendidos,admin,ia
+cuales son los trajes de vestir formales con mayor demanda para graduacion,productos_mas_vendidos,admin,ia
+muestrame los articulos mas vendidos en liquidacion de saldo,productos_mas_vendidos,admin,ia
+que prendas de abrigo tuvieron record de ventas en la temporada invernal,productos_mas_vendidos,admin,ia
+dame el ranking de los productos mas rentables segun unidades vendidas,productos_mas_vendidos,admin,ia
+cuales son los tres modelos de short de mezclilla mas populares,productos_mas_vendidos,admin,ia
+que color de chaqueta militar lidera la preferencia del consumidor,productos_mas_vendidos,admin,ia
+dame las diez prendas con mayor cantidad de clientes unicos este mes,productos_mas_vendidos,admin,ia
+cuales fueron las poleras estampadas con mayor volumen de pedidos,productos_mas_vendidos,admin,ia
+muestrame los productos que se agotaron mas rapido por alta demanda,productos_mas_vendidos,admin,ia
+que accesorios de abrigo como bufandas o guantes se venden mas,productos_mas_vendidos,admin,ia
+dame el top 5 de compras repetidas por clientes frecuentes,productos_mas_vendidos,admin,ia
+cuales son las prendas con mayor calificacion y mayores ventas,productos_mas_vendidos,admin,ia
+que ropa termica tuvo el mayor indice de compra en la ultima quincena,productos_mas_vendidos,admin,ia
+dame el ranking de blusas de seda segun unidades comercializadas,productos_mas_vendidos,admin,ia
+cuales son las prendas mas vendidas de la marca propia,productos_mas_vendidos,admin,ia
+muestrame los articulos que impulsaron las ventas del ultimo fin de semana,productos_mas_vendidos,admin,ia
+que pantalones cargo son los mas comprados por jovenes,productos_mas_vendidos,admin,ia
+dame la lista de productos mas vendidos en pedidos interdepartamentales,productos_mas_vendidos,admin,ia
+cuales son los conjuntos de dos piezas con mejor desempeño en ventas,productos_mas_vendidos,admin,ia
+que vestidos cortos de noche registraron mayor facturacion,productos_mas_vendidos,admin,ia
+dame el ranking de polerones oversize mas vendidos en tienda virtual,productos_mas_vendidos,admin,ia
+cuales fueron las prendas mas solicitadas durante la semana del estudiante,productos_mas_vendidos,admin,ia
+muestrame los articulos de indumentaria textil con mayor indice de rotacion,productos_mas_vendidos,admin,ia
+que sacos y blazers tuvieron el mejor volumen comercial en el trimestre,productos_mas_vendidos,admin,ia
+dame el informe de productos lideres en preferencia del cliente corporativo,productos_mas_vendidos,admin,ia
+cuales son los cinco articulos mas vendidos en lo que va del año,productos_mas_vendidos,admin,ia
+que prendas basicas representan el mayor porcentaje del volumen de salida,productos_mas_vendidos,admin,ia
+cuales productos se encuentran actualmente con stock bajo o critico,stock_bajo,admin,ia
+muestrame la lista de prendas que tienen menos de cinco unidades en almacen,stock_bajo,admin,ia
+que articulos estan a punto de agotarse en la sucursal central,stock_bajo,admin,ia
+dame las alertas de inventario para reabastecimiento urgente de mercaderia,stock_bajo,admin,ia
+cuales tallas de jeans clasicos se estan terminando en tienda,stock_bajo,admin,ia
+que modelos de chamarras tienen quiebre de stock inminente,stock_bajo,admin,ia
+muestrame las poleras basicas que necesitan orden de compra inmediata,stock_bajo,admin,ia
+cuales son las referencias con inventario por debajo del punto de reorden,stock_bajo,admin,ia
+dame el reporte de articulos de vestir completamente agotados,stock_bajo,admin,ia
+que prendas de invierno tienen un saldo menor a tres unidades,stock_bajo,admin,ia
+muestrame los vestidos floreados que se estan quedando sin existencias,stock_bajo,admin,ia
+cuales abrigos de lana requieren reposicion urgente de fabrica,stock_bajo,admin,ia
+dame el listado de productos con bajo inventario clasificados por categoria,stock_bajo,admin,ia
+que colores de blusas formales ya no tienen disponibilidad en deposito,stock_bajo,admin,ia
+cuales pantalones de vestir se encuentran en estado de alerta por stock minimo,stock_bajo,admin,ia
+muestrame los buzos deportivos que tienen riesgo de desabastecimiento,stock_bajo,admin,ia
+dame el informe de existencias minimas en la sucursal de cochabamba,stock_bajo,admin,ia
+que sueteres tejidos estan en quiebre total de unidades,stock_bajo,admin,ia
+cuales faldas y vestidos de verano tienen menos de diez prendas en stock,stock_bajo,admin,ia
+muestrame las camisas de caballero que estan por terminarse esta semana,stock_bajo,admin,ia
+dame el listado de sku que requieren reposicion de mercaderia prioritaria,stock_bajo,admin,ia
+que conjuntos para dama presentan escasez de tallas intermedias,stock_bajo,admin,ia
+cuales son los articulos que tienen solo una unidad disponible en tienda,stock_bajo,admin,ia
+dame la alerta de reposicion para calzado y complementos textiles,stock_bajo,admin,ia
+que polerones con capucha se estan agotando a mayor velocidad,stock_bajo,admin,ia
+muestrame el reporte de quiebre de stock de la coleccion de lino,stock_bajo,admin,ia
+cuales pantalones mom fit estan sin inventario en tallas 30 y 32,stock_bajo,admin,ia
+dame el resumen de productos con nivel de existencias menor al 10 por ciento,stock_bajo,admin,ia
+que prendas populares tienen orden de compra pendiente por falta de stock,stock_bajo,admin,ia
+cuales blazers ejecutivos estan en falta de reposicion en almacen,stock_bajo,admin,ia
+muestrame las poleras polo que se quedaron sin existencia en color negro,stock_bajo,admin,ia
+dame el listado de prendas con inventario critico para el fin de semana,stock_bajo,admin,ia
+que articulos de la linea deportiva estan por agotarse en su totalidad,stock_bajo,admin,ia
+cuales faldas de mezclilla tienen menos de cuatro unidades disponibles,stock_bajo,admin,ia
+dame el informe de faltantes de mercaderia reportados por los vendedores,stock_bajo,admin,ia
+que trajes formales de dos piezas necesitan abastecimiento urgente,stock_bajo,admin,ia
+muestrame los shorts de jean que tienen saldo cero en stock fisico,stock_bajo,admin,ia
+cuales vestidos de fiesta requieren nueva tanda de confeccion por falta de stock,stock_bajo,admin,ia
+dame las alertas de desabastecimiento de prendas en la tienda online,stock_bajo,admin,ia
+que camperas impermeables estan con stock en rojo en el sistema,stock_bajo,admin,ia
+cuales pantalones palazzo ya no cuentan con unidades en deposito,stock_bajo,admin,ia
+muestrame los articulos que no se pueden vender por falta de inventario,stock_bajo,admin,ia
+dame el listado de prendas cuya demanda supera las existencias actuales,stock_bajo,admin,ia
+que sueteres de punto cerrado tienen menos de cinco piezas en exhibicion,stock_bajo,admin,ia
+cuales batas o pijamas termicas necesitan reorden con los proveedores,stock_bajo,admin,ia
+dame el reporte de tallas faltantes en la linea de ropa casual masculina,stock_bajo,admin,ia
+que chaquetas de mezclilla tienen existencias peligrosamente bajas,stock_bajo,admin,ia
+muestrame los productos que deben ser reabastecidos antes de la siguiente campaña,stock_bajo,admin,ia
+cuales prendas de vestir presentan quiebre en mas del 50 por ciento de sus tallas,stock_bajo,admin,ia
+dame el estado de stock de los productos con mayor salida comercial,stock_bajo,admin,ia
+que modelos de blusas campesinas se estan terminando en el catalogo,stock_bajo,admin,ia
+cuales abrigos largos tienen stock limitado a solo dos piezas,stock_bajo,admin,ia
+dame la lista de prendas que necesitan fabricacion urgente por inventario bajo,stock_bajo,admin,ia
+que chalecos acolchados ya no se encuentran disponibles para la venta,stock_bajo,admin,ia
+muestrame el reporte de inventario critico consolidado de todas las tiendas,stock_bajo,admin,ia
+cuales son las prendas con alerta amarilla de reposicion preventiva,stock_bajo,admin,ia
+dame los sku de ropa femenina con menos de tres unidades en perchas,stock_bajo,admin,ia
+que enterizos de vestir tienen agotada la talla medium,stock_bajo,admin,ia
+cuales poleras con estampa se quedaron sin stock en almacen general,stock_bajo,admin,ia
+dame el listado de mercaderia que no podra cubrir la demanda proyectada,stock_bajo,admin,ia
+que articulos presentan discrepancias entre stock del sistema y stock fisico,stock_bajo,admin,ia
+muestrame las prendas de media estacion que estan por agotarse,stock_bajo,admin,ia
+cuales prendas de algodon tienen existencia menor a la reserva de seguridad,stock_bajo,admin,ia
+dame la lista de productos que requieren transferencia entre sucursales por falta de stock,stock_bajo,admin,ia
+que vestidos tipo coctel tienen quiebre de inventario en color azul,stock_bajo,admin,ia
+cuales pantalones chupines estan a punto de quedarse sin unidades,stock_bajo,admin,ia
+dame el reporte semanal de productos bajo umbral minimo de inventario,stock_bajo,admin,ia
+que conjuntos de falda y top necesitan reposicion inmediata de fabrica,stock_bajo,admin,ia
+muestrame los productos cuyo stock no alcanza para cubrir dos dias de venta,stock_bajo,admin,ia
+cuales articulos textiles tienen prioridad uno para reabastecimiento,stock_bajo,admin,ia
+muestrame el desglose de ventas por cada categoria de ropa,ventas_por_categoria,admin,ia
+cuanto dinero se facturo en ropa de mujer versus ropa de hombre este mes,ventas_por_categoria,admin,ia
+cual es la distribucion porcentual de ingresos entre faldas pantalones y vestidos,ventas_por_categoria,admin,ia
+dame el balance financiero de ventas en la seccion de prendas deportivas,ventas_por_categoria,admin,ia
+cuanto se vendio en la categoria de ropa formal en lo que va del trimestre,ventas_por_categoria,admin,ia
+cual fue la categoria con mayor facturacion durante la ultima semana,ventas_por_categoria,admin,ia
+dame el reporte comparativo de ventas entre linea casual e infantil,ventas_por_categoria,admin,ia
+que porcentaje de las ventas totales representa la categoria de abrigos y chamarras,ventas_por_categoria,admin,ia
+muestrame los ingresos generados por la categoria de accesorios y complementos,ventas_por_categoria,admin,ia
+cuanto aporto la categoria de pantalones jeans a la facturacion global,ventas_por_categoria,admin,ia
+dame el informe de rendimiento comercial de la seccion de ropa de invierno,ventas_por_categoria,admin,ia
+cual es el volumen de ventas en la division de trajes de baño y verano,ventas_por_categoria,admin,ia
+muestrame la participacion de mercado interno de cada linea de producto,ventas_por_categoria,admin,ia
+cuanto se facturo en prendas basicas de algodon en comparacion con ropa premium,ventas_por_categoria,admin,ia
+dame el balance de ingresos por categoria en la sucursal de santa cruz,ventas_por_categoria,admin,ia
+cual fue la categoria de menor desempeño en ventas este ultimo mes,ventas_por_categoria,admin,ia
+muestrame las ventas de calzado frente a prendas de vestir tradicionales,ventas_por_categoria,admin,ia
+dame el porcentaje de ventas de la linea de pijamas y ropa de descanso,ventas_por_categoria,admin,ia
+cuanto dinero ingresaron las faldas y enterizos durante este periodo,ventas_por_categoria,admin,ia
+cual es la comparativa de ventas entre la categoria femenina y masculina este año,ventas_por_categoria,admin,ia
+dame el reporte de ingresos discriminado por tipo de tejido algodon lino lana,ventas_por_categoria,admin,ia
+muestrame las ventas de ropa deportiva dry fit versus algodon comun,ventas_por_categoria,admin,ia
+cuanto se vendio en la categoria de vestidos de fiesta y gala,ventas_por_categoria,admin,ia
+dame el desglose de unidades vendidas por cada familia de prendas,ventas_por_categoria,admin,ia
+cual es la categoria mas rentable considerando margen y volumen de venta,ventas_por_categoria,admin,ia
+muestrame el grafico o balance de ventas por linea de producto textil,ventas_por_categoria,admin,ia
+cuanto ascendieron los ingresos en la categoria de chaquetas y blazers,ventas_por_categoria,admin,ia
+dame el informe de participacion de ventas de la coleccion de nueva temporada,ventas_por_categoria,admin,ia
+que categoria lidero las compras en las fechas de rebajas de liquidacion,ventas_por_categoria,admin,ia
+muestrame el consolidado de facturacion por departamentos damas caballeros niños,ventas_por_categoria,admin,ia
+cuanto se vendio en la seccion de poleras estampadas y lisas,ventas_por_categoria,admin,ia
+dame el reporte de ventas por categoria durante la campaña de navidad,ventas_por_categoria,admin,ia
+cual fue la variacion porcentual en ventas de la linea formal respecto al mes previo,ventas_por_categoria,admin,ia
+muestrame la relacion de ventas entre ropa para adultos y ropa para jovenes,ventas_por_categoria,admin,ia
+cuanto dinero represento la venta de shorts y bermudas en la temporada estival,ventas_por_categoria,admin,ia
+dame el analisis de ventas segmentado por categorias de ticket alto y bajo,ventas_por_categoria,admin,ia
+cual es el ticket promedio generado en la categoria de prendas ejecutivas,ventas_por_categoria,admin,ia
+muestrame el volumen de venta de la linea termica durante la epoca fria,ventas_por_categoria,admin,ia
+cuanto facturo la seccion de ropa casual en la tienda virtual,ventas_por_categoria,admin,ia
+dame el balance comparativo de las cinco principales categorias comerciales,ventas_por_categoria,admin,ia
+cual es la tasa de devoluciones registrada en la categoria de vestidos,ventas_por_categoria,admin,ia
+muestrame el porcentaje de ingresos atribuible a las prendas de vestir superiores,ventas_por_categoria,admin,ia
+cuanto se recaudo por la venta de pantalones en sus distintos cortes y modelos,ventas_por_categoria,admin,ia
+dame el informe de demanda de la categoria de prendas intimas y bodys,ventas_por_categoria,admin,ia
+que porcentaje de los ingresos proviene de la categoria de uniformes y ropa de trabajo,ventas_por_categoria,admin,ia
+muestrame la evolucion mensual de ventas en la seccion de chamarras de pluma,ventas_por_categoria,admin,ia
+cuanto se vendio en ropa de gala y eventos especiales este fin de semana,ventas_por_categoria,admin,ia
+dame el resumen de transacciones clasificadas por linea textil moderna y clasica,ventas_por_categoria,admin,ia
+cual es la proyeccion de cierre de mes para la categoria de ropa urbana,ventas_por_categoria,admin,ia
+muestrame la participacion de la categoria deportiva en el canal online,ventas_por_categoria,admin,ia
+cuanto dinero aportaron los sueteres y cardigans al total de ventas,ventas_por_categoria,admin,ia
+dame el balance de ingresos por categoria en la tienda central de la paz,ventas_por_categoria,admin,ia
+cual fue el crecimiento en ventas de la categoria infantil en este trimestre,ventas_por_categoria,admin,ia
+muestrame las ventas de ropa de abrigo versus prendas ligeras,ventas_por_categoria,admin,ia
+cuanto facturo la categoria de sastrería a medida para caballeros,ventas_por_categoria,admin,ia
+dame el desglose de facturacion de productos por segmento de edad,ventas_por_categoria,admin,ia
+cual es la categoria con mayor rotacion de mercaderia en almacenes,ventas_por_categoria,admin,ia
+muestrame la comparativa de ingresos entre la linea casual y la linea formal,ventas_por_categoria,admin,ia
+cuanto se genero en ventas por prendas de mezclilla y mezclilla elastizada,ventas_por_categoria,admin,ia
+dame el porcentaje de ventas de la categoria de blusas y camisas formales,ventas_por_categoria,admin,ia
+cual fue la categoria con mayor incremento de ventas durante la promocion,ventas_por_categoria,admin,ia
+muestrame el reporte de ventas por categoria para la junta directiva,ventas_por_categoria,admin,ia
+cuanto ingreso por la venta de complementos de vestir como chalinas y gorros,ventas_por_categoria,admin,ia
+dame el comparativo de ventas entre la categoria femenina y la seccion deportiva,ventas_por_categoria,admin,ia
+cual es el aporte de la categoria de vestidos cortos al margen neto de la empresa,ventas_por_categoria,admin,ia
+muestrame la distribucion de ventas por lineas de producto en el primer semestre,ventas_por_categoria,admin,ia
+cuanto se vendio en ropa de playa y verano durante las vacaciones,ventas_por_categoria,admin,ia
+dame el resumen ejecutivo de desempeño comercial por cada categoria del catalogo,ventas_por_categoria,admin,ia
+cual fue la participacion de la categoria de pantalones cargo en las ventas juveniles,ventas_por_categoria,admin,ia
+muestrame las ventas consolidadas por departamento de indumentaria textil,ventas_por_categoria,admin,ia
