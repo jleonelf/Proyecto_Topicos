@@ -9,15 +9,15 @@ data:
   raw_path: "data/raw/intenciones.csv"
   test_size: 0.2
   seed: 42
+  ood_val_path: "data/ood_val.csv"
+  ood_test_path: "data/ood_test.csv"
 
 nlp:
-  modo: "lema" # 'lema' (spaCy) o 'stem' (Snowball NLTK)
+  modo: "lema" # 'lema' (spaCy es_core_news_sm) o 'stem' (Snowball NLTK)
   stopwords_extra:
     - "porfa"
     - "oye"
     - "disculpa"
-    - "buenas"
-    - "hola"
     - "favor"
   stopwords_exclude:
     - "no"
@@ -35,6 +35,7 @@ vectorizer:
 models:
   scoring: "f1_macro"
   cv_folds: 5
+  n_jobs: 1 # Procesamiento secuencial para evitar overhead de multiproceso en Windows
   logistic_regression:
     param_grid:
       modelo__C: [0.1, 1.0, 5.0, 10.0]
@@ -48,10 +49,20 @@ models:
       modelo__alpha: [0.1, 0.5, 1.0, 2.0]
     fixed_params: {}
 
+ood:
+  val_path: "data/ood_val.csv"
+  test_path: "data/ood_test.csv"
+  estrategia: "hybrid_dual_gate"
+  umbral_prob: 0.35
+  umbral_cobertura: 0.35
+  umbral_similitud: 0.0
+
 inference:
-  umbral: 0.55 # Si la probabilidad < umbral, el chatbot responde "no entendí"
+  umbral: 0.35 # Umbral base probabilístico
   top_k: 3
+  usar_detector_ood: true
 
 artifacts:
   model_path: "artifacts/modelo.joblib"
   metrics_path: "artifacts/metricas.json"
+  ood_detector_path: "artifacts/ood_detector.joblib"

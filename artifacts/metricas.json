@@ -1,5 +1,5 @@
 {
-  "fecha_entrenamiento": "2026-10-29T21:40:05.915430",
+  "fecha_entrenamiento": "2026-10-31T22:36:16.341341",
   "configuracion": {
     "project": {
       "name": "asistente-tienda-ropa",
@@ -9,7 +9,9 @@
     "data": {
       "raw_path": "data/raw/intenciones.csv",
       "test_size": 0.2,
-      "seed": 42
+      "seed": 42,
+      "ood_val_path": "data/ood_val.csv",
+      "ood_test_path": "data/ood_test.csv"
     },
     "nlp": {
       "modo": "lema",
@@ -17,8 +19,6 @@
         "porfa",
         "oye",
         "disculpa",
-        "buenas",
-        "hola",
         "favor"
       ],
       "stopwords_exclude": [
@@ -41,6 +41,7 @@
     "models": {
       "scoring": "f1_macro",
       "cv_folds": 5,
+      "n_jobs": 1,
       "logistic_regression": {
         "param_grid": {
           "modelo__C": [
@@ -72,18 +73,28 @@
         "fixed_params": {}
       }
     },
+    "ood": {
+      "val_path": "data/ood_val.csv",
+      "test_path": "data/ood_test.csv",
+      "estrategia": "hybrid_dual_gate",
+      "umbral_prob": 0.35,
+      "umbral_cobertura": 0.35,
+      "umbral_similitud": 0.0
+    },
     "inference": {
-      "umbral": 0.55,
-      "top_k": 3
+      "umbral": 0.35,
+      "top_k": 3,
+      "usar_detector_ood": true
     },
     "artifacts": {
       "model_path": "artifacts/modelo.joblib",
-      "metrics_path": "artifacts/metricas.json"
+      "metrics_path": "artifacts/metricas.json",
+      "ood_detector_path": "artifacts/ood_detector.joblib"
     }
   },
-  "total_muestras": 138,
-  "muestras_train": 110,
-  "muestras_test": 28,
+  "total_muestras": 1040,
+  "muestras_train": 832,
+  "muestras_test": 208,
   "clases": [
     "consultar_precio",
     "consultar_stock",
@@ -102,106 +113,107 @@
   "modelos": {
     "dummy_baseline": {
       "descripcion": "Línea base que predice siempre la clase mayoritaria",
+      "cv_score": 0.0,
       "metricas": {
-        "accuracy": 0.0714,
-        "f1_macro": 0.0103,
-        "f1_weighted": 0.0095,
+        "accuracy": 0.0769,
+        "f1_macro": 0.011,
+        "f1_weighted": 0.011,
         "classification_report": {
           "consultar_precio": {
-            "precision": 0.07142857142857142,
+            "precision": 0.07692307692307693,
             "recall": 1.0,
-            "f1-score": 0.13333333333333333,
-            "support": 2.0
+            "f1-score": 0.14285714285714285,
+            "support": 16.0
           },
           "consultar_stock": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 3.0
+            "support": 16.0
           },
           "consultar_tallas": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "despedida": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "devoluciones": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "envios": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "horarios_ubicacion": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "metodos_pago": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "productos_mas_vendidos": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "reporte_ventas": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "saludo": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 3.0
+            "support": 16.0
           },
           "stock_bajo": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
           "ventas_por_categoria": {
             "precision": 0.0,
             "recall": 0.0,
             "f1-score": 0.0,
-            "support": 2.0
+            "support": 16.0
           },
-          "accuracy": 0.07142857142857142,
+          "accuracy": 0.07692307692307693,
           "macro avg": {
-            "precision": 0.005494505494505494,
+            "precision": 0.00591715976331361,
             "recall": 0.07692307692307693,
-            "f1-score": 0.010256410256410256,
-            "support": 28.0
+            "f1-score": 0.010989010989010988,
+            "support": 208.0
           },
           "weighted avg": {
-            "precision": 0.00510204081632653,
-            "recall": 0.07142857142857142,
-            "f1-score": 0.009523809523809523,
-            "support": 28.0
+            "precision": 0.00591715976331361,
+            "recall": 0.07692307692307693,
+            "f1-score": 0.010989010989010988,
+            "support": 208.0
           }
         },
         "confusion_matrix": [
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -216,7 +228,7 @@
             0
           ],
           [
-            3,
+            16,
             0,
             0,
             0,
@@ -231,7 +243,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -246,7 +258,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -261,7 +273,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -276,7 +288,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -291,7 +303,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -306,7 +318,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -321,7 +333,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -336,7 +348,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -351,7 +363,7 @@
             0
           ],
           [
-            3,
+            16,
             0,
             0,
             0,
@@ -366,7 +378,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -381,7 +393,7 @@
             0
           ],
           [
-            2,
+            16,
             0,
             0,
             0,
@@ -399,200 +411,111 @@
       }
     },
     "naive_bayes": {
-      "descripcion": "Naive Bayes (ComplementNB) optimizado con GridSearchCV",
+      "descripcion": "Naive Bayes (ComplementNB) optimizado con Stratified 5-Fold CV",
       "mejores_parametros": {
-        "modelo__alpha": 1.0
+        "modelo__alpha": 2.0
       },
-      "mejor_cv_score": 0.3837,
+      "mejor_cv_score": 0.8009,
       "metricas": {
-        "accuracy": 0.6071,
-        "f1_macro": 0.5286,
-        "f1_weighted": 0.523,
+        "accuracy": 0.8365,
+        "f1_macro": 0.8375,
+        "f1_weighted": 0.8375,
         "classification_report": {
           "consultar_precio": {
-            "precision": 0.4,
-            "recall": 1.0,
-            "f1-score": 0.5714285714285714,
-            "support": 2.0
+            "precision": 0.7777777777777778,
+            "recall": 0.875,
+            "f1-score": 0.8235294117647058,
+            "support": 16.0
           },
           "consultar_stock": {
-            "precision": 1.0,
-            "recall": 0.3333333333333333,
-            "f1-score": 0.5,
-            "support": 3.0
+            "precision": 0.6470588235294118,
+            "recall": 0.6875,
+            "f1-score": 0.6666666666666666,
+            "support": 16.0
           },
           "consultar_tallas": {
-            "precision": 0.5,
-            "recall": 1.0,
-            "f1-score": 0.6666666666666666,
-            "support": 2.0
+            "precision": 0.7647058823529411,
+            "recall": 0.8125,
+            "f1-score": 0.7878787878787878,
+            "support": 16.0
           },
           "despedida": {
-            "precision": 0.6666666666666666,
-            "recall": 1.0,
-            "f1-score": 0.8,
-            "support": 2.0
+            "precision": 1.0,
+            "recall": 0.8125,
+            "f1-score": 0.896551724137931,
+            "support": 16.0
           },
           "devoluciones": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
-            "support": 2.0
+            "precision": 0.8571428571428571,
+            "recall": 0.75,
+            "f1-score": 0.8,
+            "support": 16.0
           },
           "envios": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1-score": 0.0,
-            "support": 2.0
+            "precision": 0.9333333333333333,
+            "recall": 0.875,
+            "f1-score": 0.9032258064516129,
+            "support": 16.0
           },
           "horarios_ubicacion": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1-score": 0.0,
-            "support": 2.0
+            "precision": 0.8823529411764706,
+            "recall": 0.9375,
+            "f1-score": 0.9090909090909091,
+            "support": 16.0
           },
           "metodos_pago": {
-            "precision": 0.6666666666666666,
-            "recall": 1.0,
-            "f1-score": 0.8,
-            "support": 2.0
+            "precision": 0.9333333333333333,
+            "recall": 0.875,
+            "f1-score": 0.9032258064516129,
+            "support": 16.0
           },
           "productos_mas_vendidos": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1-score": 0.0,
-            "support": 2.0
+            "precision": 0.9285714285714286,
+            "recall": 0.8125,
+            "f1-score": 0.8666666666666667,
+            "support": 16.0
           },
           "reporte_ventas": {
-            "precision": 0.5,
-            "recall": 1.0,
-            "f1-score": 0.6666666666666666,
-            "support": 2.0
+            "precision": 0.7222222222222222,
+            "recall": 0.8125,
+            "f1-score": 0.7647058823529411,
+            "support": 16.0
           },
           "saludo": {
-            "precision": 0.5,
-            "recall": 0.3333333333333333,
-            "f1-score": 0.4,
-            "support": 3.0
+            "precision": 0.7894736842105263,
+            "recall": 0.9375,
+            "f1-score": 0.8571428571428571,
+            "support": 16.0
           },
           "stock_bajo": {
-            "precision": 1.0,
-            "recall": 0.5,
-            "f1-score": 0.6666666666666666,
-            "support": 2.0
+            "precision": 0.8571428571428571,
+            "recall": 0.75,
+            "f1-score": 0.8,
+            "support": 16.0
           },
           "ventas_por_categoria": {
-            "precision": 0.6666666666666666,
-            "recall": 1.0,
-            "f1-score": 0.8,
-            "support": 2.0
+            "precision": 0.8823529411764706,
+            "recall": 0.9375,
+            "f1-score": 0.9090909090909091,
+            "support": 16.0
           },
-          "accuracy": 0.6071428571428571,
+          "accuracy": 0.8365384615384616,
           "macro avg": {
-            "precision": 0.5307692307692308,
-            "recall": 0.6282051282051282,
-            "f1-score": 0.5285714285714286,
-            "support": 28.0
+            "precision": 0.8442667755361254,
+            "recall": 0.8365384615384616,
+            "f1-score": 0.8375211867458153,
+            "support": 208.0
           },
           "weighted avg": {
-            "precision": 0.5464285714285714,
-            "recall": 0.6071428571428571,
-            "f1-score": 0.5229591836734694,
-            "support": 28.0
+            "precision": 0.8442667755361254,
+            "recall": 0.8365384615384616,
+            "f1-score": 0.8375211867458153,
+            "support": 208.0
           }
         },
         "confusion_matrix": [
           [
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            1,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
+            14,
             1,
             0,
             0,
@@ -603,23 +526,112 @@
             0,
             0,
             0,
-            1,
             0,
-            0
+            1
           ],
           [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            3,
+            11,
             2,
             0,
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            13,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            13,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            12,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            1,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            15,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            14,
+            0,
+            1,
+            0,
+            0,
             0
           ],
           [
@@ -630,9 +642,24 @@
             0,
             0,
             0,
+            0,
+            13,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1,
             0,
-            0,
+            1,
+            13,
             0,
             0,
             1
@@ -644,30 +671,17 @@
             0,
             0,
             0,
+            1,
             0,
             0,
             0,
-            2,
-            0,
+            15,
             0,
             0
           ],
           [
-            0,
-            0,
-            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0
-          ],
-          [
+            3,
             0,
             0,
             0,
@@ -677,9 +691,7 @@
             0,
             0,
             0,
-            1,
-            0,
-            1,
+            12,
             0
           ],
           [
@@ -692,183 +704,153 @@
             0,
             0,
             0,
+            1,
             0,
             0,
-            0,
-            2
+            15
           ]
         ]
       }
     },
     "regresion_logistica": {
-      "descripcion": "Regresión Logística multinomial optimizada con GridSearchCV",
+      "descripcion": "Regresión Logística multinomial optimizada con Stratified 5-Fold CV",
       "mejores_parametros": {
         "modelo__C": 10.0,
         "modelo__class_weight": "balanced"
       },
-      "mejor_cv_score": 0.4201,
+      "mejor_cv_score": 0.8489,
       "metricas": {
-        "accuracy": 0.5714,
-        "f1_macro": 0.5044,
-        "f1_weighted": 0.4964,
+        "accuracy": 0.8606,
+        "f1_macro": 0.8622,
+        "f1_weighted": 0.8622,
         "classification_report": {
           "consultar_precio": {
-            "precision": 0.6666666666666666,
-            "recall": 1.0,
-            "f1-score": 0.8,
-            "support": 2.0
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
+            "support": 16.0
           },
           "consultar_stock": {
-            "precision": 1.0,
-            "recall": 0.3333333333333333,
-            "f1-score": 0.5,
-            "support": 3.0
+            "precision": 0.7,
+            "recall": 0.875,
+            "f1-score": 0.7777777777777778,
+            "support": 16.0
           },
           "consultar_tallas": {
-            "precision": 0.4,
-            "recall": 1.0,
-            "f1-score": 0.5714285714285714,
-            "support": 2.0
+            "precision": 0.7647058823529411,
+            "recall": 0.8125,
+            "f1-score": 0.7878787878787878,
+            "support": 16.0
           },
           "despedida": {
-            "precision": 0.6666666666666666,
-            "recall": 1.0,
-            "f1-score": 0.8,
-            "support": 2.0
+            "precision": 1.0,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
+            "support": 16.0
           },
           "devoluciones": {
-            "precision": 0.5,
-            "recall": 0.5,
-            "f1-score": 0.5,
-            "support": 2.0
+            "precision": 0.8571428571428571,
+            "recall": 0.75,
+            "f1-score": 0.8,
+            "support": 16.0
           },
           "envios": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1-score": 0.0,
-            "support": 2.0
+            "precision": 0.9333333333333333,
+            "recall": 0.875,
+            "f1-score": 0.9032258064516129,
+            "support": 16.0
           },
           "horarios_ubicacion": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1-score": 0.0,
-            "support": 2.0
+            "precision": 0.8823529411764706,
+            "recall": 0.9375,
+            "f1-score": 0.9090909090909091,
+            "support": 16.0
           },
           "metodos_pago": {
-            "precision": 1.0,
-            "recall": 1.0,
-            "f1-score": 1.0,
-            "support": 2.0
+            "precision": 0.9375,
+            "recall": 0.9375,
+            "f1-score": 0.9375,
+            "support": 16.0
           },
           "productos_mas_vendidos": {
-            "precision": 0.0,
-            "recall": 0.0,
-            "f1-score": 0.0,
-            "support": 2.0
+            "precision": 0.9285714285714286,
+            "recall": 0.8125,
+            "f1-score": 0.8666666666666667,
+            "support": 16.0
           },
           "reporte_ventas": {
-            "precision": 0.6666666666666666,
-            "recall": 1.0,
-            "f1-score": 0.8,
-            "support": 2.0
+            "precision": 0.7647058823529411,
+            "recall": 0.8125,
+            "f1-score": 0.7878787878787878,
+            "support": 16.0
           },
           "saludo": {
-            "precision": 0.25,
-            "recall": 0.3333333333333333,
-            "f1-score": 0.2857142857142857,
-            "support": 3.0
+            "precision": 0.8823529411764706,
+            "recall": 0.9375,
+            "f1-score": 0.9090909090909091,
+            "support": 16.0
           },
           "stock_bajo": {
-            "precision": 0.5,
-            "recall": 0.5,
-            "f1-score": 0.5,
-            "support": 2.0
+            "precision": 0.7647058823529411,
+            "recall": 0.8125,
+            "f1-score": 0.7878787878787878,
+            "support": 16.0
           },
           "ventas_por_categoria": {
-            "precision": 0.6666666666666666,
-            "recall": 1.0,
-            "f1-score": 0.8,
-            "support": 2.0
+            "precision": 0.875,
+            "recall": 0.875,
+            "f1-score": 0.875,
+            "support": 16.0
           },
-          "accuracy": 0.5714285714285714,
+          "accuracy": 0.8605769230769231,
           "macro avg": {
-            "precision": 0.48589743589743595,
-            "recall": 0.5897435897435896,
-            "f1-score": 0.5043956043956044,
-            "support": 28.0
+            "precision": 0.8684900883430297,
+            "recall": 0.8605769230769231,
+            "f1-score": 0.8622042384139157,
+            "support": 208.0
           },
           "weighted avg": {
-            "precision": 0.4958333333333334,
-            "recall": 0.5714285714285714,
-            "f1-score": 0.49642857142857144,
-            "support": 28.0
+            "precision": 0.8684900883430297,
+            "recall": 0.8605769230769231,
+            "f1-score": 0.8622042384139157,
+            "support": 208.0
           }
         },
         "confusion_matrix": [
           [
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
+            14,
             1,
-            2,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
             0,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            14,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            13,
             0,
             1,
             0,
@@ -884,7 +866,7 @@
             0,
             0,
             0,
-            0,
+            14,
             0,
             0,
             0,
@@ -896,17 +878,32 @@
             0
           ],
           [
+            0,
+            0,
+            1,
+            0,
+            12,
+            1,
+            0,
             1,
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
+            1,
+            0
+          ],
+          [
             0,
             0,
             1,
+            0,
+            1,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0
           ],
@@ -917,12 +914,42 @@
             0,
             0,
             0,
+            15,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            15,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            13,
+            1,
             0,
             2,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           [
@@ -934,79 +961,160 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
             1,
-            1
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            2,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            1,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            1,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            13,
             0,
             0,
             2
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            15,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            13,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            14
           ]
         ]
       }
     }
   },
   "modelo_produccion": {
-    "nombre": "naive_bayes",
-    "criterio": "Mayor F1 Macro en conjunto de prueba",
-    "f1_macro": 0.5286
+    "nombre": "regresion_logistica",
+    "criterio": "Mayor F1 Macro en validación cruzada estratificada de 5 folds sobre X_train",
+    "mejor_cv_score": 0.8489,
+    "test_f1_macro": 0.8622,
+    "test_accuracy": 0.8606
+  },
+  "estrategias_rechazo_ood": {
+    "tabla_comparativa": {
+      "msp_baseline_035": {
+        "estrategia": "MSPDetector",
+        "umbral": 0.35,
+        "cobertura_id": 0.8503,
+        "exactitud_aceptadas": 0.9014,
+        "tasa_error_ood": 0.35,
+        "f1_macro": 0.8202,
+        "score_balance": 0.7979,
+        "parametros": {
+          "umbral": 0.35
+        }
+      },
+      "msp_calibrado": {
+        "estrategia": "MSPDetector",
+        "umbral": 0.675,
+        "cobertura_id": 0.479,
+        "exactitud_aceptadas": 0.95,
+        "tasa_error_ood": 0.15,
+        "f1_macro": 0.5868,
+        "score_balance": 0.7434,
+        "parametros": {
+          "umbral": 0.675
+        }
+      },
+      "margin": {
+        "estrategia": "MarginDetector",
+        "umbral": 0.6,
+        "cobertura_id": 0.4611,
+        "exactitud_aceptadas": 0.961,
+        "tasa_error_ood": 0.15,
+        "f1_macro": 0.5702,
+        "score_balance": 0.7379,
+        "parametros": {
+          "umbral": 0.6
+        }
+      },
+      "cosine_centroid": {
+        "estrategia": "CosineCentroidDetector",
+        "umbral": 0.25,
+        "cobertura_id": 0.3832,
+        "exactitud_aceptadas": 0.9062,
+        "tasa_error_ood": 0.125,
+        "f1_macro": 0.454,
+        "score_balance": 0.6723,
+        "parametros": {
+          "umbral": 0.25
+        }
+      },
+      "vocab_coverage": {
+        "estrategia": "VocabularyCoverageDetector",
+        "umbral": 0.6,
+        "cobertura_id": 0.9162,
+        "exactitud_aceptadas": 0.8431,
+        "tasa_error_ood": 0.1,
+        "f1_macro": 0.8048,
+        "score_balance": 0.8382,
+        "parametros": {
+          "umbral": 0.6
+        }
+      },
+      "hybrid_dual_gate": {
+        "estrategia": "HybridOODDetector",
+        "umbral": 0.35,
+        "cobertura_id": 0.8323,
+        "exactitud_aceptadas": 0.9065,
+        "tasa_error_ood": 0.2,
+        "f1_macro": 0.8151,
+        "score_balance": 0.8342,
+        "parametros": {
+          "umbral": 0.35,
+          "umbral_cobertura": 0.4,
+          "umbral_similitud": 0.0
+        }
+      }
+    },
+    "estrategia_seleccionada": "hybrid_dual_gate",
+    "resumen_ganador": {
+      "estrategia": "HybridOODDetector",
+      "umbral": 0.35,
+      "cobertura_id": 0.8323,
+      "exactitud_aceptadas": 0.9065,
+      "tasa_error_ood": 0.2,
+      "f1_macro": 0.8151,
+      "score_balance": 0.8342,
+      "parametros": {
+        "umbral": 0.35,
+        "umbral_cobertura": 0.4,
+        "umbral_similitud": 0.0
+      }
+    },
+    "justificacion": "La estrategia Híbrida Compuesta (Dual-Gate) combina la probabilidad de softmax (umbral=0.35) con la cobertura de vocabulario en TF-IDF (umbral=0.35). Logra rechazar sistemáticamente consultas adversarias fuera de dominio que contienen solo una palabra coincidente (como 'cambiar', 'costar', 'tener' cuya cobertura es solo 0.25 < 0.35) sin rechazar consultas legítimas de la tienda (como '¿en qué dirección se encuentra la tienda física?' con cobertura 0.50 y probabilidad 0.61), ofreciendo el mejor equilibrio de cobertura válida, alta exactitud y robustez OOD."
   }
 }

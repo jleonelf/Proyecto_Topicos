@@ -1,31 +1,59 @@
-"""Fase 6: Inferencia con el Modelo en Producción.
+"""Fase 6: Inferencia con el Modelo en Producción y Detección OOD.
 
 Responsable: Jorge.
 Función principal: predecir(texto)
 """
 
 import os
+from pathlib import Path
 from typing import Dict, Any, List, Optional
 import yaml
 import joblib
 import numpy as np
 
+REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
-# Cache del modelo para no recargarlo de disco en cada predicción
+# Cache del modelo, detector y configuración para no recargar de disco en cada predicción
 _MODELO_CACHE = None
+_DETECTOR_CACHE = None
 _CONFIG_CACHE = None
+
+
+def resolver_ruta(ruta: str) -> str:
+    """Resuelve rutas relativas contra el directorio actual o la raíz del proyecto."""
+    p = Path(ruta)
+    if p.is_absolute():
+        return str(p)
+    if p.exists():
+        return str(p.resolve())
+    candidato = REPO_ROOT / p
+    if candidato.exists() or not p.exists():
+        return str(candidato.resolve())
+    return str(p.resolve())
+
+
+def invalidar_cache():
+    """Limpia el caché en memoria del modelo, detector OOD y la configuración."""
+    global _MODELO_CACHE, _DETECTOR_CACHE, _CONFIG_CACHE
+    _MODELO_CACHE = None
+    _DETECTOR_CACHE = None
+    _CONFIG_CACHE = None
 
 
 def obtener_config(config_path: str = "src/config.yaml") -> Dict[str, Any]:
     """Carga y cachea la configuración del sistema."""
     global _CONFIG_CACHE
     if _CONFIG_CACHE is None:
-        if not os.path.exists(config_path):
+        ruta_res = resolver_ruta(config_path)
+        if not os.path.exists(ruta_res):
             return {
-                "artifacts": {"model_path": "artifacts/modelo.joblib"},
-                "inference": {"umbral": 0.55, "top_k": 3}
+                "artifacts": {
+                    "model_path": resolver_ruta("artifacts/modelo.joblib"),
+                    "ood_detector_path": resolver_ruta("artifacts/ood_detector.joblib")
+                },
+                "inference": {"umbral": 0.35, "top_k": 3, "usar_detector_ood": True}
             }
-        with open(config_path, "r", encoding="utf-8") as f:
+        with open(ruta_res, "r", encoding="utf-8") as f:
             _CONFIG_CACHE = yaml.safe_load(f)
     return _CONFIG_CACHE
 
@@ -36,7 +64,11 @@ def cargar_modelo(model_path: Optional[str] = None):
     if _MODELO_CACHE is None:
         if model_path is None:
             cfg = obtener_config()
-            model_path = cfg.get("artifacts", {}).get("model_path", "artifacts/modelo.joblib")
+            raw_path = cfg.get("artifacts", {}).get("model_path", "artifacts/modelo.joblib")
+            model_path = resolver_ruta(raw_path)
+        else:
+            model_path = resolver_ruta(model_path)
+
         if not os.path.exists(model_path):
             raise FileNotFoundError(
                 f"No se encontró el artefacto del modelo en '{model_path}'. "
@@ -46,27 +78,71 @@ def cargar_modelo(model_path: Optional[str] = None):
     return _MODELO_CACHE
 
 
+def cargar_detector(detector_path: Optional[str] = None):
+    """Carga y cachea el detector OOD serializado en joblib."""
+    global _DETECTOR_CACHE
+    if _DETECTOR_CACHE is None:
+        if detector_path is None:
+            cfg = obtener_config()
+            raw_path = cfg.get("artifacts", {}).get("ood_detector_path", "artifacts/ood_detector.joblib")
+            detector_path = resolver_ruta(raw_path)
+        else:
+            detector_path = resolver_ruta(detector_path)
+
+        if os.path.exists(detector_path):
+            _DETECTOR_CACHE = joblib.load(detector_path)
+        else:
+            # Fallback seguro: inicializar detector híbrido con configuración actual
+            try:
+                from src.models.ood import HybridOODDetector
+                cfg = obtener_config()
+                pipeline = cargar_modelo()
+                ood_cfg = cfg.get("ood", {})
+                u_prob = float(ood_cfg.get("umbral_prob", cfg.get("inference", {}).get("umbral", 0.35)))
+                u_cov = float(ood_cfg.get("umbral_cobertura", 0.35))
+                u_sim = float(ood_cfg.get("umbral_similitud", 0.0))
+                det = HybridOODDetector(
+                    umbral_prob=u_prob,
+                    umbral_cobertura=u_cov,
+                    umbral_similitud=u_sim,
+                    modo="conjuncion"
+                )
+                det.fit(pipeline)
+                _DETECTOR_CACHE = det
+            except Exception:
+                _DETECTOR_CACHE = None
+
+    return _DETECTOR_CACHE
+
+
 def predecir(texto: str, config_path: str = "src/config.yaml") -> Dict[str, Any]:
-    """Predice la intención de una frase de usuario.
+    """Predice la intención de una frase de usuario integrando detección OOD.
 
     Devuelve:
-        - intencion: la clase con mayor probabilidad.
-        - probabilidad: confianza entre 0.0 y 1.0.
+        - texto: la consulta recibida.
+        - intencion: la clase detectada si supera los criterios OOD, o 'no_entendido' si es rechazada.
+        - intencion_detectada: la clase más probable sin aplicar el filtro de rechazo.
+        - probabilidad: confianza entre 0.0 y 1.0 de la mejor intención.
+        - umbral: valor de umbral de decisión aplicado.
+        - confianza_suficiente: booleano indicando si supera el filtro OOD / umbral.
         - top3: las 3 intenciones más probables con sus probabilidades.
-        - confianza_suficiente: booleano indicando si supera el umbral configurado.
     """
+    cfg = obtener_config(config_path)
+    umbral_default = float(cfg.get("inference", {}).get("umbral", 0.35))
+    top_k = int(cfg.get("inference", {}).get("top_k", 3))
+    usar_detector = bool(cfg.get("inference", {}).get("usar_detector_ood", True))
+
     if not isinstance(texto, str) or not texto.strip():
         return {
             "error": "Texto vacío o inválido",
+            "texto": texto if isinstance(texto, str) else "",
             "intencion": "desconocido",
+            "intencion_detectada": "desconocido",
             "probabilidad": 0.0,
+            "umbral": round(umbral_default, 4),
             "top3": [],
             "confianza_suficiente": False
         }
-
-    cfg = obtener_config(config_path)
-    umbral = cfg.get("inference", {}).get("umbral", 0.55)
-    top_k = cfg.get("inference", {}).get("top_k", 3)
 
     pipeline = cargar_modelo()
     clases = pipeline.classes_
@@ -90,14 +166,32 @@ def predecir(texto: str, config_path: str = "src/config.yaml") -> Dict[str, Any]
             "probabilidad": round(float(probabilidades[idx]), 4)
         })
 
-    confianza_suficiente = mejor_prob >= umbral
+    # Detección OOD / Decisión de rechazo
+    confianza_suficiente = False
+    umbral_aplicado = umbral_default
+
+    if usar_detector:
+        detector = cargar_detector()
+        if detector is not None:
+            try:
+                confianza_suficiente = bool(detector.predict_accept([texto])[0])
+                umbral_aplicado = float(getattr(detector, "umbral_prob", getattr(detector, "umbral", umbral_default)))
+            except Exception:
+                confianza_suficiente = mejor_prob >= umbral_default
+                umbral_aplicado = umbral_default
+        else:
+            confianza_suficiente = mejor_prob >= umbral_default
+            umbral_aplicado = umbral_default
+    else:
+        confianza_suficiente = mejor_prob >= umbral_default
+        umbral_aplicado = umbral_default
 
     return {
         "texto": texto,
         "intencion": mejor_clase if confianza_suficiente else "no_entendido",
         "intencion_detectada": mejor_clase,
         "probabilidad": round(mejor_prob, 4),
-        "umbral": umbral,
+        "umbral": round(umbral_aplicado, 4),
         "confianza_suficiente": bool(confianza_suficiente),
         "top3": top_lista
     }
