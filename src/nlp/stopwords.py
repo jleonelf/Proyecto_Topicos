@@ -21,8 +21,8 @@ STOPWORDS_BASE_ES: Set[str] = {
 # Palabras que NO deben eliminarse porque cambian el sentido de la consulta
 DEFAULT_EXCLUDE: Set[str] = {"no", "sin", "más", "mas"}
 
-# Palabras coloquiales que SÍ deben eliminarse
-DEFAULT_EXTRA: Set[str] = {"porfa", "oye", "disculpa", "buenas", "hola", "favor"}
+# Palabras de relleno coloquial que SÍ deben eliminarse (sin eliminar palabras clave de intenciones)
+DEFAULT_EXTRA: Set[str] = {"porfa", "oye", "disculpa", "favor"}
 
 
 def quitar_stopwords(
@@ -36,12 +36,12 @@ def quitar_stopwords(
     """
     stopwords = set(STOPWORDS_BASE_ES)
 
-    if extra:
+    if extra is not None:
         stopwords.update(extra)
     else:
         stopwords.update(DEFAULT_EXTRA)
 
-    if exclude:
+    if exclude is not None:
         stopwords.difference_update(exclude)
     else:
         stopwords.difference_update(DEFAULT_EXCLUDE)
