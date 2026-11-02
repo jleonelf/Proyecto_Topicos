@@ -41,16 +41,13 @@ rutas:
 # ------------------------------------------------------------------------------
 nlp:
   modo: "lema" # 'lema' (spaCy es_core_news_sm) o 'stem' (Snowball NLTK)
-  stopwords_extra:
-    - "porfa"
-    - "oye"
-    - "disculpa"
-    - "favor"
-  stopwords_exclude:
-    - "no"
-    - "sin"
-    - "mas"
-    - "más"
+  # Stop words (fase 3): lista de spaCy ajustada al dominio en src/nlp/stopwords.py
+  # (ya conserva "no", "sin", "cuanto", "hay", "bajo"... y agrega "porfa", "oye"...).
+  # Estas dos listas se aplican encima, para agregar o quitar palabras en vivo:
+  #   stopwords_extra: ["quiero"]   -> "quiero" pasa a ser stop word
+  #   stopwords_exclude: ["que"]    -> "que" deja de ser stop word
+  stopwords_extra: []
+  stopwords_exclude: []
 
 # ------------------------------------------------------------------------------
 # Fase 5: Vectorización TF-IDF y N-Gramas (Ramiro)
