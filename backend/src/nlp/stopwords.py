@@ -18,8 +18,8 @@ Palabras que se QUITAN de la lista (se conservan en el texto):
       donde, cuando -> horarios_ubicacion; como -> metodos_pago y envios;
       cual, cuales -> consultar_tallas.
     - Disponibilidad: hay, tiene, tienen -> consultar_stock.
-    - Saludo y despedida: buen, buena(s), bueno(s), dias, hasta, luego
-      ("buenos días", "hasta luego").
+    - Saludo y despedida: buen, buena(s), bueno(s), dia(s), hasta, luego
+      ("buenos días", "buen día", "hasta luego").
     - Reportes de administración: hoy, ultimo(s), ultima, mayor, bajo, total
       ("ventas de hoy", "último mes", "mayor demanda", "stock bajo",
       "total vendido").
@@ -53,8 +53,9 @@ PALABRAS_CONSERVADAS = frozenset({
     "cuanto", "cuanta", "cuantos", "cuantas", "donde", "cuando", "como", "cual", "cuales",
     # Disponibilidad
     "hay", "tiene", "tienen",
-    # Saludo y despedida
-    "buen", "buena", "buenas", "bueno", "buenos", "dias", "hasta", "luego",
+    # Saludo y despedida ("dia" se agregó tras el análisis de errores: "buen día"
+    # perdía "dia" y se clasificaba como despedida)
+    "buen", "buena", "buenas", "bueno", "buenos", "dia", "dias", "hasta", "luego",
     # Reportes de administración
     "hoy", "ultimo", "ultima", "ultimos", "mayor", "bajo", "total",
 })

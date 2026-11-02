@@ -115,7 +115,9 @@ def _lematizar_cached(tokens: tuple) -> tuple:
         # spaCy puede devolver lemas con tilde ("él"); se normalizan igual que
         # los tokens para que "el" y "él" no sean palabras distintas.
         lema = normalizar(palabra.lemma_) or token
-        lemas.append(lema)
+        # Verbos con pronombre pegado: "terminarse" -> "terminar él". Se conserva
+        # solo el verbo; si no, aparecería un token "el" que no escribió el usuario.
+        lemas.append(lema.split()[0])
     return tuple(lemas)
 
 

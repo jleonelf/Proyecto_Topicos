@@ -26,6 +26,13 @@ def test_lemas_sin_tildes():
     assert all("é" not in lema for lema in lematizar(["que", "productos", "se", "estan", "acabando"]))
 
 
+def test_verbo_con_pronombre_da_un_solo_lema():
+    # spaCy lematiza "terminarse" como "terminar él": se conserva solo el verbo
+    lemas = lematizar(["estan", "por", "terminarse", "esta", "semana"])
+    assert len(lemas) == 5 and all(" " not in lema for lema in lemas)
+    assert lemas[2] == "terminar"
+
+
 def test_correcciones_de_palabras_de_chat():
     # Sin corrección spaCy da "holar" y "gracia"/"gracias" según el contexto
     assert lematizar(["hola", "buenas", "tardes"])[0] == "hola"

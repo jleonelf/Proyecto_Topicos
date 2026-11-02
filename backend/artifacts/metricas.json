@@ -1,5 +1,5 @@
 {
-  "fecha_entrenamiento": "2026-11-02T13:30:03.113639",
+  "fecha_entrenamiento": "2026-11-02T13:38:54.108106",
   "configuracion": {
     "project": {
       "name": "asistente-tienda-ropa",
@@ -438,11 +438,11 @@
       "mejores_parametros": {
         "modelo__alpha": 2.0
       },
-      "mejor_cv_score": 0.7875,
+      "mejor_cv_score": 0.7836,
       "metricas": {
         "accuracy": 0.8365,
-        "f1_macro": 0.8392,
-        "f1_weighted": 0.8392,
+        "f1_macro": 0.8391,
+        "f1_weighted": 0.8391,
         "classification_report": {
           "consultar_precio": {
             "precision": 0.8666666666666667,
@@ -499,15 +499,15 @@
             "support": 16.0
           },
           "reporte_ventas": {
-            "precision": 0.8666666666666667,
+            "precision": 0.8125,
             "recall": 0.8125,
-            "f1-score": 0.8387096774193549,
+            "f1-score": 0.8125,
             "support": 16.0
           },
           "saludo": {
-            "precision": 0.8,
+            "precision": 0.8421052631578947,
             "recall": 1.0,
-            "f1-score": 0.8888888888888888,
+            "f1-score": 0.9142857142857143,
             "support": 16.0
           },
           "stock_bajo": {
@@ -524,15 +524,15 @@
           },
           "accuracy": 0.8365384615384616,
           "macro avg": {
-            "precision": 0.8512674856566261,
+            "precision": 0.8503396853867204,
             "recall": 0.8365384615384616,
-            "f1-score": 0.8391986080287839,
+            "f1-score": 0.8391360809501277,
             "support": 208.0
           },
           "weighted avg": {
-            "precision": 0.8512674856566261,
+            "precision": 0.8503396853867204,
             "recall": 0.8365384615384616,
-            "f1-score": 0.8391986080287839,
+            "f1-score": 0.8391360809501277,
             "support": 208.0
           }
         },
@@ -637,8 +637,8 @@
             13,
             0,
             0,
-            0,
             1,
+            0,
             0,
             0
           ],
@@ -741,11 +741,11 @@
         "modelo__C": 10.0,
         "modelo__class_weight": "None"
       },
-      "mejor_cv_score": 0.8297,
+      "mejor_cv_score": 0.8385,
       "metricas": {
         "accuracy": 0.8558,
-        "f1_macro": 0.8573,
-        "f1_weighted": 0.8573,
+        "f1_macro": 0.8571,
+        "f1_weighted": 0.8571,
         "classification_report": {
           "consultar_precio": {
             "precision": 1.0,
@@ -766,9 +766,9 @@
             "support": 16.0
           },
           "despedida": {
-            "precision": 0.8421052631578947,
-            "recall": 1.0,
-            "f1-score": 0.9142857142857143,
+            "precision": 0.8823529411764706,
+            "recall": 0.9375,
+            "f1-score": 0.9090909090909091,
             "support": 16.0
           },
           "devoluciones": {
@@ -778,15 +778,15 @@
             "support": 16.0
           },
           "envios": {
-            "precision": 0.7777777777777778,
+            "precision": 0.8235294117647058,
             "recall": 0.875,
-            "f1-score": 0.8235294117647058,
+            "f1-score": 0.8484848484848485,
             "support": 16.0
           },
           "horarios_ubicacion": {
-            "precision": 0.8666666666666667,
-            "recall": 0.8125,
-            "f1-score": 0.8387096774193549,
+            "precision": 0.9230769230769231,
+            "recall": 0.75,
+            "f1-score": 0.8275862068965517,
             "support": 16.0
           },
           "metodos_pago": {
@@ -797,26 +797,26 @@
           },
           "productos_mas_vendidos": {
             "precision": 1.0,
-            "recall": 0.9375,
-            "f1-score": 0.967741935483871,
+            "recall": 0.875,
+            "f1-score": 0.9333333333333333,
             "support": 16.0
           },
           "reporte_ventas": {
-            "precision": 0.875,
+            "precision": 0.8235294117647058,
             "recall": 0.875,
-            "f1-score": 0.875,
+            "f1-score": 0.8484848484848485,
             "support": 16.0
           },
           "saludo": {
-            "precision": 1.0,
-            "recall": 0.8125,
-            "f1-score": 0.896551724137931,
+            "precision": 0.9411764705882353,
+            "recall": 1.0,
+            "f1-score": 0.9696969696969697,
             "support": 16.0
           },
           "stock_bajo": {
-            "precision": 0.8125,
+            "precision": 0.7647058823529411,
             "recall": 0.8125,
-            "f1-score": 0.8125,
+            "f1-score": 0.7878787878787878,
             "support": 16.0
           },
           "ventas_por_categoria": {
@@ -827,15 +827,15 @@
           },
           "accuracy": 0.8557692307692307,
           "macro avg": {
-            "precision": 0.8690290359076663,
+            "precision": 0.8678229846093312,
             "recall": 0.8557692307692307,
-            "f1-score": 0.857343352430717,
+            "f1-score": 0.8570539247979994,
             "support": 208.0
           },
           "weighted avg": {
-            "precision": 0.8690290359076663,
+            "precision": 0.8678229846093312,
             "recall": 0.8557692307692307,
-            "f1-score": 0.857343352430717,
+            "f1-score": 0.8570539247979994,
             "support": 208.0
           }
         },
@@ -889,14 +889,14 @@
             0,
             0,
             0,
-            16,
+            15,
             0,
             0,
             0,
             0,
             0,
             0,
-            0,
+            1,
             0,
             0
           ],
@@ -904,9 +904,9 @@
             0,
             0,
             2,
-            0,
-            11,
             1,
+            11,
+            0,
             1,
             0,
             0,
@@ -937,10 +937,10 @@
             0,
             1,
             2,
-            13,
+            12,
             0,
             0,
-            0,
+            1,
             0,
             0,
             0
@@ -969,10 +969,10 @@
             0,
             0,
             0,
-            15,
+            14,
             0,
             0,
-            1,
+            2,
             0
           ],
           [
@@ -994,14 +994,14 @@
             0,
             0,
             0,
-            2,
-            0,
-            0,
-            1,
             0,
             0,
             0,
-            13,
+            0,
+            0,
+            0,
+            0,
+            16,
             0,
             0
           ],
@@ -1042,8 +1042,8 @@
   "modelo_produccion": {
     "nombre": "regresion_logistica",
     "criterio": "Mayor F1 Macro en validación cruzada estratificada de 5 folds sobre X_train",
-    "mejor_cv_score": 0.8297,
-    "test_f1_macro": 0.8573,
+    "mejor_cv_score": 0.8385,
+    "test_f1_macro": 0.8571,
     "test_accuracy": 0.8558
   },
   "estrategias_rechazo_ood": {
@@ -1051,11 +1051,11 @@
       "msp_baseline_035": {
         "estrategia": "MSPDetector",
         "umbral": 0.35,
-        "cobertura_id": 0.8024,
-        "exactitud_aceptadas": 0.903,
+        "cobertura_id": 0.7964,
+        "exactitud_aceptadas": 0.9023,
         "tasa_error_ood": 0.525,
-        "f1_macro": 0.7934,
-        "score_balance": 0.7412,
+        "f1_macro": 0.7886,
+        "score_balance": 0.7386,
         "parametros": {
           "umbral": 0.35
         }
@@ -1063,11 +1063,11 @@
       "msp_calibrado": {
         "estrategia": "MSPDetector",
         "umbral": 0.8,
-        "cobertura_id": 0.2635,
-        "exactitud_aceptadas": 0.9773,
+        "cobertura_id": 0.2695,
+        "exactitud_aceptadas": 0.9778,
         "tasa_error_ood": 0.15,
-        "f1_macro": 0.361,
-        "score_balance": 0.6373,
+        "f1_macro": 0.3701,
+        "score_balance": 0.642,
         "parametros": {
           "umbral": 0.8
         }
@@ -1075,11 +1075,11 @@
       "margin": {
         "estrategia": "MarginDetector",
         "umbral": 0.775,
-        "cobertura_id": 0.2335,
-        "exactitud_aceptadas": 0.9744,
+        "cobertura_id": 0.2395,
+        "exactitud_aceptadas": 0.975,
         "tasa_error_ood": 0.15,
-        "f1_macro": 0.3177,
-        "score_balance": 0.615,
+        "f1_macro": 0.325,
+        "score_balance": 0.6187,
         "parametros": {
           "umbral": 0.775
         }
@@ -1088,10 +1088,10 @@
         "estrategia": "CosineCentroidDetector",
         "umbral": 0.25,
         "cobertura_id": 0.2754,
-        "exactitud_aceptadas": 0.9565,
+        "exactitud_aceptadas": 0.9783,
         "tasa_error_ood": 0.15,
-        "f1_macro": 0.3652,
-        "score_balance": 0.6342,
+        "f1_macro": 0.3719,
+        "score_balance": 0.643,
         "parametros": {
           "umbral": 0.25
         }
@@ -1099,11 +1099,11 @@
       "vocab_coverage": {
         "estrategia": "VocabularyCoverageDetector",
         "umbral": 0.6,
-        "cobertura_id": 0.9341,
-        "exactitud_aceptadas": 0.8333,
+        "cobertura_id": 0.9281,
+        "exactitud_aceptadas": 0.8323,
         "tasa_error_ood": 0.25,
-        "f1_macro": 0.8053,
-        "score_balance": 0.7985,
+        "f1_macro": 0.8017,
+        "score_balance": 0.7964,
         "parametros": {
           "umbral": 0.6
         }
@@ -1111,11 +1111,11 @@
       "hybrid_dual_gate": {
         "estrategia": "HybridOODDetector",
         "umbral": 0.35,
-        "cobertura_id": 0.7844,
-        "exactitud_aceptadas": 0.9008,
+        "cobertura_id": 0.7784,
+        "exactitud_aceptadas": 0.9,
         "tasa_error_ood": 0.45,
-        "f1_macro": 0.7831,
-        "score_balance": 0.7543,
+        "f1_macro": 0.7784,
+        "score_balance": 0.7517,
         "parametros": {
           "umbral": 0.35,
           "umbral_cobertura": 0.35,
@@ -1129,27 +1129,27 @@
       "estrategia": "CosineCentroidDetector",
       "umbral": 0.25,
       "cobertura_id": 0.2754,
-      "exactitud_aceptadas": 0.9565,
+      "exactitud_aceptadas": 0.9783,
       "tasa_error_ood": 0.15,
-      "f1_macro": 0.3652,
-      "score_balance": 0.6342,
+      "f1_macro": 0.3719,
+      "score_balance": 0.643,
       "parametros": {
         "umbral": 0.25
       }
     },
-    "justificacion": "cosine_centroid obtuvo F1 macro con rechazo 0.3652 y tasa de aceptación OOD 0.1500 en validación. El score_balance se reporta como indicador adicional, pero no define la selección.",
+    "justificacion": "cosine_centroid obtuvo F1 macro con rechazo 0.3719 y tasa de aceptación OOD 0.1500 en validación. El score_balance se reporta como indicador adicional, pero no define la selección.",
     "evaluacion_final_test": {
       "estrategia": "CosineCentroidDetector",
       "umbral": 0.25,
-      "cobertura_id": 0.3221,
-      "exactitud_aceptadas": 0.9104,
-      "tasa_error_ood": 0.3,
-      "f1_macro": 0.4093,
-      "score_balance": 0.6073,
+      "cobertura_id": 0.3462,
+      "exactitud_aceptadas": 0.9167,
+      "tasa_error_ood": 0.32,
+      "f1_macro": 0.4291,
+      "score_balance": 0.6137,
       "n_id_test": 208,
       "n_ood_test": 50,
       "tasa_error_ood_por_dificultad": {
-        "dificil": 0.44,
+        "dificil": 0.48,
         "facil": 0.16
       }
     }

@@ -28,6 +28,7 @@ def test_elimina_palabras_vacias():
     ("¿cuáles tallas hay?", "cuales"),
     ("¿hay vestidos rojos?", "hay"),
     ("buenas tardes", "buenas"),
+    ("buen día, necesito ayuda", "dia"),
     ("gracias, hasta luego", "luego"),
     ("productos con stock bajo", "bajo"),
     ("total vendido hoy", "total"),
