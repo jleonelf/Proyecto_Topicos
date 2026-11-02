@@ -239,12 +239,23 @@ def importar_tablas(hojas: List[Tuple[str, pd.DataFrame]], reemplazar: bool = Fa
     sino al entrenamiento experimental).
     """
     por_tipo = {tipo: [] for tipo in ORDEN_TIPOS}
+    ignoradas = []  # hojas de documentación (fuentes, resumen...) que no son datos
     for hoja, tabla in hojas:
+        try:
+            tipo = detectar_tipo(tabla)
+        except ArchivoInvalido:
+            if len(hojas) == 1:
+                raise  # un CSV o un Excel de una sola hoja con columnas desconocidas es un error
+            ignoradas.append(hoja)
+            continue
         if len(tabla) > MAX_FILAS:
             raise ArchivoInvalido(f"La hoja '{hoja}' tiene {len(tabla)} filas; el máximo es {MAX_FILAS}.")
-        por_tipo[detectar_tipo(tabla)].append((hoja, tabla))
+        por_tipo[tipo].append((hoja, tabla))
+    if not any(por_tipo.values()):
+        raise ArchivoInvalido(f"Ninguna hoja tiene un formato reconocido (hojas: {', '.join(ignoradas)}).")
 
-    resumen = []
+    resumen = [{"hoja": h, "tipo": "ignorada", "filas_leidas": 0, "filas_importadas": 0,
+                "filas_omitidas": 0, "errores": []} for h in ignoradas]
     # Si se reemplazan los productos, los SKU válidos son solo los del archivo
     skus = set() if (reemplazar and por_tipo["productos"]) else _skus_en_base()
 

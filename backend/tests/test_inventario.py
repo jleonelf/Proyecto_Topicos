@@ -87,6 +87,17 @@ def test_excel_con_dos_hojas(client):
     assert r.json()["inventario"]["indicadores"]["transacciones"] == 3
 
 
+def test_excel_ignora_hojas_de_documentacion(client):
+    buffer = io.BytesIO()
+    with pd.ExcelWriter(buffer, engine="openpyxl") as escritor:
+        pd.read_csv(io.StringIO(PRODUCTOS_CSV)).to_excel(escritor, sheet_name="productos", index=False)
+        pd.DataFrame({"campo": ["fuente"], "valor": ["Amazon"]}).to_excel(escritor, sheet_name="fuentes", index=False)
+    r = _subir(client, "tienda.xlsx", buffer.getvalue(),
+               "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+    assert r.status_code == 200
+    assert {h["hoja"]: h["tipo"] for h in r.json()["hojas"]} == {"fuentes": "ignorada", "productos": "productos"}
+
+
 @pytest.mark.parametrize("nombre, contenido, detalle", [
     ("datos.pdf", b"%PDF", "Formato no soportado"),
     ("vacio.csv", b"", "vacío"),
