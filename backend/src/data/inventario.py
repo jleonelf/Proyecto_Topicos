@@ -364,6 +364,8 @@ def resumen_inventario(umbral_stock: int = 5, limite: int = 10) -> Dict[str, Any
         "ORDER BY stock ASC, nombre LIMIT 50",
         (umbral_stock,),
     )
+    # La lista de stock bajo se limita a 50 filas; el total se cuenta aparte
+    total_stock_bajo = int(consultar("SELECT COUNT(*) AS n FROM productos WHERE stock <= ?", (umbral_stock,))[0]["n"])
     stock_categoria = consultar(
         "SELECT categoria, COUNT(*) AS productos, SUM(stock) AS unidades FROM productos "
         "GROUP BY categoria ORDER BY unidades DESC"
@@ -397,6 +399,7 @@ def resumen_inventario(umbral_stock: int = 5, limite: int = 10) -> Dict[str, Any
             for f in por_fecha
         ],
         "stock_bajo": [dict(f, stock=int(f["stock"])) for f in stock_bajo],
+        "total_stock_bajo": total_stock_bajo,
         "stock_por_categoria": [
             {"categoria": f["categoria"], "productos": int(f["productos"]), "unidades": int(f["unidades"] or 0)}
             for f in stock_categoria

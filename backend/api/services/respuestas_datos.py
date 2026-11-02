@@ -20,8 +20,10 @@ MAX_VARIANTES = 4  # variantes que se mencionan como máximo en una respuesta
 
 
 def _bs(valor: float) -> str:
-    """250.0 -> 'Bs 250'; 80.5 -> 'Bs 80.50'."""
-    return f"Bs {valor:,.0f}" if float(valor).is_integer() else f"Bs {valor:,.2f}"
+    """Formato boliviano: 250.0 -> 'Bs 250'; 3084522.99 -> 'Bs 3.084.522,99'."""
+    texto = f"{valor:,.0f}" if float(valor).is_integer() else f"{valor:,.2f}"
+    # Python usa "," para miles y "." para decimales: se intercambian
+    return "Bs " + texto.replace(",", "_").replace(".", ",").replace("_", ".")
 
 
 def _raiz(palabra: str) -> str:
@@ -62,11 +64,12 @@ def _filtrar(productos: List[Dict[str, Any]], talla: Optional[str], color: Optio
 
 
 def _describir(p: Dict[str, Any]) -> str:
-    """'Jean Slim talla 32 negro'."""
+    """'Jean Slim talla 32 negro'. No repite la talla o el color si el nombre ya los trae."""
     partes = [p["nombre"]]
-    if p.get("talla"):
+    nombre = normalizar(p["nombre"])
+    if p.get("talla") and f"talla {normalizar(str(p['talla']))}" not in nombre:
         partes.append(f"talla {p['talla']}")
-    if p.get("color"):
+    if p.get("color") and normalizar(p["color"]) not in nombre.split():
         partes.append(p["color"])
     return " ".join(partes)
 
@@ -200,7 +203,8 @@ def _reporte(intencion: str) -> Optional[str]:
         if not bajos:
             return f"Ningún producto tiene {datos['umbral_stock']} unidades o menos."
         detalle = ", ".join(f"{_describir(p)} ({p['stock']} unid.)" for p in bajos[:5])
-        return f"Hay {len(bajos)} productos con stock bajo (≤ {datos['umbral_stock']}): {detalle}."
+        total = datos.get("total_stock_bajo", len(bajos))  # la lista viene recortada; el total es aparte
+        return f"Hay {total} productos con stock bajo (≤ {datos['umbral_stock']}). Los más urgentes: {detalle}."
 
     # ventas_por_categoria
     categorias = datos["ventas_por_categoria"]

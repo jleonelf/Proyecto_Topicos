@@ -374,7 +374,7 @@ function PestanaInventario({ recarga, onImportar }) {
       <div className="im-grid-two">
         <Tarjeta
           titulo="Stock bajo"
-          subtitulo={`Productos con ${umbral} unidades o menos.`}
+          subtitulo={`${entero(datos.total_stock_bajo ?? datos.stock_bajo.length)} productos con ${umbral} unidades o menos${datos.total_stock_bajo > datos.stock_bajo.length ? ` (se muestran los ${datos.stock_bajo.length} más urgentes)` : ''}.`}
           extra={
             <label className="im-inline-input">
               Umbral
