@@ -303,16 +303,6 @@ const ChatAssistant = forwardRef(function ChatAssistant({
             )}
           </div>
 
-          {/* Botón que activa o recorre el Drawer "< Ver Cómo Se Procesa el Texto" */}
-          <button 
-            type="button"
-            className="open-pipeline-btn"
-            onClick={onToggleDrawer}
-          >
-            <span className="pipeline-btn-icon">⚡</span>
-            <span className="pipeline-btn-text">&gt; Ver Cómo Se Procesa el Texto (Pipeline NLP) -&gt;</span>
-            <span className="pipeline-btn-sub">Normalización · Tokenización · Lemas spaCy · TF-IDF</span>
-          </button>
         </div>
       )}
 
@@ -357,3 +347,4 @@ const ChatAssistant = forwardRef(function ChatAssistant({
 })
 
 export default ChatAssistant
+

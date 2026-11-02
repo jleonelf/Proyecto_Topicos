@@ -44,13 +44,6 @@ export default function Navbar({
           </button>
           <button 
             type="button"
-            className={`nav-item highlight ${activeTab === 'asistente' ? 'active' : ''}`}
-            onClick={() => onSelectTab && onSelectTab('asistente')}
-          >
-            [Asistente de Voz]
-          </button>
-          <button 
-            type="button"
             className={`nav-item ${activeTab === 'metricas' ? 'active' : ''}`}
             onClick={() => onOpenMetrics && onOpenMetrics()}
           >
@@ -80,3 +73,4 @@ export default function Navbar({
     </header>
   )
 }
+

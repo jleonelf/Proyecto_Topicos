@@ -224,7 +224,7 @@ export default function NlpPipelineDrawer({
                 {/* Entidades Extraídas */}
                 {analysis.entidades && (
                   <div className="extracted-entities-box">
-                    <span className="entities-title">Entidades detectadas:</span>
+                    <span className="entities-title">Entidades detectadas (Ramiro - Fase 5):</span>
                     <div className="entities-chips">
                       {analysis.entidades.talla && (
                         <span className="entity-chip">
@@ -252,7 +252,7 @@ export default function NlpPipelineDrawer({
 
                 {/* Footer Metadatos de Producción */}
                 <div className="pipeline-footer-stats">
-                  <span>TF-IDF (1,2) N-Grams</span>
+                  <span>TF-IDF (1,2) N-Grams (Ramiro - Fase 5)</span>
                   <span>•</span>
                   <span>F1 Macro: 0.8622</span>
                   <span>•</span>
@@ -266,3 +266,4 @@ export default function NlpPipelineDrawer({
     </aside>
   )
 }
+

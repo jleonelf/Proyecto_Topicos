@@ -11,7 +11,7 @@ Inspirado en el diseño editorial de lujo (Imagen 2) y el desglose pedagógico p
 1. **Diseño Editorial de Lujo (Aura Boutique Concierge)**
    - Paleta tonal neutra de alta gama: Marfil cálido, obsidian y detalles champagne/dorados.
    - Orbe iridiscente 3D flotante con animación líquida y respuesta a estados de voz y procesamiento.
-   - Barra superior estilo navegador Safari con tabs de navegación (`[Colección 2026]`, `[Asistente de Voz]`, `[Inventario & Métricas]`).
+   - Barra superior estilo navegador Safari con tabs de navegación (`[Colección 2026]`, `[Inventario & Métricas]`).
 
 2. **Botón de Recorrer `<` y Panel Desplegable ("CÓMO SE PROCESA EL TEXTO")**
    - Panel lateral glassmorphism retráctil que se abre/cierra suavemente con el botón `‹` / `›`.
@@ -21,7 +21,7 @@ Inspirado en el diseño editorial de lujo (Imagen 2) y el desglose pedagógico p
    - **4. Stop Words**: Visualización clara de palabras vacías eliminadas (en rojo tachado) vs conservadas (preservando "no", "sin", "más").
    - **5. Lematización spaCy**: Reducción morfológica a lemas raíz con chips verdes suaves (`jean`, `tener`, `talla`, `disponible`, `envío`).
    - **6. Intención & Modelo ML**: 
-     - Modelo ganador: **Regresión Logística** (F1-Macro: 0.8622).
+     - Modelo y métricas reales: pendiente de unir con Jorge (Fase 6).
      - Confianza calibrada (ej. **99.2%**).
      - Desglose de probabilidades Top 3 con barras animadas.
      - Extracción de entidades detectadas (`[Talla: 32]`, `[Categoría: Jeans]`, `[Envío: Hoy]`).
@@ -57,7 +57,7 @@ npm install
 npm run dev
 ```
 La aplicación estará disponible inmediatamente en:
-👉 **`http://localhost:5174`**
+👉 **`http://localhost:5173`**
 
 ### 2. Compilar para producción
 ```bash

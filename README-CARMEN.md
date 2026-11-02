@@ -32,7 +32,7 @@ npm install      # solo la primera vez
 npm run dev
 ```
 
-Se abre en **http://localhost:5174**.
+Se abre en **http://localhost:5173**.
 
 ---
 
@@ -41,7 +41,7 @@ Se abre en **http://localhost:5174**.
 ```
 frontend/
 ├── index.html
-├── package.json            # vue, lucide-vue-next, vite
+├── package.json            # react, react-dom, lucide-react, vite
 ├── vite.config.js
 └── src/
     ├── main.jsx
@@ -51,12 +51,12 @@ frontend/
     ├── data/mockData.js            # productos de ejemplo del catálogo
     ├── assets/styles.css
     └── components/
-        ├── Navbar.vue              # [Colección 2026] [Inventario & Métricas] ⚡ Pipeline NLP
-        ├── CatalogGrid.vue / ProductCard.vue   # catálogo de prendas
-        ├── AssistantOrb.vue        # orbe animado
-        ├── ChatAssistant.vue       # chat con el asistente
-        ├── NlpPipelineDrawer.vue   # panel "Cómo se procesa el texto" (pasos 1 a 6)
-        └── AdminMetricsModal.vue   # ventana de métricas (VACÍA, falta Jorge)
+        ├── Navbar.jsx              # [Colección 2026] [Inventario & Métricas] ⚡ Pipeline NLP
+        ├── CatalogGrid.jsx / ProductCard.jsx   # catálogo de prendas
+        ├── AssistantOrb.jsx        # orbe animado
+        ├── ChatAssistant.jsx       # chat con el asistente
+        ├── NlpPipelineDrawer.jsx   # panel "Cómo se procesa el texto" (pasos 1 a 6)
+        └── AdminMetricsModal.jsx   # ventana de métricas (VACÍA, falta Jorge)
 ```
 
 ---
@@ -107,7 +107,7 @@ python -m pytest tests/test_normalizacion_tokenizacion.py -v
 > No creé `src/__init__.py` ni `src/nlp/__init__.py` porque Ramiro ya los trae en su rama; crearlos aquí
 > daría conflicto al hacer el merge. Sin ellos los imports funcionan igual (Python 3 + `pytest.ini` con `pythonpath = .`).
 
-En el frontend estos pasos se ven en **`NlpPipelineDrawer.vue`**, en las secciones "1 Texto Original",
+En el frontend estos pasos se ven en **`NlpPipelineDrawer.jsx`**, en las secciones "1 Texto Original",
 "2 Normalización" y "3 Tokenización". Leen `pasos.original`, `pasos.normalizado` y `pasos.tokens`.
 
 ---
@@ -152,7 +152,7 @@ La URL se puede cambiar con la variable `VITE_API_URL`.
 ⚠️ **Cosas a revisar al unir:**
 - Las claves de entidades ya coinciden: `extraer_entidades` de Ramiro devuelve `talla, color, producto, categoria, fecha`, que es lo que lee el frontend. `producto` todavía no se muestra.
 - CORS: su `src/config.yaml` ya permite `http://localhost:5173` en `api.cors.permitir_origenes`. Al unir `config.yaml`, hay que conservar esa parte.
-- En el panel quedan marcados con **(Ramiro - Fase 5)**: "Entidades detectadas" y "TF-IDF (1,2) N-Grams" (`NlpPipelineDrawer.vue`, líneas ~198 y ~217).
+- En el panel quedan marcados con **(Ramiro - Fase 5)**: "Entidades detectadas" y "TF-IDF (1,2) N-Grams" (`NlpPipelineDrawer.jsx`, líneas ~227 y ~255).
 - Hoy `client.js` mezcla la lista de stop words eliminadas del simulador con la respuesta real (`fallback.stopWords.eliminadas`). Cuando la API devuelva las palabras eliminadas, hay que tomarlas de ahí.
 
 ---
@@ -167,17 +167,17 @@ La URL se puede cambiar con la variable `VITE_API_URL`.
 **Puntos de unión:**
 
 1. **Chat / intención:** la API de Ramiro (`/chat`) debe llamar a `predecir(texto)` de Jorge. El frontend recibe `intencion` y `probabilidad` por `/chat` y no necesita nada más.
-   En `NlpPipelineDrawer.vue` la sección "Intención & Modelo" muestra la intención y el top 3.
+   En `NlpPipelineDrawer.jsx` la sección "Intención & Modelo" muestra la intención y el top 3.
 
-2. **Ventana de métricas** ([`AdminMetricsModal.vue`](frontend/src/components/AdminMetricsModal.vue)):
+2. **Ventana de métricas** ([`AdminMetricsModal.jsx`](frontend/src/components/AdminMetricsModal.jsx)):
    - Ahora solo tiene el título: *"Métricas de Producción del Modelo — artifacts/metricas.json (Jorge - Fase 6)"*. El cuerpo está **vacío a propósito**.
    - Para llenarla:
      1. Que la API exponga `GET /metrics` (contrato en el plan, sección 3.4), que lea `artifacts/metricas.json`.
      2. En `client.js`, agregar una función `obtenerMetricas()` que haga `fetch(`${API_BASE_URL}/metrics`)`.
-     3. En `AdminMetricsModal.vue`, llamarla en `onMounted` y mostrar los datos debajo de `.modal-header`: modelo ganador, F1 macro, accuracy, comparación LR vs Naive Bayes vs línea base y matriz de confusión.
-   - Los estilos (`.kpi-grid`, `.metrics-table`, etc.) siguen en el `<style>` del componente y se pueden reutilizar.
+     3. En `AdminMetricsModal.jsx`, llamarla en un `useEffect` y mostrar los datos debajo de `.modal-header`: modelo ganador, F1 macro, accuracy, comparación LR vs Naive Bayes vs línea base y matriz de confusión.
+   - Los estilos (`.kpi-grid`, `.metrics-table`, etc.) siguen en `src/assets/styles.css` y se pueden reutilizar.
 
-3. **Valores inventados que hay que reemplazar:** en `NlpPipelineDrawer.vue`, la línea de abajo del panel
+3. **Valores inventados que hay que reemplazar:** en `NlpPipelineDrawer.jsx`, la línea de abajo del panel
    muestra `F1 Macro: 0.8622` y `Latencia: 8.4 ms` **fijos**. Hay que reemplazarlos por los datos reales de `/metrics` o borrarlos.
 
 ---
@@ -190,5 +190,5 @@ La URL se puede cambiar con la variable `VITE_API_URL`.
 - [ ] Merge de la rama de Ramiro (PR revisado) → `/chat` usando `preprocesar_pasos` + `predecir` + `extraer_entidades`
 - [ ] Jorge: `python -m src.models.train` para generar `artifacts/modelo.joblib`
 - [ ] API: agregar `GET /metrics`
-- [ ] Frontend: conectar `AdminMetricsModal.vue` a `/metrics`; quitar el F1 y la latencia fijos
+- [ ] Frontend: conectar `AdminMetricsModal.jsx` a `/metrics`; quitar el F1 y la latencia fijos
 - [ ] Probar: `uvicorn api.main:app --port 8000` + `npm run dev`. En el chat **no** debería usarse el simulador (en `client.js`, `fromApi: true`)

@@ -8,7 +8,7 @@ import { procesarConsultaNLP } from './utils/nlpSimulator.js'
 import { enviarMensajeChat, verificarSaludApi } from './api/client.js'
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState('asistente')
+  const [currentTab, setCurrentTab] = useState('coleccion')
   const [isDrawerOpen, setIsDrawerOpen] = useState(true)
   const [showMetricsModal, setShowMetricsModal] = useState(false)
   const [isProcessing, setIsProcessing] = useState(false)
@@ -134,3 +134,4 @@ export default function App() {
     </div>
   )
 }
+
