@@ -223,3 +223,6 @@ __marimo__/
 # Project artifacts
 artifacts/*.joblib
 !artifacts/.gitkeep
+
+# Frontend (Node)
+node_modules/
