@@ -1039,3 +1039,83 @@ cuanto se vendio en ropa de playa y verano durante las vacaciones,ventas_por_cat
 dame el resumen ejecutivo de desempeño comercial por cada categoria del catalogo,ventas_por_categoria,admin,ia
 cual fue la participacion de la categoria de pantalones cargo en las ventas juveniles,ventas_por_categoria,admin,ia
 muestrame las ventas consolidadas por departamento de indumentaria textil,ventas_por_categoria,admin,ia
+que productos me recomiendas?,recomendar_productos,cliente,ia
+que me recomiendas comprar?,recomendar_productos,cliente,ia
+recomiendame algo bonito,recomendar_productos,cliente,ia
+que me sugieres para regalar?,recomendar_productos,cliente,ia
+tienes alguna recomendacion para mi?,recomendar_productos,cliente,ia
+que prenda me recomiendas para una fiesta?,recomendar_productos,cliente,ia
+recomiendame un vestido elegante,recomendar_productos,cliente,ia
+que me recomiendas para el invierno?,recomendar_productos,cliente,ia
+que ropa me sugieres para el verano?,recomendar_productos,cliente,ia
+recomiendame una polera para el gimnasio,recomendar_productos,cliente,ia
+que zapatillas me recomiendas?,recomendar_productos,cliente,ia
+me recomiendas algun jean?,recomendar_productos,cliente,ia
+que chaqueta me sugieres?,recomendar_productos,cliente,ia
+que esta de moda ahora?,recomendar_productos,cliente,ia
+que es lo mas popular entre los clientes?,recomendar_productos,cliente,ia
+cual es la prenda favorita de sus clientes?,recomendar_productos,cliente,ia
+que me aconsejas comprar?,recomendar_productos,cliente,ia
+aconsejame una prenda para el trabajo,recomendar_productos,cliente,ia
+que regalo me recomiendas para mi novia?,recomendar_productos,cliente,ia
+que puedo regalarle a mi papa?,recomendar_productos,cliente,ia
+algo que me recomiendes para un cumpleaños?,recomendar_productos,cliente,ia
+sugiereme un outfit para salir,recomendar_productos,cliente,ia
+que combina con unos jeans negros?,recomendar_productos,cliente,ia
+que me pongo para una boda?,recomendar_productos,cliente,ia
+que ropa me recomiendas para una entrevista de trabajo?,recomendar_productos,cliente,ia
+recomiendame algo comodo para el dia a dia,recomendar_productos,cliente,ia
+"cual me recomiendas, la falda o el vestido?",recomendar_productos,cliente,ia
+que camisa me sugieres para una reunion?,recomendar_productos,cliente,ia
+tienen alguna sugerencia de temporada?,recomendar_productos,cliente,ia
+que productos destacados tienen?,recomendar_productos,cliente,ia
+cuales son sus productos recomendados?,recomendar_productos,cliente,ia
+que articulos me recomendarias?,recomendar_productos,cliente,ia
+me podrias recomendar unos zapatos?,recomendar_productos,cliente,ia
+que buzo me recomiendas para el frio?,recomendar_productos,cliente,ia
+recomiendame una chompa abrigada,recomendar_productos,cliente,ia
+que me sugieres de su nueva coleccion?,recomendar_productos,cliente,ia
+"necesito ideas para vestirme mejor, que me recomiendas?",recomendar_productos,cliente,ia
+"no se que comprar, me ayudas a elegir?",recomendar_productos,cliente,ia
+ayudame a elegir una prenda,recomendar_productos,cliente,ia
+que me recomiendas para mi hijo?,recomendar_productos,cliente,ia
+que ropa infantil me sugieres?,recomendar_productos,cliente,ia
+recomiendame algo para mi mama,recomendar_productos,cliente,ia
+que me recomiendas en color negro?,recomendar_productos,cliente,ia
+sugiereme algo en color rojo,recomendar_productos,cliente,ia
+que vestido rojo me recomiendas?,recomendar_productos,cliente,ia
+que es lo que mas les gusta a los clientes?,recomendar_productos,cliente,ia
+cual es el producto estrella de la tienda?,recomendar_productos,cliente,ia
+que tienen de nuevo que me recomienden?,recomendar_productos,cliente,ia
+me recomiendas algo barato pero bonito?,recomendar_productos,cliente,ia
+que me recomiendas con buen precio?,recomendar_productos,cliente,ia
+cual es la mejor opcion para un regalo?,recomendar_productos,cliente,ia
+que me recomiendas para ir a la playa?,recomendar_productos,cliente,ia
+recomiendame un traje de baño,recomendar_productos,cliente,ia
+que short me recomiendas para correr?,recomendar_productos,cliente,ia
+que accesorio me sugieres para combinar?,recomendar_productos,cliente,ia
+recomiendame unas joyas para regalar,recomendar_productos,cliente,ia
+que conjunto me recomiendas armar?,recomendar_productos,cliente,ia
+sugerencias para un look casual?,recomendar_productos,cliente,ia
+que prendas son tendencia esta temporada?,recomendar_productos,cliente,ia
+que me queda bien si soy alto?,recomendar_productos,cliente,ia
+que estilo me recomiendas?,recomendar_productos,cliente,ia
+me das una recomendacion de ropa?,recomendar_productos,cliente,ia
+dame una sugerencia de algo para comprar,recomendar_productos,cliente,ia
+que me sugeririas para una cena elegante?,recomendar_productos,cliente,ia
+cual es su recomendacion del dia?,recomendar_productos,cliente,ia
+que me recomiendan los vendedores?,recomendar_productos,cliente,ia
+recomiendame lo mejor que tengan,recomendar_productos,cliente,ia
+"quiero algo lindo, que me recomiendas?",recomendar_productos,cliente,ia
+"estoy buscando ideas de regalo, alguna sugerencia?",recomendar_productos,cliente,ia
+que prenda no puede faltar en mi armario?,recomendar_productos,cliente,ia
+que productos son los mejor valorados?,recomendar_productos,cliente,ia
+cuales tienen mejores opiniones de los clientes?,recomendar_productos,cliente,ia
+que me recomiendas que este disponible?,recomendar_productos,cliente,ia
+recomiendame algo que tengan en stock,recomendar_productos,cliente,ia
+que calzado me sugieres para caminar mucho?,recomendar_productos,cliente,ia
+que ropa deportiva me recomiendas?,recomendar_productos,cliente,ia
+oye que me recomiendas?,recomendar_productos,cliente,ia
+porfa recomiendame algo,recomendar_productos,cliente,ia
+alguna recomendacion para hombre?,recomendar_productos,cliente,ia
+que me sugieres para mujer?,recomendar_productos,cliente,ia

@@ -66,6 +66,7 @@ const ChatAssistant = forwardRef(function ChatAssistant({
       ventas_por_categoria: 'Ventas por Categoría',
       saludo: 'Saludo Protocolar',
       despedida: 'Despedida',
+      recomendar_productos: 'Recomendaciones',
       no_entendido: 'No entendida (confianza bajo el umbral)' // la API respondió "desconocido"
     }
     return map[intent] || intent

@@ -13,7 +13,7 @@ plantillas fijas de chat_service.py, como antes.
 
 from typing import Any, Dict, List, Optional
 
-from src.data.inventario import datos_tienda, productos_en_base, resumen_inventario
+from src.data.inventario import datos_tienda, productos_en_base, productos_recomendados, resumen_inventario
 from src.nlp.normalizacion import normalizar
 
 MAX_VARIANTES = 4  # variantes que se mencionan como máximo en una respuesta
@@ -146,6 +146,30 @@ def _tallas(productos, entidades) -> Optional[str]:
     return "Tallas disponibles ahora: " + "; ".join(partes) + "."
 
 
+def _recomendar(entidades) -> Optional[str]:
+    """Recomienda los productos con stock que más compran otros clientes.
+
+    Si el cliente mencionó una prenda ("recomiéndame un vestido") o un color, se
+    recomienda dentro de eso; si no hay coincidencias, se recomienda en general.
+    """
+    candidatos = productos_recomendados()
+    if not candidatos:
+        return None
+    pidio_prenda = bool(entidades.get("producto") or entidades.get("categoria"))
+    # Sin prenda ("¿qué me sugieres en negro?") se filtra solo por color sobre todos los productos
+    base = _buscar(candidatos, entidades) if pidio_prenda else candidatos
+    filtrados = _filtrar(base, None, entidades.get("color"))
+    pidio_algo = pidio_prenda or bool(entidades.get("color"))
+    elegidos = filtrados or candidatos  # si no hay de lo pedido, se recomienda lo más popular
+    detalle = "; ".join(
+        f"{_describir(p)} a {_bs(p['precio'])}" + (f" ({p['vendidos']} compras)" if p["vendidos"] else "")
+        for p in elegidos[:MAX_VARIANTES]
+    )
+    if pidio_algo and not filtrados:
+        return f"No tengo recomendaciones de {_pedido(entidades)} con stock, pero lo más elegido por nuestros clientes es: {detalle}."
+    return f"Te recomiendo lo más elegido por nuestros clientes y disponible ahora: {detalle}."
+
+
 # ------------------------------------------------------------------------------
 # Respuesta principal
 # ------------------------------------------------------------------------------
@@ -160,6 +184,9 @@ def responder_con_datos(intencion: str, entidades: Dict[str, Optional[str]]) -> 
             return None
         funcion = {"consultar_stock": _stock, "consultar_precio": _precio, "consultar_tallas": _tallas}[intencion]
         return funcion(productos, entidades)
+
+    if intencion == "recomendar_productos":
+        return _recomendar(entidades)
 
     if intencion in ("saludo", "envios", "devoluciones", "horarios_ubicacion", "metodos_pago"):
         tienda = datos_tienda()

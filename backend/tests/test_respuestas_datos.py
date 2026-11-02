@@ -82,6 +82,23 @@ def test_reportes_de_administracion(base_con_datos):
     assert "poleras" in responder_con_datos("ventas_por_categoria", {})
 
 
+def test_recomienda_lo_mas_vendido_con_stock(base_con_datos):
+    r = responder_con_datos("recomendar_productos", _entidades("¿qué me recomiendas?"))
+    # La polera tiene 5 compras y el jean 32 negro 2: la polera va primero; el 34 negro (stock 0) no aparece
+    assert r.startswith("Te recomiendo") and r.index("Polera Básica") < r.index("Jean Slim")
+    assert "34 negro" not in r
+
+
+def test_recomienda_dentro_de_la_prenda_pedida(base_con_datos):
+    r = responder_con_datos("recomendar_productos", _entidades("recomiéndame unos jeans"))
+    assert "Jean Slim" in r and "Polera" not in r
+
+
+def test_recomienda_por_color_sin_prenda(base_con_datos):
+    r = responder_con_datos("recomendar_productos", {"color": "azul"})
+    assert r.startswith("Te recomiendo") and "Jean Slim talla 34 azul" in r and "Polera" not in r
+
+
 def test_sin_base_usa_plantillas(tmp_path, monkeypatch):
     monkeypatch.delenv("DATABASE_URL", raising=False)
     monkeypatch.setattr(conexion, "ruta_sqlite", lambda: tmp_path / "no_existe.db")

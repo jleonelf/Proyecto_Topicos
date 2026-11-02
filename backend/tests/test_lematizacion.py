@@ -39,6 +39,9 @@ def test_correcciones_de_palabras_de_chat():
     assert lematizar(["muchas", "gracias"])[1] == "gracias"
     assert lematizar(["gracias", "chau"])[0] == "gracias"
     assert lematizar(["dame", "el", "reporte"])[0] == "dar"
+    # Sin corrección: "recomiendir", "sugier"
+    assert lematizar(["que", "me", "recomiendas"])[-1] == "recomendar"
+    assert lematizar(["que", "me", "sugieres"])[-1] == "sugerir"
 
 
 @pytest.mark.parametrize("funcion", [lematizar, stemmizar])

@@ -42,6 +42,7 @@ INTENCIONES_VALIDAS: List[str] = [
     "productos_mas_vendidos",
     "stock_bajo",
     "ventas_por_categoria",
+    "recomendar_productos",  # intención 14, agregada por Fernando
 ]
 
 # Reglas heurísticas de respaldo para cuando modelo.joblib aún no existe
@@ -59,6 +60,7 @@ HEURISTICAS_INTENCIONES: Dict[str, List[str]] = {
     "productos_mas_vendidos": ["mas vendido", "mas vendidos", "top ventas", "articulos mas vendidos", "mayor demanda"],
     "stock_bajo": ["stock bajo", "se estan acabando", "stock critico", "agotandose", "reposicion urgente"],
     "ventas_por_categoria": ["ventas por categoria", "ventas de jeans", "desglose por seccion", "por departamento"],
+    "recomendar_productos": ["recomiendas", "recomiendame", "recomendacion", "sugieres", "sugerencia", "de moda"],
 }
 
 
@@ -278,5 +280,8 @@ def generar_respuesta_chat(
 
     if intencion == "ventas_por_categoria":
         return ("ventas_por_categoria", f"Distribución de ventas por categoría en {fecha}: Pantalones 45%, Abrigos 25%, Camisetas 20%, Calzado 10%.")
+
+    if intencion == "recomendar_productos":
+        return ("recomendar_productos", "Con gusto te recomiendo algo. ¿Qué tipo de prenda buscas y para qué ocasión?")
 
     return (intencion, "Consulta recibida y procesada correctamente.")

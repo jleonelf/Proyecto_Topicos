@@ -28,7 +28,8 @@ son datos, no palabras que haya que reducir.
 Correcciones de lema (LEMAS_FIJOS): es_core_news_sm se entrenó con noticias y
 falla con palabras típicas de chat. Lo comprobamos así:
     "hola" -> "holar", "adios" -> "adio", "dame" -> "damar", "dale" -> "dalir",
-    "gracias" -> a veces "gracia" y a veces "gracias" según la frase.
+    "gracias" -> a veces "gracia" y a veces "gracias" según la frase,
+    "recomiendas" -> "recomiendir", "sugieres" -> "sugier", "sugiereme" -> "sugieremir".
 Esas palabras reciben siempre el lema correcto. No son reglas de intención:
 solo corrigen el lema para que la misma palabra no se parta en dos.
 """
@@ -53,6 +54,19 @@ LEMAS_FIJOS = {
     "chau": "chau",
     "dame": "dar",
     "dale": "dar",
+    # Verbos de recomendación (intención recomendar_productos): sin tilde spaCy
+    # devuelve "recomiendir", "sugier", "sugieremir" o deja la forma sin reducir
+    "recomiendas": "recomendar",
+    "recomiendame": "recomendar",
+    "recomiendeme": "recomendar",
+    "recomendarias": "recomendar",
+    "recomendaria": "recomendar",
+    "sugieres": "sugerir",
+    "sugiereme": "sugerir",
+    "sugierame": "sugerir",
+    "sugeririas": "sugerir",
+    "aconsejas": "aconsejar",
+    "aconsejame": "aconsejar",
 }
 
 MODELO_SPACY = "es_core_news_sm"

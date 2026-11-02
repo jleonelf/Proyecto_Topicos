@@ -130,6 +130,7 @@ Esto se acuerda **hoy** para que los cuatro puedan trabajar en paralelo sin espe
 | admin | `productos_mas_vendidos` | "¿qué fue lo más vendido en octubre?" |
 | admin | `stock_bajo` | "¿qué productos se están acabando?" |
 | admin | `ventas_por_categoria` | "ventas por categoría del mes" |
+| cliente | `recomendar_productos` | "¿qué me recomiendas?" (agregada el 2 de noviembre: el modelo respondía "no entendí" a estas preguntas) |
 
 Meta: **80 a 100 frases por intención** (≈ 1.000–1.300 en total), en español y con variedad (errores de tipeo, sin tildes, informal, con emojis). Carmen coordina el dataset, pero **todos aportan frases** el primer día para llegar rápido a la meta.
 

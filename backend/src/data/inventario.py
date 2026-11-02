@@ -210,6 +210,25 @@ def productos_en_base() -> List[Dict[str, Any]]:
     return [dict(f, precio=float(f["precio"]), stock=int(f["stock"])) for f in filas]
 
 
+def productos_recomendados(limite: int = 300) -> List[Dict[str, Any]]:
+    """Productos con stock ordenados por unidades vendidas (los que más compran otros clientes).
+
+    Si todavía no hay ventas, el orden queda por stock disponible.
+    """
+    try:
+        # GROUP BY p.sku basta porque sku es la clave primaria de productos
+        filas = consultar(
+            "SELECT p.sku, p.nombre, p.categoria, p.talla, p.color, p.precio, p.stock, "
+            "COALESCE(SUM(v.cantidad), 0) AS vendidos "
+            "FROM productos p LEFT JOIN ventas v ON v.sku = p.sku "
+            "WHERE p.stock > 0 GROUP BY p.sku ORDER BY vendidos DESC, p.stock DESC LIMIT ?",
+            (limite,),
+        )
+    except Exception:
+        return []
+    return [dict(f, precio=float(f["precio"]), stock=int(f["stock"]), vendidos=int(f["vendidos"])) for f in filas]
+
+
 def catalogo_para_entidades() -> Dict[str, Any]:
     """Catálogo en el formato que espera extraer_entidades(texto, catalogo) de Ramiro."""
     productos = productos_en_base()
