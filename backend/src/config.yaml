@@ -17,23 +17,24 @@ proyecto:
 
 # ------------------------------------------------------------------------------
 # Datos (train.py)
+# Las rutas son relativas a la carpeta backend/. Los datos viven en database/.
 # ------------------------------------------------------------------------------
 data:
-  raw_path: "data/raw/intenciones.csv"
+  raw_path: "../database/raw/intenciones.csv"
   test_size: 0.2
   seed: 42
-  ood_val_path: "data/ood_val.csv"
-  ood_test_path: "data/ood_test.csv"
+  ood_val_path: "../database/ood_val.csv"
+  ood_test_path: "../database/ood_test.csv"
 
 # ------------------------------------------------------------------------------
 # Rutas de datos y artefactos (API)
 # ------------------------------------------------------------------------------
 rutas:
-  datos_crudos: "data/raw/intenciones.csv"
-  tienda_demo: "data/raw/tienda_demo"
+  datos_crudos: "../database/raw/intenciones.csv"
+  tienda_demo: "../database/raw/tienda_demo"
   modelo_guardado: "artifacts/modelo.joblib"
   metricas_guardadas: "artifacts/metricas.json"
-  base_datos_tienda: "artifacts/tienda.db"
+  base_datos_tienda: "../database/tienda.db"
 
 # ------------------------------------------------------------------------------
 # Preprocesamiento de Texto (Fases 1 a 4 - Carmen y Fernando)
@@ -88,8 +89,8 @@ models:
     fixed_params: {}
 
 ood:
-  val_path: "data/ood_val.csv"
-  test_path: "data/ood_test.csv"
+  val_path: "../database/ood_val.csv"
+  test_path: "../database/ood_test.csv"
   estrategia: "hybrid_dual_gate"
   umbral_prob: 0.35
   umbral_cobertura: 0.35

@@ -221,8 +221,11 @@ __marimo__/
 
 
 # Project artifacts
-artifacts/*.joblib
-!artifacts/.gitkeep
+backend/artifacts/*.joblib
+!backend/artifacts/.gitkeep
+
+# Base de datos SQLite de la tienda (se regenera con el importador)
+database/*.db
 
 # Frontend (Node)
 node_modules/
