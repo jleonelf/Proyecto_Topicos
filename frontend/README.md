@@ -1,6 +1,6 @@
-# Aura Boutique — AI Concierge & NLP Pipeline Frontend (Vue 3 + Vite)
+# Aura Boutique — AI Concierge & NLP Pipeline Frontend (React 18 + Vite)
 
-Frontend interactivo desarrollado con **Vue 3** (Composition API, `<script setup>`) y **Vite**, diseñado específicamente para el proyecto de **Asistente para Tiendas de Ropa** según el `PLAN_DE_TRABAJO.md`.
+Frontend interactivo desarrollado con **React 18** y **Vite**, diseñado específicamente para el proyecto de **Asistente para Tiendas de Ropa** según el `PLAN_DE_TRABAJO.md`.
 
 Inspirado en el diseño editorial de lujo (Imagen 2) y el desglose pedagógico paso a paso del pipeline de NLP (Imagen 3).
 
@@ -57,7 +57,7 @@ npm install
 npm run dev
 ```
 La aplicación estará disponible inmediatamente en:
-👉 **`http://localhost:5173`**
+👉 **`http://localhost:5174`**
 
 ### 2. Compilar para producción
 ```bash
@@ -65,4 +65,3 @@ cd frontend
 npm run build
 ```
 Genera la carpeta optimizada `dist/`.
-

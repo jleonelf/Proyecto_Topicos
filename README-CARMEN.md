@@ -8,7 +8,7 @@ Qué hay hecho, qué falta y en qué punto se conecta la parte de cada compañer
 
 | Parte | Dueño | Estado |
 |---|---|---|
-| Frontend (Vue 3 + Vite) | Carmen | ✅ Funciona con datos **simulados** en JavaScript |
+| Frontend (React 18 + Vite) | Carmen | ✅ Funciona con datos **simulados** en JavaScript |
 | Fase 1: `src/nlp/normalizacion.py` → `normalizar(texto)` | Carmen | ✅ Hecho + pruebas |
 | Fase 2: `src/nlp/tokenizacion.py` → `tokenizar(texto)` | Carmen | ✅ Hecho + pruebas |
 | Fase 3: `src/nlp/stopwords.py` → `quitar_stopwords(tokens)` | Fernando | ❌ Falta hacer |
@@ -32,7 +32,7 @@ npm install      # solo la primera vez
 npm run dev
 ```
 
-Se abre en **http://localhost:5173**.
+Se abre en **http://localhost:5174**.
 
 ---
 
@@ -44,8 +44,8 @@ frontend/
 ├── package.json            # vue, lucide-vue-next, vite
 ├── vite.config.js
 └── src/
-    ├── main.js
-    ├── App.vue                     # arma la página y llama a la API
+    ├── main.jsx
+    ├── App.jsx                     # arma la página y llama a la API
     ├── api/client.js               # ⭐ ÚNICO punto de conexión con el backend
     ├── utils/nlpSimulator.js       # simulador JS (respaldo si la API no responde)
     ├── data/mockData.js            # productos de ejemplo del catálogo
