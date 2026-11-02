@@ -113,8 +113,9 @@ def _stock(productos, entidades) -> Optional[str]:
     alternativas = [p for p in candidatos if p["stock"] > 0]
     if not alternativas:
         return f"Por ahora no tenemos {_pedido(entidades)} en stock. ¿Te aviso cuando repongamos?"
-    tallas = _lista(p.get("talla") for p in alternativas)
-    colores = _lista(p.get("color") for p in alternativas)
+    # Hasta 6 tallas y 6 colores, para que la respuesta no sea una lista interminable
+    tallas = _lista(list(dict.fromkeys(p.get("talla") for p in alternativas if p.get("talla")))[:6])
+    colores = _lista(list(dict.fromkeys(p.get("color") for p in alternativas if p.get("color")))[:6])
     sugerencia = " y ".join(x for x in [f"tallas {tallas}" if tallas else "", f"colores {colores}" if colores else ""] if x)
     return f"No nos queda {_pedido(entidades)}, pero sí tenemos {alternativas[0]['nombre']} en {sugerencia}."
 

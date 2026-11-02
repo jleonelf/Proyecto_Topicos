@@ -357,11 +357,11 @@ def construir_dataset_3(max_productos=8000, max_ventas=15000):
         categoria = _categoria(titulo)
         if not categoria:
             continue
-        talla, color = _talla_color(titulo)
-        if not color:
-            # Si no vino "(color, talla)", se toma el primer color mencionado en el título
-            hallado = COLOR_TITULO.search(titulo)
-            color = COLORES[hallado.group(1).lower()] if hallado else None
+        talla, _ = _talla_color(titulo)
+        # Color: el primer color reconocible del título (incluido el paréntesis "(Black, XL)"),
+        # traducido al español. Nombres comerciales sin traducción ("Ocean", "Havana") se descartan.
+        hallado = COLOR_TITULO.search(titulo)
+        color = COLORES[hallado.group(1).lower()] if hallado else None
         marca = str(item.get("store") or "").strip()[:60]
         productos[item["parent_asin"]] = {
             "sku": item["parent_asin"],
