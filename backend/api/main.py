@@ -20,6 +20,7 @@ from src.data.conexion import descripcion_base, tienda_cargada
 from api.schemas import HealthResponse, ErrorDetalleResponse
 from api.routes.chat import router as chat_router
 from api.routes.reportes import router as reportes_router
+from api.routes.inventario import router as inventario_router
 
 # Directorio raíz del proyecto
 RAIZ_PROYECTO = Path(__file__).resolve().parent.parent
@@ -57,6 +58,7 @@ app.add_middleware(
 # ------------------------------------------------------------------------------
 app.include_router(chat_router)
 app.include_router(reportes_router)
+app.include_router(inventario_router)  # apartado "Inventarios y métricas"
 
 
 # ------------------------------------------------------------------------------

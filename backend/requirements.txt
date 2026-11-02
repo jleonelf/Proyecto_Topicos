@@ -9,6 +9,7 @@ uvicorn==0.54.0
 pydantic==2.14.2
 python-multipart>=0.0.18
 psycopg[binary]==3.3.6
+openpyxl==3.1.5
 pytest==9.2.0
 spacy==3.8.18
 nltk==3.10.4
