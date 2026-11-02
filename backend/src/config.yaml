@@ -1,0 +1,129 @@
+# Configuración central del Pipeline de NLP, Modelos ML y Backend
+# Permite modificar hiperparámetros y reglas sin tocar el código fuente,
+# facilitando las modificaciones en vivo durante la defensa del proyecto.
+
+# ------------------------------------------------------------------------------
+# Proyecto (project lo lee train.py; proyecto lo lee la API)
+# ------------------------------------------------------------------------------
+project:
+  name: "asistente-tienda-ropa"
+  version: "1.0.0"
+  seed: 42
+
+proyecto:
+  nombre: "Asistente Tiendas de Ropa"
+  version: "1.0.0"
+  semilla: 42  # Semilla global para reproducibilidad (exigencia del PDF)
+
+# ------------------------------------------------------------------------------
+# Datos (train.py)
+# Las rutas son relativas a la carpeta backend/. Los datos viven en database/.
+# ------------------------------------------------------------------------------
+data:
+  raw_path: "../database/raw/intenciones.csv"
+  test_size: 0.2
+  seed: 42
+  ood_val_path: "../database/ood_val.csv"
+  ood_test_path: "../database/ood_test.csv"
+
+# ------------------------------------------------------------------------------
+# Rutas de datos y artefactos (API)
+# ------------------------------------------------------------------------------
+rutas:
+  datos_crudos: "../database/raw/intenciones.csv"
+  tienda_demo: "../database/raw/tienda_demo"
+  modelo_guardado: "artifacts/modelo.joblib"
+  metricas_guardadas: "artifacts/metricas.json"
+  base_datos_tienda: "../database/tienda.db"
+
+# ------------------------------------------------------------------------------
+# Preprocesamiento de Texto (Fases 1 a 4 - Carmen y Fernando)
+# ------------------------------------------------------------------------------
+nlp:
+  modo: "lema" # 'lema' (spaCy es_core_news_sm) o 'stem' (Snowball NLTK)
+  # Stop words (fase 3): lista de spaCy ajustada al dominio en src/nlp/stopwords.py
+  # (ya conserva "no", "sin", "cuanto", "hay", "bajo"... y agrega "porfa", "oye"...).
+  # Estas dos listas se aplican encima, para agregar o quitar palabras en vivo:
+  #   stopwords_extra: ["quiero"]   -> "quiero" pasa a ser stop word
+  #   stopwords_exclude: ["que"]    -> "que" deja de ser stop word
+  stopwords_extra: []
+  stopwords_exclude: []
+
+# ------------------------------------------------------------------------------
+# Fase 5: Vectorización TF-IDF y N-Gramas (Ramiro)
+# ------------------------------------------------------------------------------
+vectorizador:
+  # Rango de n-gramas: [1, 1] solo unigramas, [1, 2] unigramas + bigramas
+  # Bigramas capturan contextos clave como "talla m", "sin stock", "envio gratis"
+  ngram_range:
+    - 1
+    - 2
+  min_df: 1         # Frecuencia mínima de documento (ignora palabras hiper-raras/typos únicos)
+  max_df: 0.95      # Frecuencia máxima de documento (ignora palabras presentes en > 95% de frases)
+  max_features: null  # Vocabulario máximo (null para no limitar o entero ej. 2000)
+  sublinear_tf: true  # Aplica escala sublineal: 1 + log(tf) para suavizar términos frecuentes
+  norm: "l2"        # Normalización euclidiana de vectores
+  use_idf: true     # Activa la ponderación de frecuencia inversa de documento
+
+# ------------------------------------------------------------------------------
+# Fase 6: Modelado y Entrenamiento (Jorge)
+# ------------------------------------------------------------------------------
+models:
+  scoring: "f1_macro"
+  cv_folds: 5
+  n_jobs: 1 # Procesamiento secuencial para evitar overhead de multiproceso en Windows
+  logistic_regression:
+    param_grid:
+      modelo__C: [0.1, 1.0, 5.0, 10.0]
+      modelo__class_weight: [null, "balanced"]
+    fixed_params:
+      max_iter: 1000
+      solver: "lbfgs"
+      random_state: 42
+  naive_bayes:
+    param_grid:
+      modelo__alpha: [0.1, 0.5, 1.0, 2.0]
+    fixed_params: {}
+
+ood:
+  val_path: "../database/ood_val.csv"
+  test_path: "../database/ood_test.csv"
+  estrategia: "hybrid_dual_gate"
+  umbral_prob: 0.35
+  umbral_cobertura: 0.35
+  umbral_similitud: 0.0
+
+inference:
+  umbral: 0.35 # Umbral base probabilístico
+  top_k: 3
+  usar_detector_ood: true
+
+artifacts:
+  model_path: "artifacts/modelo.joblib"
+  metrics_path: "artifacts/metricas.json"
+  ood_detector_path: "artifacts/ood_detector.joblib"
+
+# ------------------------------------------------------------------------------
+# Capa Backend: API REST FastAPI (Ramiro)
+# ------------------------------------------------------------------------------
+api:
+  host: "0.0.0.0"
+  port: 8000
+  # Umbral mínimo de confianza del modelo para aceptar una intención
+  # Si probabilidad < umbral_confianza, el chatbot responde "No entendí la consulta"
+  umbral_confianza: 0.60
+  top_k_predicciones: 3  # Número de intenciones candidatas a retornar
+
+  # Validaciones de entrada (Pydantic)
+  validacion:
+    min_longitud_texto: 3     # Evita textos vacíos o de 1 o 2 letras
+    max_longitud_texto: 500   # Evita ataques de denegación de servicio o textos excesivos
+
+  # Configuración de CORS para conexión con Frontend (React + Vite)
+  cors:
+    permitir_origenes:
+      - "http://localhost:5173"
+      - "http://localhost:5174"
+      - "http://127.0.0.1:5173"
+      - "http://127.0.0.1:5174"
+      - "http://localhost:3000"

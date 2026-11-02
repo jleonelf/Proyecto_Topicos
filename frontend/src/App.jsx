@@ -4,6 +4,7 @@ import CatalogGrid from './components/CatalogGrid.jsx'
 import ChatAssistant from './components/ChatAssistant.jsx'
 import NlpPipelineDrawer from './components/NlpPipelineDrawer.jsx'
 import AdminMetricsModal from './components/AdminMetricsModal.jsx'
+import InventarioMetricas from './components/InventarioMetricas.jsx'
 import { procesarConsultaNLP } from './utils/nlpSimulator.js'
 import { enviarMensajeChat, verificarSaludApi } from './api/client.js'
 
@@ -28,6 +29,9 @@ export default function App() {
       const health = await verificarSaludApi()
       if (health && health.estado === 'activo') {
         setIsApiOnline(true)
+        // El análisis inicial también se pide a la API, para no mostrar uno simulado al abrir la página
+        const inicial = await enviarMensajeChat('¿Qué jeans tienen en talla 32 disponibles para envío hoy?', 'cliente')
+        if (inicial.fromApi) setCurrentAnalysis(inicial.pasos)
       }
     }
     checkApi()
@@ -38,10 +42,8 @@ export default function App() {
   }
 
   function handleSelectTab(tab) {
+    // 'metricas' ya no abre un modal: cambia toda la vista al apartado "Inventarios y métricas"
     setCurrentTab(tab)
-    if (tab === 'metricas') {
-      setShowMetricsModal(true)
-    }
   }
 
   async function handleUserMessage(texto) {
@@ -92,12 +94,18 @@ export default function App() {
         activeTab={currentTab}
         isApiConnected={isApiOnline}
         onSelectTab={handleSelectTab}
-        onOpenMetrics={() => setShowMetricsModal(true)}
+        onOpenMetrics={() => handleSelectTab('metricas')}
         onToggleDrawer={toggleDrawer}
       />
 
+      {/* Apartado "Inventarios y métricas": reemplaza las tres columnas del asistente */}
+      {currentTab === 'metricas' && (
+        <InventarioMetricas onVolver={() => handleSelectTab('coleccion')} />
+      )}
+
       {/* Main Workspace Layout: LEFT (Catalog), CENTER (Assistant), RIGHT (NLP Pipeline) */}
-      <main className={`main-layout ${isDrawerOpen ? 'drawer-expanded' : ''}`}>
+      {/* Se oculta con "hidden" (no se desmonta) para conservar la conversación del chat */}
+      <main className={`main-layout ${isDrawerOpen ? 'drawer-expanded' : ''}`} hidden={currentTab === 'metricas'}>
         {/* LEFT SECTION: Luxury Catalog Grid */}
         <section className="left-section">
           <CatalogGrid 

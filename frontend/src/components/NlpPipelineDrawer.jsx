@@ -201,7 +201,13 @@ export default function NlpPipelineDrawer({
                 <div className="winner-row">
                   <div className="winner-name">
                     <span className="winner-intent">{analysis.clasificacion?.intencion || 'consultar_stock'}</span>
-                    <span className="winner-detail">({analysis.clasificacion?.probabilidadPorcentaje || '99.2%'}) - Regresión Logística</span>
+                    {/* Nombre real del origen (modelo entrenado o simulación) en lugar de un texto fijo */}
+                    <span className="winner-detail">({analysis.clasificacion?.probabilidadPorcentaje || '99.2%'}) - {analysis.clasificacion?.modelo || 'Regresión Logística'}</span>
+                    {analysis.clasificacion?.intencion === 'no_entendido' && (
+                      <span className="winner-detail">
+                        Confianza bajo el umbral: el modelo pensó «{analysis.clasificacion?.intencionDetectada}», pero no lo suficiente para responder.
+                      </span>
+                    )}
                   </div>
                 </div>
 
