@@ -38,10 +38,14 @@ vivo sin tocar el código.
 from functools import lru_cache
 from typing import Iterable, List
 
+# Se reutiliza la normalización de Carmen para dejar las stop words en la misma
+# forma que los tokens (minúsculas y sin tildes): "más" -> "mas"
 from src.nlp.normalizacion import normalizar
 
+# Variantes de lista disponibles: la ajustada al dominio y la original de spaCy
 LISTAS = ("ajustada", "spacy")
 
+# Palabras que spaCy considera stop words pero que aquí se conservan en el texto
 PALABRAS_CONSERVADAS = frozenset({
     # Negación y cantidad
     "no", "sin", "mas", "menos", "poco", "nada", "nunca",
@@ -55,9 +59,12 @@ PALABRAS_CONSERVADAS = frozenset({
     "hoy", "ultimo", "ultima", "ultimos", "mayor", "bajo", "total",
 })
 
+# Muletillas de chat que no están en spaCy y que se agregan como stop words
 STOPWORDS_AGREGADAS = frozenset({"porfa", "porfis", "plis", "xfa", "oye", "disculpa", "favor"})
 
 
+# lru_cache guarda el conjunto ya calculado: se construye una vez por combinación
+# de parámetros y no en cada frase (importante al entrenar con miles de frases)
 @lru_cache(maxsize=None)
 def lista_stopwords(lista: str = "ajustada", extra: tuple = (), excluir: tuple = ()) -> frozenset:
     """Devuelve el conjunto de stop words, normalizado igual que los tokens.
@@ -69,16 +76,17 @@ def lista_stopwords(lista: str = "ajustada", extra: tuple = (), excluir: tuple =
     if lista not in LISTAS:
         raise ValueError(f"lista debe ser una de {LISTAS}, no '{lista}'")
 
+    # Lista de spaCy en español; solo es un archivo de palabras, no necesita el modelo
     from spacy.lang.es.stop_words import STOP_WORDS
 
-    palabras = {normalizar(p) for p in STOP_WORDS}
+    palabras = {normalizar(p) for p in STOP_WORDS}  # 521 palabras -> 462 sin tildes
     if lista == "ajustada":
-        palabras -= PALABRAS_CONSERVADAS
-        palabras |= STOPWORDS_AGREGADAS
-    palabras |= {normalizar(p) for p in extra}
+        palabras -= PALABRAS_CONSERVADAS  # se sacan las que deciden la intención
+        palabras |= STOPWORDS_AGREGADAS  # se suman las muletillas de chat
+    palabras |= {normalizar(p) for p in extra}  # ajustes en vivo de config.yaml
     palabras -= {normalizar(p) for p in excluir}
-    palabras.discard("")
-    return frozenset(palabras)
+    palabras.discard("")  # por si alguna palabra quedó vacía al normalizarse
+    return frozenset(palabras)  # frozenset: inmutable y con búsqueda rápida
 
 
 def quitar_stopwords(
@@ -93,5 +101,7 @@ def quitar_stopwords(
         >>> quitar_stopwords(["cuanto", "cuesta", "la", "chaqueta", "de", "cuero", "porfa"])
         ['cuanto', 'cuesta', 'chaqueta', 'cuero']
     """
+    # tuple() porque lru_cache solo acepta argumentos inmutables
     stop = lista_stopwords(lista, tuple(extra), tuple(excluir))
+    # Se conservan los tokens que no están en la lista, en su orden original
     return [t for t in tokens if t not in stop]
