@@ -18,6 +18,8 @@ import joblib
 
 from src.config import config
 from src.nlp.entidades import extraer_entidades
+from src.nlp.pipeline import preprocesar_pasos  # fases 1-4 reales (Fernando)
+from api.services.respuestas_datos import responder_con_datos  # respuestas con datos de la base (Fernando)
 
 RAIZ_PROYECTO = Path(__file__).resolve().parent.parent.parent
 
@@ -163,6 +165,13 @@ def predecir_intencion(texto: str) -> Tuple[str, float, List[Dict[str, Any]]]:
 
 def obtener_pasos_preprocesamiento(texto: str) -> Dict[str, Any]:
     """Genera las etapas paso a paso del texto para visualización en el frontend."""
+    # Regla de oro del plan: se usan las fases 1-4 reales (src/nlp/pipeline.py),
+    # las mismas que van dentro de modelo.joblib, en lugar de reimplementarlas.
+    try:
+        return preprocesar_pasos(texto)
+    except Exception:
+        pass  # si spaCy no está disponible, se usa la versión simplificada de abajo
+
     # Paso 1: Normalización básica
     normalizado = _limpiar_texto(texto)
     # Paso 2: Tokenización
@@ -208,6 +217,12 @@ def generar_respuesta_chat(
             "¿Podrías reformularla indicando si deseas consultar stock, precios, tallas, envíos o reportes?"
         )
         return ("desconocido", mensaje_duda)
+
+    # Primero se intenta responder con los datos reales importados (stock, precios,
+    # horarios, reportes...). Si la base no tiene esos datos, siguen las plantillas.
+    respuesta_real = responder_con_datos(intencion, entidades)
+    if respuesta_real:
+        return (intencion, respuesta_real)
 
     talla = entidades.get("talla")
     color = entidades.get("color")

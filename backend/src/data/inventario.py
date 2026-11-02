@@ -7,6 +7,8 @@ columnas (formato estándar del plan, sección 3.2):
 
     productos   sku, nombre, categoria, talla, color, precio, stock
     ventas      fecha (YYYY-MM-DD), sku, cantidad, precio_unitario
+    tienda      nombre, direccion, horarios, envios, devoluciones, metodos_pago
+                (una fila: datos con los que el chatbot responde)
     frases      texto, intencion       -> entrenamiento experimental del modelo
 
 Un Excel puede tener varias hojas (por ejemplo "productos" y "ventas"); cada
@@ -18,8 +20,9 @@ su número de fila y el motivo, para que el usuario pueda corregirlas.
 """
 
 import io
+import json
 import unicodedata
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 
@@ -29,11 +32,15 @@ from src.data.conexion import consultar, transaccion
 COLUMNAS = {
     "productos": {"sku", "nombre", "categoria", "precio"},
     "ventas": {"fecha", "sku", "cantidad", "precio_unitario"},
+    "tienda": {"nombre", "direccion", "horarios", "envios", "devoluciones", "metodos_pago"},
     "frases": {"texto", "intencion"},
 }
 
+# Campos de la tabla tienda que se guardan como JSON (JSONB en PostgreSQL)
+CAMPOS_TIENDA = ["horarios", "envios", "devoluciones", "metodos_pago"]
+
 # Orden de importación: los productos primero (las ventas los referencian)
-ORDEN_TIPOS = ["productos", "ventas", "frases"]
+ORDEN_TIPOS = ["productos", "ventas", "tienda", "frases"]
 
 MAX_BYTES = 5_000_000  # 5 MB por archivo
 MAX_FILAS = 20_000  # filas por tabla
@@ -160,6 +167,59 @@ def _validar_ventas(tabla: pd.DataFrame, skus_existentes: set) -> Tuple[List[tup
     return validas, errores
 
 
+def _validar_tienda(tabla: pd.DataFrame) -> Tuple[List[tuple], List[Dict[str, Any]]]:
+    """Valida la hoja tienda: se usa solo la primera fila con nombre."""
+    for i, fila in enumerate(tabla.to_dict("records"), start=2):
+        nombre = _texto(fila.get("nombre"))
+        if not nombre:
+            continue
+        # Los textos libres se guardan como JSON para que entren en las columnas JSONB
+        campos = [json.dumps(_texto(fila.get(c)), ensure_ascii=False) for c in CAMPOS_TIENDA]
+        return [(nombre, _texto(fila.get("direccion")) or None, *campos)], []
+    return [], [{"fila": 2, "motivo": "la hoja tienda no tiene ninguna fila con nombre"}]
+
+
+def datos_tienda() -> Optional[Dict[str, str]]:
+    """Datos de la tienda importados (horarios, envíos...), o None si no hay."""
+    try:
+        filas = consultar("SELECT nombre, direccion, horarios, envios, devoluciones, metodos_pago FROM tienda WHERE id = 1")
+    except Exception:
+        return None
+    if not filas:
+        return None
+    fila = filas[0]
+    resultado = {"nombre": fila["nombre"], "direccion": fila["direccion"] or ""}
+    for campo in CAMPOS_TIENDA:
+        valor = fila[campo]
+        # PostgreSQL devuelve el JSONB ya convertido; SQLite devuelve el texto JSON
+        if isinstance(valor, str):
+            try:
+                valor = json.loads(valor)
+            except ValueError:
+                pass
+        resultado[campo] = valor if isinstance(valor, str) else json.dumps(valor, ensure_ascii=False)
+    return resultado
+
+
+def productos_en_base() -> List[Dict[str, Any]]:
+    """Todos los productos del catálogo (lista vacía si la base no está disponible)."""
+    try:
+        filas = consultar("SELECT sku, nombre, categoria, talla, color, precio, stock FROM productos")
+    except Exception:
+        return []
+    return [dict(f, precio=float(f["precio"]), stock=int(f["stock"])) for f in filas]
+
+
+def catalogo_para_entidades() -> Dict[str, Any]:
+    """Catálogo en el formato que espera extraer_entidades(texto, catalogo) de Ramiro."""
+    productos = productos_en_base()
+    nombres = {(p["nombre"], p["categoria"]) for p in productos}  # sin repetir variantes
+    return {
+        "productos": [{"nombre": n, "categoria": c} for n, c in sorted(nombres)],
+        "categorias": sorted({p["categoria"] for p in productos}),
+    }
+
+
 def _skus_en_base() -> set:
     """SKU ya guardados (si la base aún no tiene tablas, devuelve vacío)."""
     try:
@@ -213,6 +273,19 @@ def importar_tablas(hojas: List[Tuple[str, pd.DataFrame]], reemplazar: bool = Fa
                 "INSERT INTO ventas (fecha, sku, cantidad, precio_unitario) VALUES (?, ?, ?, ?)", filas
             )
             resumen.append(_resumen_hoja(hoja, "ventas", tabla, filas, errores))
+
+        for hoja, tabla in por_tipo["tienda"]:
+            filas, errores = _validar_tienda(tabla)
+            # id = 1 siempre: hay una sola tienda; importar de nuevo la actualiza
+            t.ejecutar_muchos(
+                "INSERT INTO tienda (id, nombre, direccion, horarios, envios, devoluciones, metodos_pago) "
+                "VALUES (1, ?, ?, ?, ?, ?, ?) "
+                "ON CONFLICT (id) DO UPDATE SET nombre = excluded.nombre, direccion = excluded.direccion, "
+                "horarios = excluded.horarios, envios = excluded.envios, devoluciones = excluded.devoluciones, "
+                "metodos_pago = excluded.metodos_pago",
+                filas,
+            )
+            resumen.append(_resumen_hoja(hoja, "tienda", tabla, filas, errores))
 
     frases = [tabla for _, tabla in por_tipo["frases"]]
     for hoja, tabla in por_tipo["frases"]:

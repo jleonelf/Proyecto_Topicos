@@ -18,6 +18,7 @@ from api.schemas import (
     ChatResponse,
 )
 from src.nlp.entidades import extraer_entidades
+from src.data.inventario import catalogo_para_entidades  # catálogo importado (Fernando)
 from api.services.chat_service import (
     predecir_intencion,
     generar_respuesta_chat,
@@ -60,8 +61,9 @@ async def chat(solicitud: ChatRequest) -> ChatResponse:
     # 1. Inferencia de intención y confianza
     intencion, probabilidad, _ = predecir_intencion(solicitud.texto)
 
-    # 2. Extracción de entidades (talla, color, producto, fecha)
-    entidades = extraer_entidades(solicitud.texto)
+    # 2. Extracción de entidades (talla, color, producto, fecha), usando el
+    #    catálogo importado para reconocer los nombres de productos de la tienda
+    entidades = extraer_entidades(solicitud.texto, catalogo_para_entidades())
 
     # 3. Aplicación del umbral de confianza y respuesta contextual
     intencion_final, respuesta = generar_respuesta_chat(

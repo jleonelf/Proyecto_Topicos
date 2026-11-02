@@ -21,6 +21,7 @@ const etiqueta = (intencion) => String(intencion).replaceAll('_', ' ') // "consu
 const PLANTILLAS = {
   'productos.csv': 'sku,nombre,categoria,talla,color,precio,stock\nJ-32-N,Jean Slim,pantalones,32,negro,250,8\nP-M-B,Polera Básica,poleras,M,blanco,80,3\n',
   'ventas.csv': 'fecha,sku,cantidad,precio_unitario\n2026-10-01,J-32-N,2,250\n2026-10-02,P-M-B,1,80\n',
+  'tienda.csv': 'nombre,direccion,horarios,envios,devoluciones,metodos_pago\nAura Boutique,"Av. Ballivián 123, Cochabamba",de lunes a sábado de 9:00 a 20:00,Enviamos a todo el país en 48 horas; gratis desde Bs 300.,Cambios hasta 15 días con la etiqueta puesta.,"efectivo, tarjeta y QR"\n',
   'frases.csv': 'texto,intencion\nhola buenas tardes,saludo\n¿cuánto cuesta el jean?,consultar_precio\n',
 }
 
@@ -462,6 +463,7 @@ function PestanaImportar({ onImportado }) {
         <ul className="im-formats">
           <li><strong>Productos</strong> <span className="im-mono">sku, nombre, categoria, talla, color, precio, stock</span> → se guardan en la base y alimentan las respuestas del chat.</li>
           <li><strong>Ventas</strong> <span className="im-mono">fecha, sku, cantidad, precio_unitario</span> → reportes de ventas y más vendidos.</li>
+          <li><strong>Tienda</strong> <span className="im-mono">nombre, direccion, horarios, envios, devoluciones, metodos_pago</span> (una fila) → el chat responde horarios, envíos, cambios y pagos con estos datos.</li>
           <li><strong>Frases</strong> <span className="im-mono">texto, intencion</span> → entrena un modelo experimental y muestra sus métricas (el modelo del chat no cambia).</li>
         </ul>
         <div className="im-row">
