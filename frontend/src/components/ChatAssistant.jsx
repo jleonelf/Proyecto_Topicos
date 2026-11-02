@@ -65,7 +65,8 @@ const ChatAssistant = forwardRef(function ChatAssistant({
       stock_bajo: 'Alerta Stock Bajo (Admin)',
       ventas_por_categoria: 'Ventas por Categoría',
       saludo: 'Saludo Protocolar',
-      despedida: 'Despedida'
+      despedida: 'Despedida',
+      no_entendido: 'No entendida (confianza bajo el umbral)' // la API respondió "desconocido"
     }
     return map[intent] || intent
   }

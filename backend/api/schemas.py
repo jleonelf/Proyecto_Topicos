@@ -89,6 +89,15 @@ class ChatResponse(BaseModel):
         default=None,
         description="Etapas del preprocesamiento de NLP paso a paso (para visualización en frontend).",
     )
+    # Agregados para que el frontend muestre el resultado real del modelo (Fernando)
+    intencion_detectada: Optional[str] = Field(
+        default=None,
+        description="Intención más probable según el modelo, aunque no supere el umbral de confianza.",
+    )
+    top3: List[TopPrediccion] = Field(
+        default_factory=list,
+        description="Las tres intenciones con mayor probabilidad según el modelo.",
+    )
 
 
 class HealthResponse(BaseModel):

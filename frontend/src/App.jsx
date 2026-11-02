@@ -29,6 +29,9 @@ export default function App() {
       const health = await verificarSaludApi()
       if (health && health.estado === 'activo') {
         setIsApiOnline(true)
+        // El análisis inicial también se pide a la API, para no mostrar uno simulado al abrir la página
+        const inicial = await enviarMensajeChat('¿Qué jeans tienen en talla 32 disponibles para envío hoy?', 'cliente')
+        if (inicial.fromApi) setCurrentAnalysis(inicial.pasos)
       }
     }
     checkApi()

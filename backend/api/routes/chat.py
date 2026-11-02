@@ -58,8 +58,8 @@ async def predict(solicitud: ConsultaTextoRequest) -> PredictResponse:
 )
 async def chat(solicitud: ChatRequest) -> ChatResponse:
     """Procesa una consulta de chat combinando clasificación, entidades y plantillas."""
-    # 1. Inferencia de intención y confianza
-    intencion, probabilidad, _ = predecir_intencion(solicitud.texto)
+    # 1. Inferencia de intención y confianza (el top 3 se devuelve al frontend)
+    intencion, probabilidad, top3_raw = predecir_intencion(solicitud.texto)
 
     # 2. Extracción de entidades (talla, color, producto, fecha), usando el
     #    catálogo importado para reconocer los nombres de productos de la tienda
@@ -82,4 +82,6 @@ async def chat(solicitud: ChatRequest) -> ChatResponse:
         entidades=entidades,
         respuesta=respuesta,
         pasos=pasos,
+        intencion_detectada=intencion,  # la del modelo, antes de aplicar el umbral
+        top3=[TopPrediccion(intencion=t["intencion"], probabilidad=t["probabilidad"]) for t in top3_raw],
     )
