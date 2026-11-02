@@ -1,6 +1,6 @@
 # Ejecutar el sistema con Docker
 
-Levanta el sistema completo (frontend, API y modelo) con un solo comando, sin instalar Python ni Node en la máquina.
+Levanta el sistema completo (base de datos, API con el modelo y frontend) con un solo comando, sin instalar Python, Node ni PostgreSQL en la máquina.
 
 ## Requisitos
 
@@ -8,13 +8,25 @@ Levanta el sistema completo (frontend, API y modelo) con un solo comando, sin in
 
 ## Organización
 
-| Carpeta | Qué contiene | Contenedor | URL |
+| Carpeta | Qué contiene | Contenedor | Acceso |
 |---|---|---|---|
+| `database/` | Esquema SQL, dataset de intenciones, conjuntos OOD y tienda demo | `asistente-db` (PostgreSQL 16) | `localhost:5433` |
 | `backend/` | API FastAPI, pipeline NLP/ML, modelo entrenado | `asistente-backend` | http://localhost:8000/docs |
 | `frontend/` | Aplicación React + Vite, servida con Nginx | `asistente-frontend` | http://localhost:5173 |
-| `database/` | Dataset de intenciones, conjuntos OOD, tienda demo y `tienda.db` | montada en el backend como `/database` | — |
 
-**Base de datos:** el proyecto usa SQLite (`database/tienda.db`), una base de datos en un solo archivo que no necesita un servidor aparte. Por eso no tiene contenedor propio: la carpeta `database/` se monta dentro del contenedor del backend, que es quien la lee y la escribe. Así los datos quedan en la carpeta del proyecto y no se pierden al borrar los contenedores.
+Orden de arranque: `db` → `backend` (espera a que PostgreSQL esté listo) → `frontend`.
+
+## Base de datos
+
+- Motor: PostgreSQL 16. Base `tienda`, usuario `tienda`, contraseña `tienda` (solo para desarrollo local).
+- Tablas: `productos`, `ventas` y `tienda`, con el formato estándar de importación del plan (sección 3.2). Las define [database/init/01_esquema.sql](../database/init/01_esquema.sql), que PostgreSQL ejecuta solo la primera vez que se crea el volumen `datos_postgres`.
+- El backend se conecta con la variable `DATABASE_URL` mediante `backend/src/data/conexion.py`. Sin esa variable (ejecución sin Docker) usa SQLite en `database/tienda.db`.
+- Se puede abrir con cualquier cliente (pgAdmin, DBeaver) en `localhost:5433`, o desde la terminal:
+
+```bash
+docker compose exec db psql -U tienda -d tienda
+# dentro de psql: \dt para listar tablas, SELECT * FROM productos;
+```
 
 ## Uso
 
@@ -30,13 +42,16 @@ docker compose logs -f backend
 
 # Detener
 docker compose down
+
+# Detener y borrar los datos de PostgreSQL (vuelve a crear las tablas al levantar)
+docker compose down -v
 ```
 
 La primera vez que arranca, el backend ejecuta `python -m src.models.train` porque todavía no existe `backend/artifacts/modelo.joblib`. Si el entrenamiento falla, la API arranca igual y `GET /health` muestra `modelo_cargado: false`.
 
 ## Modificaciones en vivo (defensa)
 
-Las carpetas `backend/` y `database/` están montadas dentro del contenedor, así que los cambios hechos en la máquina se ven dentro sin reconstruir la imagen:
+Las carpetas `backend/` y `database/` están montadas dentro del contenedor del backend, así que los cambios hechos en la máquina se ven dentro sin reconstruir la imagen:
 
 ```bash
 # 1. Editar backend/src/config.yaml (por ejemplo ngram_range, C, alpha o modo lema/stem),

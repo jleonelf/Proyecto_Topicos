@@ -24,15 +24,15 @@ Proyecto_Topicos/
 │   │   └── components/      # Componentes de la interfaz
 │   ├── Dockerfile
 │   └── nginx.conf
-├── database/                # Datos del sistema
+├── database/                # Base de datos y datasets (contenedor asistente-db)
+│   ├── init/01_esquema.sql  # Tablas productos, ventas y tienda en PostgreSQL
 │   ├── raw/                 # Dataset de intenciones y tienda demo
 │   ├── processed/           # Datos preparados
 │   ├── ood_val.csv          # Consultas fuera de dominio (calibración)
-│   ├── ood_test.csv         # Consultas fuera de dominio (prueba)
-│   └── tienda.db            # Base de datos SQLite de la tienda (se genera)
+│   └── ood_test.csv         # Consultas fuera de dominio (prueba)
 ├── docs/                    # Documentación técnica
 ├── .github/workflows/       # Verificaciones automáticas
-└── docker-compose.yml       # Levanta backend y frontend
+└── docker-compose.yml       # Levanta db, backend y frontend
 ```
 
 ## Ejecución con Docker
@@ -43,12 +43,13 @@ docker compose up --build
 
 - Frontend: http://localhost:5173
 - API y documentación: http://localhost:8000/docs
+- PostgreSQL: `localhost:5433`, base `tienda`, usuario `tienda`, contraseña `tienda`
 
 Más detalles en [docs/DOCKER.md](docs/DOCKER.md).
 
 ## Ejecución local (sin Docker)
 
-Requiere Python 3.11 o superior y Node 18 o superior.
+Requiere Python 3.11 o superior y Node 18 o superior. Sin Docker, el backend usa SQLite (`database/tienda.db`) en lugar de PostgreSQL.
 
 ```bash
 # Backend

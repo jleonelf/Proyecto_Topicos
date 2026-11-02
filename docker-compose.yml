@@ -1,19 +1,47 @@
 # Levanta el sistema completo: docker compose up --build
-#   Frontend: http://localhost:5173
-#   API:      http://localhost:8000/docs
+#   Frontend:   http://localhost:5173
+#   API:        http://localhost:8000/docs
+#   PostgreSQL: localhost:5433 (base tienda, usuario tienda)
 name: asistente-tienda-ropa
 
 services:
+  db:
+    image: postgres:16-alpine
+    container_name: asistente-db
+    environment:
+      # Credenciales solo para desarrollo local
+      POSTGRES_DB: tienda
+      POSTGRES_USER: tienda
+      POSTGRES_PASSWORD: tienda
+    ports:
+      # 5433 en la máquina porque el 5432 suele estar ocupado por un PostgreSQL local
+      - "5433:5432"
+    volumes:
+      - datos_postgres:/var/lib/postgresql/data
+      # Scripts que crean las tablas la primera vez que se crea el volumen
+      - ./database/init:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tienda -d tienda"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
   backend:
     build: ./backend
     container_name: asistente-backend
+    environment:
+      DATABASE_URL: postgresql://tienda:tienda@db:5432/tienda
     ports:
       - "8000:8000"
     volumes:
       # Código del backend montado para modificar en vivo y reentrenar sin reconstruir
       - ./backend:/app
-      # Datos de entrenamiento y base de datos SQLite de la tienda
+      # Dataset de intenciones y conjuntos OOD
       - ./database:/database
+    depends_on:
+      db:
+        condition: service_healthy
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
       interval: 15s
@@ -33,3 +61,6 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
+
+volumes:
+  datos_postgres:

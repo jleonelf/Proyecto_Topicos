@@ -16,6 +16,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from src.config import config
+from src.data.conexion import descripcion_base, tienda_cargada
 from api.schemas import HealthResponse, ErrorDetalleResponse
 from api.routes.chat import router as chat_router
 from api.routes.reportes import router as reportes_router
@@ -114,15 +115,11 @@ async def health() -> HealthResponse:
     ruta_modelo_rel = config.get("rutas", {}).get(
         "modelo_guardado", "artifacts/modelo.joblib"
     )
-    ruta_tienda_rel = config.get("rutas", {}).get(
-        "base_datos_tienda", "artifacts/tienda.db"
-    )
 
     ruta_modelo = RAIZ_PROYECTO / ruta_modelo_rel
-    ruta_tienda = RAIZ_PROYECTO / ruta_tienda_rel
 
     modelo_existe = ruta_modelo.is_file()
-    tienda_existe = ruta_tienda.is_file()
+    tienda_existe = tienda_cargada()
 
     return HealthResponse(
         estado="activo",
@@ -132,7 +129,7 @@ async def health() -> HealthResponse:
         detalles={
             "ruta_modelo": str(ruta_modelo_rel),
             "modelo_disponible": modelo_existe,
-            "ruta_tienda": str(ruta_tienda_rel),
+            "base_datos": descripcion_base(),
             "tienda_disponible": tienda_existe,
         },
     )

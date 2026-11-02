@@ -5,10 +5,10 @@ Responsable: Ramiro (Backend)
 
 import json
 from pathlib import Path
-import sqlite3
 from typing import Any, Dict, List, Optional
 
 from src.config import config
+from src.data.conexion import consultar
 from api.services.chat_service import predecir_intencion
 
 RAIZ_PROYECTO = Path(__file__).resolve().parent.parent.parent
@@ -25,12 +25,6 @@ TIPOS_REPORTES_VALIDOS = {
 def obtener_ruta_metricas() -> Path:
     """Ruta al archivo artifacts/metricas.json."""
     rel = config.get("rutas", {}).get("metricas_guardadas", "artifacts/metricas.json")
-    return RAIZ_PROYECTO / rel
-
-
-def obtener_ruta_db() -> Path:
-    """Ruta a la base de datos artifacts/tienda.db."""
-    rel = config.get("rutas", {}).get("base_datos_tienda", "artifacts/tienda.db")
     return RAIZ_PROYECTO / rel
 
 
@@ -98,8 +92,9 @@ def obtener_metricas_modelo() -> Dict[str, Any]:
 def obtener_reporte(tipo: str, rango: Optional[str] = None) -> Dict[str, Any]:
     """Genera datos agregados para el panel de administración.
 
-    Si existe artifacts/tienda.db, consulta las tablas reales. De lo contrario,
-    provee datos de muestra estructurados para alimentar el panel del frontend.
+    Consulta las tablas reales de la base de datos de la tienda (PostgreSQL en Docker,
+    SQLite sin Docker). Si no está disponible, provee datos de muestra estructurados
+    para alimentar el panel del frontend.
     """
     tipo_limpio = tipo.lower().strip()
     if tipo_limpio not in TIPOS_REPORTES_VALIDOS:
@@ -109,39 +104,31 @@ def obtener_reporte(tipo: str, rango: Optional[str] = None) -> Dict[str, Any]:
         )
 
     periodo = rango or "Últimos 30 días"
-    ruta_db = obtener_ruta_db()
 
-    # Intentar consultar la base de datos real si existe
-    if ruta_db.is_file():
-        try:
-            with sqlite3.connect(ruta_db) as conn:
-                conn.row_factory = sqlite3.Row
-                cursor = conn.cursor()
+    # Intentar consultar la base de datos real
+    try:
+        if tipo_limpio == "ventas":
+            fila = consultar("SELECT SUM(cantidad * precio_unitario) as total, SUM(cantidad) as items, COUNT(*) as tx FROM ventas")[0]
+            total = float(fila["total"] or 0.0)
+            items = int(fila["items"] or 0)
+            tx = int(fila["tx"] or 0)
+            return {
+                "tipo_reporte": "ventas",
+                "rango": periodo,
+                "resumen": {"total_ingresos": total, "transacciones": tx, "articulos_vendidos": items},
+                "datos": [{"metrica": "Ticket promedio", "valor": round(total / tx, 2) if tx > 0 else 0}],
+            }
 
-                if tipo_limpio == "ventas":
-                    cursor.execute("SELECT SUM(cantidad * precio_unitario) as total, SUM(cantidad) as items, COUNT(*) as tx FROM ventas")
-                    fila = cursor.fetchone()
-                    total = fila["total"] or 0.0
-                    items = fila["items"] or 0
-                    tx = fila["tx"] or 0
-                    return {
-                        "tipo_reporte": "ventas",
-                        "rango": periodo,
-                        "resumen": {"total_ingresos": float(total), "transacciones": int(tx), "articulos_vendidos": int(items)},
-                        "datos": [{"metrica": "Ticket promedio", "valor": round(total / tx, 2) if tx > 0 else 0}],
-                    }
-
-                if tipo_limpio == "stock_bajo":
-                    cursor.execute("SELECT nombre, categoria, talla, color, stock FROM productos WHERE stock <= 5 ORDER BY stock ASC LIMIT 20")
-                    filas = [dict(r) for r in cursor.fetchall()]
-                    return {
-                        "tipo_reporte": "stock_bajo",
-                        "rango": "Actual",
-                        "resumen": {"total_alertas": len(filas), "criterio": "Stock <= 5 unidades"},
-                        "datos": filas,
-                    }
-        except Exception:
-            pass
+        if tipo_limpio == "stock_bajo":
+            filas = consultar("SELECT nombre, categoria, talla, color, stock FROM productos WHERE stock <= 5 ORDER BY stock ASC LIMIT 20")
+            return {
+                "tipo_reporte": "stock_bajo",
+                "rango": "Actual",
+                "resumen": {"total_alertas": len(filas), "criterio": "Stock <= 5 unidades"},
+                "datos": filas,
+            }
+    except Exception:
+        pass
 
     # Datos demostrativos de respaldo (para desarrollo del panel admin del frontend)
     if tipo_limpio == "ventas":
