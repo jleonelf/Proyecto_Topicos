@@ -1,42 +1,46 @@
 {
-  "fecha_entrenamiento": "2026-11-01T10:39:23.486445",
+  "fecha_entrenamiento": "2026-11-02T13:30:03.113639",
   "configuracion": {
     "project": {
       "name": "asistente-tienda-ropa",
       "version": "1.0.0",
       "seed": 42
     },
+    "proyecto": {
+      "nombre": "Asistente Tiendas de Ropa",
+      "version": "1.0.0",
+      "semilla": 42
+    },
     "data": {
-      "raw_path": "data/raw/intenciones.csv",
+      "raw_path": "../database/raw/intenciones.csv",
       "test_size": 0.2,
       "seed": 42,
-      "ood_val_path": "data/ood_val.csv",
-      "ood_test_path": "data/ood_test.csv"
+      "ood_val_path": "../database/ood_val.csv",
+      "ood_test_path": "../database/ood_test.csv"
+    },
+    "rutas": {
+      "datos_crudos": "../database/raw/intenciones.csv",
+      "tienda_demo": "../database/raw/tienda_demo",
+      "modelo_guardado": "artifacts/modelo.joblib",
+      "metricas_guardadas": "artifacts/metricas.json",
+      "base_datos_tienda": "../database/tienda.db"
     },
     "nlp": {
       "modo": "lema",
-      "stopwords_extra": [
-        "porfa",
-        "oye",
-        "disculpa",
-        "favor"
-      ],
-      "stopwords_exclude": [
-        "no",
-        "sin",
-        "mas",
-        "más"
-      ]
+      "stopwords_extra": [],
+      "stopwords_exclude": []
     },
-    "vectorizer": {
+    "vectorizador": {
       "ngram_range": [
         1,
         2
       ],
       "min_df": 1,
       "max_df": 0.95,
-      "max_features": 2000,
-      "sublinear_tf": true
+      "max_features": null,
+      "sublinear_tf": true,
+      "norm": "l2",
+      "use_idf": true
     },
     "models": {
       "scoring": "f1_macro",
@@ -74,8 +78,8 @@
       }
     },
     "ood": {
-      "val_path": "data/ood_val.csv",
-      "test_path": "data/ood_test.csv",
+      "val_path": "../database/ood_val.csv",
+      "test_path": "../database/ood_test.csv",
       "estrategia": "hybrid_dual_gate",
       "umbral_prob": 0.35,
       "umbral_cobertura": 0.35,
@@ -90,6 +94,25 @@
       "model_path": "artifacts/modelo.joblib",
       "metrics_path": "artifacts/metricas.json",
       "ood_detector_path": "artifacts/ood_detector.joblib"
+    },
+    "api": {
+      "host": "0.0.0.0",
+      "port": 8000,
+      "umbral_confianza": 0.6,
+      "top_k_predicciones": 3,
+      "validacion": {
+        "min_longitud_texto": 3,
+        "max_longitud_texto": 500
+      },
+      "cors": {
+        "permitir_origenes": [
+          "http://localhost:5173",
+          "http://localhost:5174",
+          "http://127.0.0.1:5173",
+          "http://127.0.0.1:5174",
+          "http://localhost:3000"
+        ]
+      }
     }
   },
   "total_muestras": 1040,
@@ -415,139 +438,139 @@
       "mejores_parametros": {
         "modelo__alpha": 2.0
       },
-      "mejor_cv_score": 0.8009,
+      "mejor_cv_score": 0.7875,
       "metricas": {
         "accuracy": 0.8365,
-        "f1_macro": 0.8375,
-        "f1_weighted": 0.8375,
+        "f1_macro": 0.8392,
+        "f1_weighted": 0.8392,
         "classification_report": {
           "consultar_precio": {
+            "precision": 0.8666666666666667,
+            "recall": 0.8125,
+            "f1-score": 0.8387096774193549,
+            "support": 16.0
+          },
+          "consultar_stock": {
+            "precision": 0.5454545454545454,
+            "recall": 0.75,
+            "f1-score": 0.631578947368421,
+            "support": 16.0
+          },
+          "consultar_tallas": {
+            "precision": 0.7857142857142857,
+            "recall": 0.6875,
+            "f1-score": 0.7333333333333333,
+            "support": 16.0
+          },
+          "despedida": {
+            "precision": 0.8823529411764706,
+            "recall": 0.9375,
+            "f1-score": 0.9090909090909091,
+            "support": 16.0
+          },
+          "devoluciones": {
+            "precision": 0.9230769230769231,
+            "recall": 0.75,
+            "f1-score": 0.8275862068965517,
+            "support": 16.0
+          },
+          "envios": {
             "precision": 0.7777777777777778,
             "recall": 0.875,
             "f1-score": 0.8235294117647058,
             "support": 16.0
           },
-          "consultar_stock": {
-            "precision": 0.6470588235294118,
-            "recall": 0.6875,
-            "f1-score": 0.6666666666666666,
-            "support": 16.0
-          },
-          "consultar_tallas": {
-            "precision": 0.7647058823529411,
-            "recall": 0.8125,
-            "f1-score": 0.7878787878787878,
-            "support": 16.0
-          },
-          "despedida": {
+          "horarios_ubicacion": {
             "precision": 1.0,
             "recall": 0.8125,
             "f1-score": 0.896551724137931,
             "support": 16.0
           },
-          "devoluciones": {
-            "precision": 0.8571428571428571,
-            "recall": 0.75,
-            "f1-score": 0.8,
-            "support": 16.0
-          },
-          "envios": {
-            "precision": 0.9333333333333333,
-            "recall": 0.875,
-            "f1-score": 0.9032258064516129,
-            "support": 16.0
-          },
-          "horarios_ubicacion": {
-            "precision": 0.8823529411764706,
-            "recall": 0.9375,
-            "f1-score": 0.9090909090909091,
-            "support": 16.0
-          },
           "metodos_pago": {
-            "precision": 0.9333333333333333,
-            "recall": 0.875,
-            "f1-score": 0.9032258064516129,
-            "support": 16.0
-          },
-          "productos_mas_vendidos": {
             "precision": 0.9285714285714286,
             "recall": 0.8125,
             "f1-score": 0.8666666666666667,
             "support": 16.0
           },
+          "productos_mas_vendidos": {
+            "precision": 1.0,
+            "recall": 0.9375,
+            "f1-score": 0.967741935483871,
+            "support": 16.0
+          },
           "reporte_ventas": {
-            "precision": 0.7222222222222222,
+            "precision": 0.8666666666666667,
             "recall": 0.8125,
-            "f1-score": 0.7647058823529411,
+            "f1-score": 0.8387096774193549,
             "support": 16.0
           },
           "saludo": {
-            "precision": 0.7894736842105263,
-            "recall": 0.9375,
-            "f1-score": 0.8571428571428571,
+            "precision": 0.8,
+            "recall": 1.0,
+            "f1-score": 0.8888888888888888,
             "support": 16.0
           },
           "stock_bajo": {
-            "precision": 0.8571428571428571,
-            "recall": 0.75,
-            "f1-score": 0.8,
+            "precision": 0.8666666666666667,
+            "recall": 0.8125,
+            "f1-score": 0.8387096774193549,
             "support": 16.0
           },
           "ventas_por_categoria": {
-            "precision": 0.8823529411764706,
-            "recall": 0.9375,
-            "f1-score": 0.9090909090909091,
+            "precision": 0.8235294117647058,
+            "recall": 0.875,
+            "f1-score": 0.8484848484848485,
             "support": 16.0
           },
           "accuracy": 0.8365384615384616,
           "macro avg": {
-            "precision": 0.8442667755361254,
+            "precision": 0.8512674856566261,
             "recall": 0.8365384615384616,
-            "f1-score": 0.8375211867458153,
+            "f1-score": 0.8391986080287839,
             "support": 208.0
           },
           "weighted avg": {
-            "precision": 0.8442667755361254,
+            "precision": 0.8512674856566261,
             "recall": 0.8365384615384616,
-            "f1-score": 0.8375211867458153,
+            "f1-score": 0.8391986080287839,
             "support": 208.0
           }
         },
         "confusion_matrix": [
           [
-            14,
+            13,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1
+            0
           ],
           [
-            3,
+            2,
+            12,
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            4,
             11,
-            2,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            2,
-            13,
             0,
             1,
             0,
@@ -563,22 +586,22 @@
             0,
             0,
             0,
-            13,
+            15,
             0,
             0,
             0,
             0,
             0,
             0,
-            3,
+            1,
             0,
             0
           ],
           [
             0,
             0,
-            1,
             0,
+            1,
             12,
             0,
             0,
@@ -591,10 +614,10 @@
           ],
           [
             0,
-            0,
             1,
             0,
             1,
+            0,
             14,
             0,
             0,
@@ -610,43 +633,28 @@
             0,
             0,
             0,
-            0,
-            15,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            14,
-            0,
-            1,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            2,
             13,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
             2,
             0,
-            1,
+            13,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           [
@@ -655,43 +663,13 @@
             0,
             0,
             0,
-            0,
-            1,
-            0,
-            1,
-            13,
-            0,
-            0,
-            1
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
             0,
             0,
             0,
             15,
             0,
-            0
-          ],
-          [
+            0,
             1,
-            3,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            12,
             0
           ],
           [
@@ -704,10 +682,55 @@
             0,
             0,
             0,
+            13,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            16,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
             1,
             0,
             0,
-            15
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            13,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            14
           ]
         ]
       }
@@ -716,84 +739,84 @@
       "descripcion": "Regresión Logística multinomial optimizada con Stratified 5-Fold CV",
       "mejores_parametros": {
         "modelo__C": 10.0,
-        "modelo__class_weight": "balanced"
+        "modelo__class_weight": "None"
       },
-      "mejor_cv_score": 0.8489,
+      "mejor_cv_score": 0.8297,
       "metricas": {
-        "accuracy": 0.8606,
-        "f1_macro": 0.8622,
-        "f1_weighted": 0.8622,
+        "accuracy": 0.8558,
+        "f1_macro": 0.8573,
+        "f1_weighted": 0.8573,
         "classification_report": {
           "consultar_precio": {
             "precision": 1.0,
-            "recall": 0.875,
-            "f1-score": 0.9333333333333333,
+            "recall": 0.9375,
+            "f1-score": 0.967741935483871,
             "support": 16.0
           },
           "consultar_stock": {
-            "precision": 0.7,
-            "recall": 0.875,
-            "f1-score": 0.7777777777777778,
+            "precision": 0.6521739130434783,
+            "recall": 0.9375,
+            "f1-score": 0.7692307692307693,
             "support": 16.0
           },
           "consultar_tallas": {
-            "precision": 0.7647058823529411,
-            "recall": 0.8125,
-            "f1-score": 0.7878787878787878,
+            "precision": 0.75,
+            "recall": 0.75,
+            "f1-score": 0.75,
             "support": 16.0
           },
           "despedida": {
-            "precision": 1.0,
-            "recall": 0.875,
-            "f1-score": 0.9333333333333333,
+            "precision": 0.8421052631578947,
+            "recall": 1.0,
+            "f1-score": 0.9142857142857143,
             "support": 16.0
           },
           "devoluciones": {
-            "precision": 0.8571428571428571,
-            "recall": 0.75,
-            "f1-score": 0.8,
+            "precision": 0.8461538461538461,
+            "recall": 0.6875,
+            "f1-score": 0.7586206896551724,
             "support": 16.0
           },
           "envios": {
-            "precision": 0.9333333333333333,
+            "precision": 0.7777777777777778,
             "recall": 0.875,
-            "f1-score": 0.9032258064516129,
+            "f1-score": 0.8235294117647058,
             "support": 16.0
           },
           "horarios_ubicacion": {
-            "precision": 0.8823529411764706,
-            "recall": 0.9375,
-            "f1-score": 0.9090909090909091,
+            "precision": 0.8666666666666667,
+            "recall": 0.8125,
+            "f1-score": 0.8387096774193549,
             "support": 16.0
           },
           "metodos_pago": {
-            "precision": 0.9375,
-            "recall": 0.9375,
-            "f1-score": 0.9375,
+            "precision": 1.0,
+            "recall": 0.8125,
+            "f1-score": 0.896551724137931,
             "support": 16.0
           },
           "productos_mas_vendidos": {
-            "precision": 0.9285714285714286,
-            "recall": 0.8125,
-            "f1-score": 0.8666666666666667,
+            "precision": 1.0,
+            "recall": 0.9375,
+            "f1-score": 0.967741935483871,
             "support": 16.0
           },
           "reporte_ventas": {
-            "precision": 0.7647058823529411,
-            "recall": 0.8125,
-            "f1-score": 0.7878787878787878,
+            "precision": 0.875,
+            "recall": 0.875,
+            "f1-score": 0.875,
             "support": 16.0
           },
           "saludo": {
-            "precision": 0.8823529411764706,
-            "recall": 0.9375,
-            "f1-score": 0.9090909090909091,
+            "precision": 1.0,
+            "recall": 0.8125,
+            "f1-score": 0.896551724137931,
             "support": 16.0
           },
           "stock_bajo": {
-            "precision": 0.7647058823529411,
+            "precision": 0.8125,
             "recall": 0.8125,
-            "f1-score": 0.7878787878787878,
+            "f1-score": 0.8125,
             "support": 16.0
           },
           "ventas_por_categoria": {
@@ -802,29 +825,29 @@
             "f1-score": 0.875,
             "support": 16.0
           },
-          "accuracy": 0.8605769230769231,
+          "accuracy": 0.8557692307692307,
           "macro avg": {
-            "precision": 0.8684900883430297,
-            "recall": 0.8605769230769231,
-            "f1-score": 0.8622042384139157,
+            "precision": 0.8690290359076663,
+            "recall": 0.8557692307692307,
+            "f1-score": 0.857343352430717,
             "support": 208.0
           },
           "weighted avg": {
-            "precision": 0.8684900883430297,
-            "recall": 0.8605769230769231,
-            "f1-score": 0.8622042384139157,
+            "precision": 0.8690290359076663,
+            "recall": 0.8557692307692307,
+            "f1-score": 0.857343352430717,
             "support": 208.0
           }
         },
         "confusion_matrix": [
           [
-            14,
+            15,
             1,
             0,
             0,
             0,
             0,
-            1,
+            0,
             0,
             0,
             0,
@@ -834,7 +857,7 @@
           ],
           [
             0,
-            14,
+            15,
             1,
             0,
             0,
@@ -844,48 +867,18 @@
             0,
             0,
             0,
-            1,
+            0,
             0
           ],
           [
             0,
             2,
-            13,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            14,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            2,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            1,
-            0,
             12,
-            1,
             0,
             1,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -895,9 +888,39 @@
           [
             0,
             0,
+            0,
+            16,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            11,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
             1,
             0,
             1,
+            0,
             14,
             0,
             0,
@@ -912,44 +935,29 @@
             0,
             0,
             0,
-            0,
-            0,
-            15,
-            0,
-            0,
             1,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            15,
-            0,
-            0,
-            0,
-            0,
-            0
-          ],
-          [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            2,
             13,
-            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
             0,
             2,
+            0,
+            0,
+            0,
+            1,
+            0,
+            13,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           [
@@ -961,8 +969,23 @@
             0,
             0,
             0,
+            15,
+            0,
+            0,
             1,
-            13,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            14,
             0,
             0,
             2
@@ -971,21 +994,21 @@
             0,
             0,
             0,
-            0,
+            2,
             0,
             0,
             1,
             0,
             0,
             0,
-            15,
+            13,
             0,
             0
           ],
           [
             0,
-            3,
-            0,
+            2,
+            1,
             0,
             0,
             0,
@@ -1019,56 +1042,56 @@
   "modelo_produccion": {
     "nombre": "regresion_logistica",
     "criterio": "Mayor F1 Macro en validación cruzada estratificada de 5 folds sobre X_train",
-    "mejor_cv_score": 0.8489,
-    "test_f1_macro": 0.8622,
-    "test_accuracy": 0.8606
+    "mejor_cv_score": 0.8297,
+    "test_f1_macro": 0.8573,
+    "test_accuracy": 0.8558
   },
   "estrategias_rechazo_ood": {
     "tabla_comparativa": {
       "msp_baseline_035": {
         "estrategia": "MSPDetector",
         "umbral": 0.35,
-        "cobertura_id": 0.8503,
-        "exactitud_aceptadas": 0.9014,
-        "tasa_error_ood": 0.35,
-        "f1_macro": 0.8202,
-        "score_balance": 0.7979,
+        "cobertura_id": 0.8024,
+        "exactitud_aceptadas": 0.903,
+        "tasa_error_ood": 0.525,
+        "f1_macro": 0.7934,
+        "score_balance": 0.7412,
         "parametros": {
           "umbral": 0.35
         }
       },
       "msp_calibrado": {
         "estrategia": "MSPDetector",
-        "umbral": 0.675,
-        "cobertura_id": 0.479,
-        "exactitud_aceptadas": 0.95,
+        "umbral": 0.8,
+        "cobertura_id": 0.2635,
+        "exactitud_aceptadas": 0.9773,
         "tasa_error_ood": 0.15,
-        "f1_macro": 0.5868,
-        "score_balance": 0.7434,
+        "f1_macro": 0.361,
+        "score_balance": 0.6373,
         "parametros": {
-          "umbral": 0.675
+          "umbral": 0.8
         }
       },
       "margin": {
         "estrategia": "MarginDetector",
-        "umbral": 0.6,
-        "cobertura_id": 0.4611,
-        "exactitud_aceptadas": 0.961,
+        "umbral": 0.775,
+        "cobertura_id": 0.2335,
+        "exactitud_aceptadas": 0.9744,
         "tasa_error_ood": 0.15,
-        "f1_macro": 0.5702,
-        "score_balance": 0.7379,
+        "f1_macro": 0.3177,
+        "score_balance": 0.615,
         "parametros": {
-          "umbral": 0.6
+          "umbral": 0.775
         }
       },
       "cosine_centroid": {
         "estrategia": "CosineCentroidDetector",
         "umbral": 0.25,
-        "cobertura_id": 0.3832,
-        "exactitud_aceptadas": 0.9062,
-        "tasa_error_ood": 0.125,
-        "f1_macro": 0.454,
-        "score_balance": 0.6723,
+        "cobertura_id": 0.2754,
+        "exactitud_aceptadas": 0.9565,
+        "tasa_error_ood": 0.15,
+        "f1_macro": 0.3652,
+        "score_balance": 0.6342,
         "parametros": {
           "umbral": 0.25
         }
@@ -1076,11 +1099,11 @@
       "vocab_coverage": {
         "estrategia": "VocabularyCoverageDetector",
         "umbral": 0.6,
-        "cobertura_id": 0.9162,
-        "exactitud_aceptadas": 0.8431,
-        "tasa_error_ood": 0.1,
-        "f1_macro": 0.8048,
-        "score_balance": 0.8382,
+        "cobertura_id": 0.9341,
+        "exactitud_aceptadas": 0.8333,
+        "tasa_error_ood": 0.25,
+        "f1_macro": 0.8053,
+        "score_balance": 0.7985,
         "parametros": {
           "umbral": 0.6
         }
@@ -1088,48 +1111,46 @@
       "hybrid_dual_gate": {
         "estrategia": "HybridOODDetector",
         "umbral": 0.35,
-        "cobertura_id": 0.8323,
-        "exactitud_aceptadas": 0.9065,
-        "tasa_error_ood": 0.2,
-        "f1_macro": 0.8151,
-        "score_balance": 0.8342,
+        "cobertura_id": 0.7844,
+        "exactitud_aceptadas": 0.9008,
+        "tasa_error_ood": 0.45,
+        "f1_macro": 0.7831,
+        "score_balance": 0.7543,
         "parametros": {
           "umbral": 0.35,
-          "umbral_cobertura": 0.4,
+          "umbral_cobertura": 0.35,
           "umbral_similitud": 0.0
         }
       }
     },
-    "estrategia_seleccionada": "hybrid_dual_gate",
+    "estrategia_seleccionada": "cosine_centroid",
     "criterio_seleccion": "Mayor F1 macro con rechazo en validación, sujeto a tasa de aceptación OOD <= 0.20; desempate por menor tasa OOD. Si ninguna estrategia cumple el límite, se elige el mayor F1 macro y se informa el incumplimiento.",
     "resumen_ganador": {
-      "estrategia": "HybridOODDetector",
-      "umbral": 0.35,
-      "cobertura_id": 0.8323,
-      "exactitud_aceptadas": 0.9065,
-      "tasa_error_ood": 0.2,
-      "f1_macro": 0.8151,
-      "score_balance": 0.8342,
+      "estrategia": "CosineCentroidDetector",
+      "umbral": 0.25,
+      "cobertura_id": 0.2754,
+      "exactitud_aceptadas": 0.9565,
+      "tasa_error_ood": 0.15,
+      "f1_macro": 0.3652,
+      "score_balance": 0.6342,
       "parametros": {
-        "umbral": 0.35,
-        "umbral_cobertura": 0.4,
-        "umbral_similitud": 0.0
+        "umbral": 0.25
       }
     },
-    "justificacion": "hybrid_dual_gate obtuvo F1 macro con rechazo 0.8151 y tasa de aceptación OOD 0.2000 en validación. El score_balance se reporta como indicador adicional, pero no define la selección.",
+    "justificacion": "cosine_centroid obtuvo F1 macro con rechazo 0.3652 y tasa de aceptación OOD 0.1500 en validación. El score_balance se reporta como indicador adicional, pero no define la selección.",
     "evaluacion_final_test": {
-      "estrategia": "HybridOODDetector",
-      "umbral": 0.35,
-      "cobertura_id": 0.875,
-      "exactitud_aceptadas": 0.9011,
-      "tasa_error_ood": 0.16,
-      "f1_macro": 0.8402,
-      "score_balance": 0.8554,
+      "estrategia": "CosineCentroidDetector",
+      "umbral": 0.25,
+      "cobertura_id": 0.3221,
+      "exactitud_aceptadas": 0.9104,
+      "tasa_error_ood": 0.3,
+      "f1_macro": 0.4093,
+      "score_balance": 0.6073,
       "n_id_test": 208,
       "n_ood_test": 50,
       "tasa_error_ood_por_dificultad": {
-        "dificil": 0.32,
-        "facil": 0.0
+        "dificil": 0.44,
+        "facil": 0.16
       }
     }
   }
