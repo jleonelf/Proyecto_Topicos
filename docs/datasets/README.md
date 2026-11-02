@@ -57,7 +57,7 @@ Fecha de obtención: 2 de noviembre de 2026.
 | `precio`, `precio_unitario` | Derivado: precio en USD × 6,96 Bs (tipo de cambio oficial del BCB) |
 | `precio_usd`, `marca`, `valoracion_promedio`, `num_valoraciones` | Reales |
 | `stock` | **Simulado** (Amazon no publica inventario): valor reproducible de 0 a 40; columna `stock_origen = simulado` |
-| ventas: `fecha`, `calificacion` | Reales: cada reseña con compra verificada (`verified_purchase`) cuenta como una venta de 1 unidad, del 12/12/2022 al 10/09/2023 |
+| ventas: `fecha`, `calificacion` | Reales: cada reseña con compra verificada (`verified_purchase`) cuenta como una venta de 1 unidad, del 25/11/2022 al 10/09/2023 |
 
 - **Selección:** productos con precio y con categoría de ropa reconocible (35.481 de 826.108). Se limitó joyería, accesorios y calcetines a 400 cada uno, porque Amazon Fashion vende sobre todo eso, y se priorizaron los más vendidos.
 - **Limitaciones:**

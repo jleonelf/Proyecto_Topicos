@@ -29,62 +29,39 @@ def obtener_ruta_metricas() -> Path:
 
 
 def obtener_metricas_modelo() -> Dict[str, Any]:
-    """Lee las métricas generadas por Jorge en artifacts/metricas.json o devuelve valores base."""
-    ruta = obtener_ruta_metricas()
+    """Métricas reales del modelo en producción, en el formato plano de MetricsResponse.
 
-    if ruta.is_file():
-        try:
-            with open(ruta, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            pass
+    artifacts/metricas.json (lo genera train.py de Jorge) guarda las métricas
+    anidadas por modelo; aquí se toman las del modelo en producción y la
+    comparación con los demás. Si todavía no hay entrenamiento se devuelven
+    ceros, nunca valores inventados. (Adaptación: Fernando)
+    """
+    from api.services.metricas_service import metricas_entrenamiento
 
-    # Métricas de referencia empírica (Regresión Logística vs Naive Bayes con TF-IDF)
-    # según los experimentos del plan de trabajo mientras Jorge genera el archivo final.
+    datos = metricas_entrenamiento()
+    if not datos.get("disponible"):
+        return {"modelo_activo": "Sin entrenar (ejecutar python -m src.models.train)", "accuracy": 0.0, "f1_macro": 0.0}
+
+    produccion = next((m for m in datos["modelos"] if m["en_produccion"]), datos["modelos"][0])
     return {
-        "modelo_activo": "Regresión Logística (TF-IDF 1,2)",
-        "accuracy": 0.942,
-        "f1_macro": 0.938,
-        "f1_por_clase": {
-            "saludo": 0.975,
-            "despedida": 0.960,
-            "consultar_stock": 0.941,
-            "consultar_precio": 0.932,
-            "consultar_tallas": 0.925,
-            "envios": 0.950,
-            "devoluciones": 0.915,
-            "horarios_ubicacion": 0.980,
-            "metodos_pago": 0.965,
-            "reporte_ventas": 0.930,
-            "productos_mas_vendidos": 0.920,
-            "stock_bajo": 0.910,
-            "ventas_por_categoria": 0.890,
-        },
+        "modelo_activo": datos["produccion"]["nombre"],
+        "accuracy": produccion["accuracy"],
+        "f1_macro": produccion["f1_macro"],
+        "f1_por_clase": {clase: m["f1"] for clase, m in produccion["por_clase"].items()},
         "matriz_confusion": {
-            "descripcion": "Matriz calculada con validación cruzada estratificada (5 folds)",
-            "total_muestras_evaluadas": 240,
-            "aciertos": 226,
-            "errores": 14,
+            "descripcion": f"Conjunto de prueba ({datos['muestras_test']} frases). Filas: intención real; columnas: predicha.",
+            "etiquetas": datos["clases"],
+            "valores": produccion["matriz_confusion"],
         },
         "comparativa_modelos": {
-            "Regresión Logística (TF-IDF 1,2)": {
-                "accuracy": 0.942,
-                "f1_macro": 0.938,
-                "seleccionado": True,
-                "justificacion": "Mayor F1-macro y calibración probabilística superior para umbral.",
-            },
-            "ComplementNB (TF-IDF 1,2)": {
-                "accuracy": 0.916,
-                "f1_macro": 0.908,
-                "seleccionado": False,
-                "justificacion": "Rápido pero penalizado en clases con frases más largas.",
-            },
-            "Línea Base (Clase más frecuente)": {
-                "accuracy": 0.082,
-                "f1_macro": 0.015,
-                "seleccionado": False,
-                "justificacion": "Predecir siempre la clase mayoritaria no aporta valor discriminante.",
-            },
+            m["nombre"]: {
+                "accuracy": m["accuracy"],
+                "f1_macro": m["f1_macro"],
+                "f1_weighted": m["f1_weighted"],
+                "cv_f1_macro": m["cv_f1_macro"],
+                "seleccionado": m["en_produccion"],
+            }
+            for m in datos["modelos"]
         },
     }
 
